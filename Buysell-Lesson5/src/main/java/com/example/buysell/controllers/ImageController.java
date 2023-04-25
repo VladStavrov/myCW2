@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.ByteArrayInputStream;
 
-@RestController
 @RequiredArgsConstructor
+@RestController
 public class ImageController {
-    private final ImageRepository imageRepository;
 
+    private final ImageRepository imageRepository;
     @GetMapping("/images/{id}")
-    private ResponseEntity<?> getImageById(@PathVariable Long id) {
-        Image image = imageRepository.findById(id).orElse(null);
+    private ResponseEntity<?> getImageById(@PathVariable Long id){
+        Image image= imageRepository.findById(id).orElse(null);
         return ResponseEntity.ok()
                 .header("fileName", image.getOriginalFileName())
                 .contentType(MediaType.valueOf(image.getContentType()))

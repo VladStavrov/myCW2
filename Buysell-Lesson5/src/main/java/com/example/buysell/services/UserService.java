@@ -1,7 +1,8 @@
 package com.example.buysell.services;
 
+import com.example.buysell.models.Role;
 import com.example.buysell.models.User;
-import com.example.buysell.models.enums.Role;
+
 import com.example.buysell.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class UserService {
         String userEmail = user.getEmail();
         if (userRepository.findByEmail(userEmail) != null) return false;
         user.setActive(true);
-        user.getRoles().add(Role.ROLE_USER);
+        user.getRoles().add(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with email: {}", userEmail);
         userRepository.save(user);
