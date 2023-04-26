@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Arrays;
 
 @Entity
 @Table(name = "images")
@@ -91,4 +92,6 @@ public class Image {
     public void setBytes(byte[] bytes) {
         this.bytes = bytes;
     }
+
+
 }

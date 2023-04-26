@@ -42,15 +42,13 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public String createProduct(@RequestParam("files")  ArrayList<MultipartFile> files, Product product) {
-       /* System.out.println("Product: " + product);
+    public String createProduct(@RequestParam("files")  ArrayList<MultipartFile> files, Product product) throws IOException {
+        System.out.println("Product: " + product);
         System.out.println("Files: " + files);
-        System.out.println("size= " );*/
-        try {
+        System.out.println("size= " + files.size());
+
             productService.saveProduct(product,files);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         return "redirect:/";
     }
     @PostMapping("/product/delete/{id}")
