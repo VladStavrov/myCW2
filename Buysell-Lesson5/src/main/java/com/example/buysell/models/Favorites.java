@@ -21,12 +21,13 @@ public class Favorites {
     @JoinColumn(name = "user_id")
     private User user;
 
-    /*public void addProductToFavorites(Product product){
+    public void addProductToFavorites(Product product){
         product.getFavorites().add(this);
+
         products.add(product);
 
 
-    }*/
+    }
 
     @ManyToMany(mappedBy = "favorites")
     private List<Product> products = new ArrayList<>();

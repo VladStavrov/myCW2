@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -24,11 +26,16 @@ public class UserService {
         Favorites favorites = new Favorites();
         favorites.setUser(user);
         user.setFavorites(favorites);
-        
+
         user.getRoles().add(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with email: {}", userEmail);
         userRepository.save(user);
         return true;
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if(principal==null) return null;
+        return userRepository.findByEmail(principal.getName());
     }
 }
