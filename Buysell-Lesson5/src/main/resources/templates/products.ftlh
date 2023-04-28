@@ -13,11 +13,33 @@
 <#list products as product>
     <div>
         <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a> |
-            <a href="/favorites/${product.id}" >favorites...</a></p>
+            <#if user.email??>
+                <#--<#if user.favorites.products.contains(product)>
+                    <a&lt;#&ndash; href="/favorites/delete/${product.id}" &ndash;&gt;>Delete from favorites...</a>
+                    <!-- блок кода, который будет выполнен, если условие истинно &ndash;&gt;
+                <#else>
+                    <a href="/favorites/${product.id}" >Add to favorites...</a>
+                </#if>-->
+
+                        <#if user.favorites.products?seq_contains(product)>
+                            <a href="/favorites/delete/${product.id}" >Delete from favorites...</a>
+                            <!-- блок кода, который будет выполнен, если условие истинно -->
+                        <#else>
+                            <a href="/favorites/${product.id}" >Add to favorites...</a>
+                        </#if>
+
+
+            </#if>
+
+
+
+
+
     </div>
     <#else>
     <h3>Товаров нет</h3>
 </#list>
+
 <hr>
 <h3>Создать новый товар</h3>
 <form action="/product/create" method="post" enctype="multipart/form-data">
