@@ -35,6 +35,17 @@ public class ProductController {
         }
         model.addAttribute("user",user);
        /* model.addAttribute("user",userService.getUserByPrincipal(principal));*/
+        return "catalog2";
+    }
+    @GetMapping("/admin")
+    public String admin(@RequestParam(name="title",required = false) String title, Model model, Principal principal) {
+        model.addAttribute("products",productService.getProductList(title));
+        User user= userService.getUserByPrincipal(principal);
+        if(user==null){
+            user=new User();
+        }
+        model.addAttribute("user",user);
+        /* model.addAttribute("user",userService.getUserByPrincipal(principal));*/
         return "products";
     }
     /*@GetMapping("/admin")
@@ -44,11 +55,16 @@ public class ProductController {
     }*/
 
     @GetMapping("/product/{id}")
-    public String productInfo(Model model, @PathVariable Long id){
+    public String productInfo(Model model, @PathVariable Long id,Principal principal){
+        User user= userService.getUserByPrincipal(principal);
+        if(user==null){
+            user=new User();
+        }
+        model.addAttribute("user",user);
         Product product = productService.getProductById(id);
         model.addAttribute("product",product);
         model.addAttribute("images",product.getImageList());
-        return "product-info";
+        return "realEstatePage2";
     }
 
     @PostMapping("/product/create")

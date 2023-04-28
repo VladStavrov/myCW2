@@ -42,12 +42,19 @@
 
             </nav>
             <nav class="header_sign ">
-                <#--<#if user.email??>-->
-                    <#--<a href="/logout" class="header_link"  >${user.email}</a>
+                <#if user.email??>
+                    <a href="/profile" class="header_link"  >${user.email}</a>
 
-                    <#else>-->
-                        <a  href="/login" class="header_link">Войти</a>
-             <#--   </#if>-->
+                    <#else>
+                        <h1>BUYSELL | <a href="/login">Войти</a></h1><hr>
+                       <#-- <form action="/login">
+
+                           &lt;#&ndash; <input type="hidden" name="_csrf" value="${_csrf.token}">&ndash;&gt;
+                            <input type="submit" value="Войти  "/>
+                        </form>-->
+                       <#-- <a  href="/login" class="header_link">Войти</a>-->
+                       <#-- <input type="hidden" name="_csrf" value="${_csrf.token}">-->
+                </#if>
 
             </nav>
         </div>
@@ -148,7 +155,7 @@
                                     </div>
                                     <div class="catalog_button_view_product">
 
-                                        <button  type="submit" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
+                                        <button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
                                             Посмотреть
                                         </button>
                                     </div>

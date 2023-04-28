@@ -15,12 +15,32 @@ window.addEventListener('scroll', function() {
 });
 function favoriteChangeImage(favorite){
 
-    console.log("Работает")
+        var id = this.getAttribute('product-id');
+        var heart = this;
     if (favorite.getAttribute('src') === './img/svg/favorite.svg') {
+
         favorite.setAttribute('src', './img/svg/favorite-red.svg');
     } else {
         favorite.setAttribute('src', './img/svg/favorite.svg');
     }
+        // отправляем запрос на сервер
+        fetch('/favorites/' + id, { method: 'POST' })
+            .then(function(response) {
+                // обновляем состояние сердечка на странице
+                if (response.status === 200) {
+                    heart.classList.add('red-heart');
+                } else {
+                    heart.classList.remove('red-heart');
+                }
+            })
+            .catch(function(error) {
+                console.error('Ошибка при выполнении запроса:', error);
+            });
+    }
+
+
+    console.log("Работает")
+
 }
 
 function sortByAlphabet(){
