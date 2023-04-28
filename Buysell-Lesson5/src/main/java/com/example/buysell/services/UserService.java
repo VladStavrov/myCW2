@@ -1,5 +1,6 @@
 package com.example.buysell.services;
 
+import com.example.buysell.models.Favorites;
 import com.example.buysell.models.Role;
 import com.example.buysell.models.User;
 
@@ -20,6 +21,10 @@ public class UserService {
         String userEmail = user.getEmail();
         if (userRepository.findByEmail(userEmail) != null) return false;
         user.setActive(true);
+        Favorites favorites = new Favorites();
+        favorites.setUser(user);
+        user.setFavorites(favorites);
+        
         user.getRoles().add(Role.USER);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with email: {}", userEmail);

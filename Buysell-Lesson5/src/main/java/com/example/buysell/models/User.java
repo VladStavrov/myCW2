@@ -24,9 +24,9 @@ public class User implements UserDetails {
     private String name;
 
     private boolean active;
-   /* @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "user")
-    private Favorites favorites;*/
+    private Favorites favorites;
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",
     joinColumns =@JoinColumn(name="user_id") )
@@ -118,11 +118,12 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-   /* public Favorites getFavorites() {
+
+    public Favorites getFavorites() {
         return favorites;
     }
 
     public void setFavorites(Favorites favorites) {
         this.favorites = favorites;
-    }*/
+    }
 }

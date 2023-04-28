@@ -51,11 +51,11 @@ public  class Product {
             mappedBy = "product")
     private FavoritesProduct favoritesProduct;*/
 
-    /*@ManyToMany
+    @ManyToMany
     @JoinTable(name = "favorites_product",
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "favorites_id"))
-    private List<Favorites> favorites= new ArrayList<>();*/
+    private List<Favorites> favorites= new ArrayList<>();
 
    /* @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "product")
@@ -91,13 +91,11 @@ public  class Product {
         this.favoritesProduct = favoritesProduct;
     }*/
 
-   /* public List<Favorites> getFavorites() {
+    public List<Favorites> getFavorites() {
         return favorites;
     }
 
-    public void setFavorites(ArrayList<Favorites> favorites) {
-        this.favorites = favorites;
-    }*/
+
 
    /* public OrderBuying getOrderBuying() {
         return orderBuying;
@@ -122,6 +120,10 @@ public  class Product {
     public void setType(Type type) {
         this.type = type;
     }*/
+
+    public void setFavorites(List<Favorites> favorites) {
+        this.favorites = favorites;
+    }
 
     public int getPrice() {
         return price;
