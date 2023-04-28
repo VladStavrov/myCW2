@@ -1,0 +1,1269 @@
+/* inter-100 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    src: url('../fonts/inter-v12-cyrillic_latin-100.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-100.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-200 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 200;
+    src: url('../fonts/inter-v12-cyrillic_latin-200.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-200.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-300 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../fonts/inter-v12-cyrillic_latin-300.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-300.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-regular - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../fonts/inter-v12-cyrillic_latin-regular.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-regular.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-500 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../fonts/inter-v12-cyrillic_latin-500.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-500.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-600 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../fonts/inter-v12-cyrillic_latin-600.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-600.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-700 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    src: url('../fonts/inter-v12-cyrillic_latin-700.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-700.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-800 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../fonts/inter-v12-cyrillic_latin-800.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-800.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+/* inter-900 - cyrillic_latin */
+@font-face {
+    font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    src: url('../fonts/inter-v12-cyrillic_latin-900.woff2') format('woff2'), /* Chrome 36+, Opera 23+, Firefox 39+ */
+    url('../fonts/inter-v12-cyrillic_latin-900.woff') format('woff'); /* Chrome 5+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+}
+
+html{
+    box-sizing: border-box;
+}
+*,*::before,*::after{
+    box-sizing: inherit;
+}
+
+body{
+    font-family: 'Inter';
+
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+
+
+    text-align: justify;
+
+
+
+    color: #333333;
+}
+
+.wrapper{
+   /* background-color: #0f141e;
+    border-color: red;*/
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+/*
+    Header styles Start
+ */
+.black-bg {
+    opacity: 100%;
+    background-color: #0C1723;
+
+}
+.header{
+/*background-color: red;*/
+    height: 90px;
+    position: fixed;
+
+    top:0;
+    left:0;
+    width: 100%;
+}
+.realEstatePage{
+    opacity: 100%;
+    background-color: red;
+    width: 100%;
+
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 10%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.0)),
+    url("../img/intro-bg-mainPage.jpg") ;
+    margin-bottom: 10px;
+}
+
+
+
+
+.header_wrapper{
+   /* background-color: #96784B;*/
+    width: 100%;
+    height: 80px;
+
+
+    padding-top: 20px;
+
+    padding-left:  20px;
+    padding-right: 20px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items:center;
+    justify-content: space-between;
+}
+
+.header_wrapper.header_list{
+    position: fixed;
+
+}
+
+.header_list{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px 0px;
+    gap: 30px;
+
+}
+.white{
+    background: #FFFFFF;
+}
+.header_link{
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 130%;
+
+    color:white;
+    text-decoration: none;
+
+}
+.header_sign{
+    text-decoration-line: underline;
+}
+.header_link:hover,.header_link:focus,.header_link:active{
+    opacity: 75%;
+    text-decoration-line: underline;
+
+}
+
+.header_logo-link:hover,.header_logo-link:focus,.header_logo-link:active{
+
+    text-decoration-line: none;
+}
+
+.header_logo-link{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    color: white;
+    text-decoration:none;
+}
+
+.header_item:hover{
+    cursor: pointer;
+}
+
+/*
+    Header styles End
+ */
+
+
+/*
+    Intro styles Start
+ */
+
+h1{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 130%;
+    color: white;
+}
+h2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 140%;
+    color: #111111;
+}
+.wrapper_intro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.intro{
+
+    min-height: 100vh;
+
+    background:
+    linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 20%) ,
+    linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+    url("../img/intro-bg-mainPage.jpg") no-repeat center;
+    background-size: cover;
+    padding-top: 325px;
+    display: flex;
+
+margin-bottom: 80px;
+
+}
+.intro_catalog{
+    min-height: 100vh;
+    background:
+            linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 20%) ,
+            linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+           /* linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 28.25%),
+    linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),*/
+    url("../img/intro-bg-catalogPage.jpg") no-repeat center;
+    background-size: cover;
+    padding-top: 325px;
+    display: flex;
+
+    margin-bottom: 80px;
+}
+
+
+.intro_title{
+    padding: 10px;
+    margin-bottom: 10px;
+}
+.button_sign{
+    display: flex;
+    align-content: center;
+}
+
+.button_sign{
+    background: no-repeat center;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    height: 55px;
+    width: 239px;
+    left: 0px;
+    top: 0px;
+    border-radius: 30px;
+    background: #96784B;
+    border: 0;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 130%;
+    /* or 23px */
+    /*padding: 16px 42px;*/
+    justify-content: center;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    margin-bottom: 210px;
+}
+.catalog_sign_Button{
+
+
+    background: #0C1723;
+    border-radius: 30px;
+}
+
+
+.button_sign:hover,.button_sign:focus{
+    background: #856B45;
+}
+.catalog_sign_Button:hover,.catalog_sign_Button:focus{
+    background: #07101A;
+}
+
+
+.under_intro_text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 130%;
+    /* identical to box height, or 21px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+.under_intro_img{
+    margin-bottom: 10px;
+}
+
+/*
+    Intro styles End
+ */
+/*
+    Info styles Start
+ */
+
+.block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 80px;
+}
+.info_header{
+    margin-bottom: 30px;
+}
+.info_img{
+    width: 460px;
+    height: 600px;
+}
+
+.info_text{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 160%;
+    /* or 24px */
+    width: 560px;
+    text-align: justify;
+
+    /* textPrimary */
+
+    color: #333333;
+    margin-bottom: 40px;
+}
+.steps_part{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.info_indicators2{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+.item_indicators2{
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:center;
+    margin-bottom: 30px;
+}
+.item_indicators-text{
+    align-items: center;
+    justify-content:center;
+}
+
+.info_indicators{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.img_numbers{
+    align-items: center;
+    margin-right: 50px;
+    /*margin-bottom: 30px;*/
+}
+.item_indicators-text2{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 23px;
+    line-height: 130%;
+    /* identical to box height, or 30px */
+
+
+
+    /* textPrimary */
+
+    color: #333333;
+
+}
+.numbers{
+    /* Number */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 36px;
+    line-height: 100%;
+    /* or 36px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* acsent */
+
+    color: #96784B;
+}
+.item_indicators-text{
+    /* text Bold */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 130%;
+    /* or 19px */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+.steps_part{
+    margin-left: 100px;
+}
+
+
+/*
+    Info styles End
+ */
+
+
+/*
+   Real Estate Page styles Start
+ */
+.emptiness{
+   height: 150px;
+}
+.realEstate_header_info{
+display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+.info_realEstate{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.realEstate_photo{
+
+    padding-right: 50px;
+    padding-left: 50px;
+    width: 100%;
+
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    gap: 30px;
+    flex-direction: row;
+    margin-bottom: 30px;
+
+}
+
+.secondPhoto{
+    width: 260px;
+    height: 400px;
+
+
+    overflow: hidden;
+}
+.mainPhoto{
+    width: 560px;
+    height: 460px;
+}
+.addressRealEstate{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 25px;
+    line-height: 140%;
+    /* identical to box height, or 35px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    /* gray */
+
+    color: #787878;
+}
+.realEstateFavorite{
+
+
+  display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+    margin-right: 0px;
+}
+.nameRealEstate{
+    /* h2 */
+    width: 960px;
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    /* or 45px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    /* textPrimary */
+
+    color: #333333;
+    margin-bottom: 30px;
+}
+.realEstateInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.cost_RealEstate_Block{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+}
+.textCostReal_Estate{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    /* or 45px */
+
+    display: flex;
+    align-items: center;
+
+    color: #111111;
+    margin-right: 10px;
+}
+.cost_RealEstate{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 130%;
+    /* identical to box height, or 55px */
+
+    display: flex;
+    align-items: center;
+
+    /* black */
+
+    color: #000000;
+}
+.realEsateBTN{
+    background: #000000;
+    margin-bottom: 30px;
+}
+.realEsateBTN:hover,.realEsateBTN:focus{
+    background: #141414;
+}
+
+.characteristicsRealEstate{
+    width: 1140px;
+    align-self: left;
+    margin-bottom: 50px;
+}
+.informationRealEstate{
+    width: 1140px;
+
+}
+.characteristicsRealEstate> .catalog_info_product{
+    margin-bottom: 15px;
+
+}
+.textCharacteristics{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    /* identical to box height, or 45px */
+
+    display: flex;
+    align-items: center;
+
+    color: #111111;
+    margin-bottom: 30px;
+}
+.info_RealEstate{
+    width: 1140px;
+}
+
+
+/*
+   Real Estate Page styles End
+ */
+
+/*
+   Personal Account  Page styles Start
+ */
+
+.welcome{
+    margin-left: 230px;
+
+
+    height: 140.35px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 50px;
+
+
+}
+.avatarPersonalAccount{
+    width: 150.9px;
+    margin-right: 56px;
+}
+.textAreaWelcome{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+}
+.welcomeText{
+    margin-bottom: 15px;
+    /* h2 */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 140%;
+    /* identical to box height, or 45px */
+
+
+    /* textPrimary */
+
+    color: #333333;
+}
+.instructionWelcomeText{
+    /* properties */
+    max-width: 530px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 140%;
+    /* or 28px */
+
+text-align: left;
+    /* gray */
+
+    color: #787878;
+}
+.textFavorites{
+    margin: 0 auto;
+    max-width: 600px;
+    text-align: center;
+    /* h1 */
+
+
+    font-style: normal;
+    font-weight: 600;
+    font-size: 42px;
+    line-height: 130%;
+    /* or 55px */
+    margin-bottom: 50px;
+
+
+    /* textPrimary */
+
+    color: #333333;
+}
+/*
+   Personal Account  Page styles End
+ */
+
+
+/*
+    Filter styles Start
+ */
+.filter_link{
+    color:white;
+}
+.filter_link:hover{
+    cursor: pointer;
+}
+.img_filter:hover{
+    cursor: pointer;
+}
+.wrapper_filter{
+    display: flex;
+    width: 100%;
+    height: 100px;
+     background: #0C1723;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 40px;
+
+}
+.filter_list{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0px;
+    gap: 100px;
+}
+.img_filter{
+
+}
+.filter_item{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+}
+
+/*
+    Filter styles End
+ */
+
+
+/*
+    Catalog styles Start
+ */
+
+.block_house,.block_flatt{
+
+    display: flex;
+
+
+
+   /* background: blue;*/
+    max-width: 980px;
+    height: 390px;
+    margin: 0 auto;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+
+}
+.itemhouse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.line{
+
+    align-self: flex-start;
+    margin: auto;
+
+    height: 0px;
+    width: 612px;
+
+    border: 1px solid #0C1723;
+
+}
+
+.favorite{
+
+
+    margin-left: auto;
+    margin-top: 30px;
+    margin-right: 30px;
+    align-self: flex-start;
+}
+.favorite:hover{
+    cursor: pointer;
+}
+.favorite:hover{
+    cursor: pointer;
+}
+
+
+.image_catalog{
+   height: 340px;
+   width: 275px;
+
+    border-radius: 0px;
+    margin-right: 25px;
+}
+.info_block_catalog{
+    width: 550px;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+
+
+}
+.info_block_catalog:first-child{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.info_block_catalog .catalog_button_view_product{
+    align-self: center;
+}
+
+
+.catalog_name_product{
+    /* h3 */
+    /*background: green;*/
+    width: 100%;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    /* or 35px */
+
+
+    /* #D9D9D9 */
+
+    color: #000130;
+
+    margin-bottom: 10px;
+}
+.catalog_info_product{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+
+    align-items: flex-start;
+
+}
+.catalog_price_product{
+    width:487px ;
+    /*background: red;*/
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+
+    align-items: flex-end;
+    margin-bottom: 10px;
+}
+.parametr_catalog{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 130%;
+    /* or 26px */
+
+    display: flex;
+    align-items: center;
+
+    /* #D9D9D9 */
+
+    color: #000130;
+    margin-right: 20px;
+}
+.catalog_info_text{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 20px;
+    line-height: 140%;
+    /* or 28px */
+
+    display: flex;
+    align-items: center;
+
+    /* #D9D9D9 */
+
+    color: #000130;
+
+}
+.catalog_group_info_product{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /*background: rebeccapurple;*/
+    height: 175px;
+    margin-bottom: 10px;
+}
+
+
+.button_sign.catalogView{
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 39.81%),  #0C1723;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+    margin: 0px auto 0 auto;
+    text-align: center;
+    height: 52px;
+    width: 245px;
+
+
+
+
+
+}
+.button_sign.catalogView:hover,.button_sign.catalogView:focus{
+    background: #141414;
+}
+.catalog_info_product .catalog_info_text{
+    margin-right: 20px;
+}
+.button_sign.catalogViewMore{
+    align-self: flex-start;
+
+    margin: 40px auto 60px auto;
+
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 39.81%),  #0C1723;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+
+    text-align: center;
+    height: 52px;
+    width: 245px;
+
+
+
+}
+.button_sign.catalogViewMore:hover,.button_sign.catalogViewMore:focus{
+    background: #141414;
+}
+
+
+.label_price_catalog{
+    /* h3 */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    /* identical to box height, or 35px */
+
+    display: flex;
+    align-items: center;
+
+    /* #D9D9D9 */
+
+    color: #000130;
+
+
+}
+.price_catalog{
+    /* Catalog */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 140%;
+    /* or 35px */
+
+    display: flex;
+    align-items: center;
+    text-align: right;
+
+    /* Темно-синий */
+
+    color: #0C1723;
+}
+.block_house .favorite{
+    margin-left: auto;
+    align-self: flex-start;
+}
+.full_items_catalog{
+    margin-bottom: 50px;
+}
+/*.wrapper_catalog{
+    display: flex;
+    !* flex-direction: column;*!
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}*/
+/*
+    Catalog styles End
+ */
+
+
+
+/*
+    Footer styles Start
+ */
+.footer_wrapper{
+
+    display: flex;
+   /* flex-direction: column;*/
+    justify-content: center;
+    align-items: center;
+    /*display:flex;
+    align-items: center;
+    align-content: center;
+    alignment: center;*/
+
+}
+.footer_text{
+    /* h1 */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 130%;
+    /* or 55px */
+
+    display: flex;
+    align-items: center;
+
+    /* White */
+
+    color: #FFFFFF;
+    width: 465px;
+    margin-right: 65px;
+
+
+}
+.footer_form{
+    padding-left: 65px;
+    display: flex;
+     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form_img{
+    margin-bottom: 20px;
+
+}
+
+.form_name{
+    height:50px;
+    width: 315px;
+
+    border-radius: 30px;
+
+    border: none;
+    background: #F3F3F3;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+.form_field-text{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    /* or 35px */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* White */
+
+    color: #FFFFFF;
+    margin-bottom: 5px;
+}
+.input_info{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+#submit_application{
+    margin-bottom: 100px;
+}
+.footer_logo{
+    padding-left:  10px;
+    padding-right: 10px;
+    padding-top: 27px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 130%;
+    color: white;
+    text-decoration:none;
+
+}
+
+.footer{
+    min-height: 70vh;
+    background:
+            linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 20%) ,
+            linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+            url("../img/footer-bg-mainPage.jpg") no-repeat center;
+    background-size: cover;
+}
+.mainPage{
+    min-height: 70vh;
+    background:
+            linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 20%) ,
+            linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+            url("../img/footer-bg-mainPage.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.footer.catalog{
+    min-height: 70vh;
+    background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(1, 1, 1, 0.39) 100%),
+            linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+            url("../img/footer-bg-catalogPage.jpg") no-repeat center;
+    background-size: cover;
+}
+.footer.realEstate{
+    min-height: 70vh;
+    background:
+            linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(1, 1, 1, 0.39) 100%),
+            linear-gradient(0deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)),
+            url("../img/footer-bg-realEstate.jpg") no-repeat center;
+    background-size: cover;
+}
+
+.footer_wrapper_links{
+    display: flex;
+
+
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    height: 80px;
+
+
+    background: rgba(0, 0, 0, 0.71);
+}
+.footer_links{
+
+    /* Rectangle 33 */
+
+    width: 1100px;
+
+
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    gap: 30px;
+
+}
+.prikol{
+    background: rgba(0, 0, 0, 0.71);
+    filter: blur(2px);
+    height: 80px;
+}
+.footer_link{
+
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 130%;
+
+    color:white;
+    text-decoration: none;
+
+}
+
+.footer_link:hover,.footer_link:focus,.footer_link:active{
+    opacity: 75%;
+    text-decoration-line: underline;
+}
+.footer_category{
+
+    /* h3 */
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 140%;
+    /* or 35px */
+
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+}
+.button_sign.catalogBTN{
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 39.81%), #000000;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+}
+.button_sign.catalogBTN:hover,.button_sign.catalogBTN:focus{
+    background: #141414;
+}
+
+/*
+    Footer styles End
+ */
