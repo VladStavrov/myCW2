@@ -5,11 +5,11 @@
 </head>
 <body>
 <h1>BUYSELL | <a href="/login">Войти</a></h1><hr>
-<h4>Товары со всей России</h4>
-<form action="/" method="get">
+
+<#--<form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
-</form>
+</form>-->
 <#list products as product>
     <div>
         <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a></p>

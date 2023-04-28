@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 @Entity
 @Table(name = "images")
-@Data
+
 @AllArgsConstructor
 @NoArgsConstructor
 public class Image {
