@@ -13,62 +13,35 @@ window.addEventListener('scroll', function() {
         header.classList.remove('black-bg');
     }
 });
-function favoriteChangeImage(favorite , isFavorite,token){
+function favoriteChangeImage(favorite,token){
     var id = favorite.getAttribute('data-id');
+    let isFavorite = true;
+    fetch('/favorites2/' + id, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': token,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ isFavorite: isFavorite })
+    })
+        .then(response => response.json())
+        .then(data => {
 
-    console.log(id);
-    console.log(isFavorite);
-    if(!isFavorite) {
-        console.log("Зашло в Favorites");
-        fetch('/favorites/' + id, {
-            method: 'GET',
-            headers: {
-                'X-CSRF-TOKEN': token
-            } })
-
-            .then(function(response) {
-                if (response.status === 200) {
+                isFavorite2= Boolean(data);
+                console.log("isFavorite = "+isFavorite2 + " ");
+                if(isFavorite2){
+                    console.log("add")
                     favorite.setAttribute('src', './img/svg/favorite-red.svg');
-                    location.reload();
-                }
-            })
-            .catch(function(error) {
-                console.error('Ошибка при выполнении запроса:', error);
-            });
-    }
-    else {
-        console.log("Зашло в Favorites/delete");
-        fetch('/favorites/delete/' + id, {
-            method: 'POST',
-            headers: {
-                'X-CSRF-TOKEN': token
-            }})
 
-            .then(function(response) {
-                if (response.status === 200) {
+
+                }
+                else{
+                    console.log("delete")
                     favorite.setAttribute('src', './img/svg/favorite.svg');
-                    location.reload();
+
                 }
-            })
-            .catch(function(error) {
-                console.error('Ошибка при выполнении запроса:', error);
-            });
-    }
+            }
 
-
-
-
-    /*if (favorite.getAttribute('src') === './img/svg/favorite.svg') {
-
-
-    } else {
-
-    }*/
-    // отправляем запрос на сервер
-
-
-
-
-    console.log("Работает");
-
+        )
+        .catch(error => console.error(error));
 }
