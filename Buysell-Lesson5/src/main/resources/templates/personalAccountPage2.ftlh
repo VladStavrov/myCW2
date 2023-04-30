@@ -75,7 +75,7 @@
         <div class="full_items_catalog">
 
             <#list user.favorites.products as product>
-                <div class="block_item_catalog" name="product_id" value="1">
+                <div class="block_item_catalog" name="product_id" value="1" data-mainDivProduct-id="${product.id}">
                     <div class="line"></div>
                     <div class="block_house">
 
@@ -125,9 +125,9 @@
                         </div>
                         <#if user.email??>
                             <#if user.favorites.products?seq_contains(product)>
-                                <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this, true, '${_csrf.token}')" />
+                                <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,  '${_csrf.token}')" />
                             <#else>
-                                <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, false, '${_csrf.token}')" />
+                                <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this,'${_csrf.token}')" />
                             </#if>
 
                         </#if>

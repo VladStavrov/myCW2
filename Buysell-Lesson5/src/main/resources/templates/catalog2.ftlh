@@ -112,7 +112,7 @@
             <div class="wrapper_catalog">
                 <div class="full_items_catalog">
                     <#list products as product>
-                        <div class="block_item_catalog" name="product_id" value="1">
+                        <div class="block_item_catalog" name="product_id" value="1" >
                             <div class="line"></div>
                             <div class="block_house">
 

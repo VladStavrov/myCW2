@@ -37,8 +37,17 @@ function favoriteChangeImage(favorite,token){
                 }
                 else{
                     console.log("delete")
-                    favorite.setAttribute('src', './img/svg/favorite.svg');
+                    const productElement = document.querySelector(`[data-mainDivProduct-id="${id}"]`);
+                    console.log("product-id = "+id)
 
+                    favorite.setAttribute('src', './img/svg/favorite.svg');
+                    if (productElement) {
+                        productElement.remove();
+
+                    }
+                    else {
+                        console.log(`Элемент с data-product-id="${productId}" не найден`);
+                    }
                 }
             }
 
