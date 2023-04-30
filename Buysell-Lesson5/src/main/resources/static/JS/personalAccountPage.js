@@ -1,8 +1,11 @@
+function scrollToBottom() {
+    window.scrollTo(0, document.body.scrollHeight);
+}
 window.addEventListener('scroll', function() {
     var header = document.querySelector('.header');
     var headerHeight = header.offsetHeight;
     var scrolled = window.pageYOffset || document.documentElement.scrollTop;
-
+    var wrapper = document.querySelector('.wrapper');
 
     if (scrolled > headerHeight) {
         header.classList.add('black-bg');
@@ -10,10 +13,6 @@ window.addEventListener('scroll', function() {
         header.classList.remove('black-bg');
     }
 });
-function scrollToBottom() {
-    window.scrollTo(0, document.body.scrollHeight);
-}
-
 function favoriteChangeImage(favorite , isFavorite,token){
     var id = favorite.getAttribute('data-id');
 
@@ -29,7 +28,7 @@ function favoriteChangeImage(favorite , isFavorite,token){
 
             .then(function(response) {
                 if (response.status === 200) {
-                    favorite.setAttribute('src', '/img/svg/favorite-red.svg');
+                    favorite.setAttribute('src', './img/svg/favorite-red.svg');
                     location.reload();
                 }
             })
@@ -47,7 +46,7 @@ function favoriteChangeImage(favorite , isFavorite,token){
 
             .then(function(response) {
                 if (response.status === 200) {
-                    favorite.setAttribute('src', '/img/svg/favorite.svg');
+                    favorite.setAttribute('src', './img/svg/favorite.svg');
                     location.reload();
                 }
             })

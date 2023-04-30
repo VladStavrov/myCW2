@@ -8,8 +8,8 @@
     <title>Каталог</title>
 
 
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 
     <script src="./JS/catalog.js"></script>
 </head>
@@ -46,7 +46,7 @@
                     <a href="/profile" class="header_link"  >${user.email}</a>
 
                     <#else>
-                        <h1>BUYSELL | <a href="/login">Войти</a></h1><hr>
+                         <a href="/login"  class="header_link">Войти</a>
                        <#-- <form action="/login">
 
                            &lt;#&ndash; <input type="hidden" name="_csrf" value="${_csrf.token}">&ndash;&gt;
@@ -177,7 +177,7 @@
                                     <#else>
                                         <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, false, '${_csrf.token}')" />
                                     </#if>
-                                    ${user.name}
+
                                 </#if>
 
                             </div>

@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
 
-    <script src="./JS/realEstatePage.js"></script>
+
+    <script src="./JS/personalAccountPage.js"></script>
 </head>
 
 <body>
@@ -42,7 +43,13 @@
 
             </nav>
             <nav class="header_sign ">
-                <a href="/static" class="header_link">+375(44)553-65-21</a>
+                <#if user.email??>
+                    <a href="/profile" class="header_link"  >${user.email}</a>
+
+                <#else>
+                    <a href="/login"  class="header_link">Войти</a>
+
+                </#if>
             </nav>
         </div>
     </div>
@@ -122,7 +129,7 @@
                             <#else>
                                 <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, false, '${_csrf.token}')" />
                             </#if>
-                            ${user.name}
+
                         </#if>
 
                     </div>
