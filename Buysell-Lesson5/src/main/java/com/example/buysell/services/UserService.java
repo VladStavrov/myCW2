@@ -1,6 +1,7 @@
 package com.example.buysell.services;
 
 import com.example.buysell.models.Favorites;
+import com.example.buysell.models.Product;
 import com.example.buysell.models.Role;
 import com.example.buysell.models.User;
 
@@ -33,9 +34,17 @@ public class UserService {
         userRepository.save(user);
         return true;
     }
+    public void saveUser(User user){
+        log.info("Saving new User with email: {}", user.getEmail());
+        userRepository.save(user);
+
+    }
 
     public User getUserByPrincipal(Principal principal) {
         if(principal==null) return null;
         return userRepository.findByEmail(principal.getName());
+    }
+    public User  getUserById(Long id) {
+        return userRepository.findById(id).orElse(null);
     }
 }

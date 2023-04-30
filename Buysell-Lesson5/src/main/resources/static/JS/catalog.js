@@ -13,24 +13,41 @@ window.addEventListener('scroll', function() {
         header.classList.remove('black-bg');
     }
 });
-function favoriteChangeImage(favorite){
+function favoriteChangeImage(favorite , isFavorite,token){
+    var id = favorite.getAttribute('data-id');
 
-        var id = this.getAttribute('product-id');
-        var heart = this;
-    if (favorite.getAttribute('src') === './img/svg/favorite.svg') {
+    console.log(id);
+    console.log(isFavorite);
+    if(!isFavorite) {
+        console.log("Зашло в Favorites");
+        fetch('/favorites/' + id, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': token
+            } })
 
-        favorite.setAttribute('src', './img/svg/favorite-red.svg');
-    } else {
-        favorite.setAttribute('src', './img/svg/favorite.svg');
-    }
-        // отправляем запрос на сервер
-        fetch('/favorites/' + id, { method: 'POST' })
             .then(function(response) {
-                // обновляем состояние сердечка на странице
                 if (response.status === 200) {
-                    heart.classList.add('red-heart');
-                } else {
-                    heart.classList.remove('red-heart');
+                    favorite.setAttribute('src', './img/svg/favorite-red.svg');
+                    location.reload();
+                }
+            })
+            .catch(function(error) {
+                console.error('Ошибка при выполнении запроса:', error);
+            });
+    }
+    else {
+        console.log("Зашло в Favorites/delete");
+        fetch('/favorites/delete/' + id, {
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token
+            }})
+
+            .then(function(response) {
+                if (response.status === 200) {
+                    favorite.setAttribute('src', './img/svg/favorite.svg');
+                    location.reload();
                 }
             })
             .catch(function(error) {
@@ -39,7 +56,20 @@ function favoriteChangeImage(favorite){
     }
 
 
-    console.log("Работает")
+
+
+    /*if (favorite.getAttribute('src') === './img/svg/favorite.svg') {
+
+
+    } else {
+
+    }*/
+        // отправляем запрос на сервер
+
+
+
+
+    console.log("Работает");
 
 }
 

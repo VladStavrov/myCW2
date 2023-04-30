@@ -31,6 +31,7 @@ public class FavoritesService {
 
             log.info("new Product - User: {} - {}",user.getEmail(),product.getTitle());
             favoritesRepository.save(user.getFavorites());
+            userService.saveUser(user);
         }
     }
     public void removedProductFromFavorites(Product product, Favorites favorites){
@@ -39,6 +40,7 @@ public class FavoritesService {
 
         log.info("remove Product - User: {} - {}",favorites.getUser().getEmail(),product.getTitle());
         favoritesRepository.save(favorites);
+        userService.saveUser(favorites.getUser());
     }
     public void removedProductFromFavorites(Long productId, Favorites favorites){
         Product product = productService.getProductById(productId);

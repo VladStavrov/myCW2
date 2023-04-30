@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>BUYSELL</title>
+
 </head>
 <body>
-<h1>BUYSELL | <a href="/login">Войти</a></h1><hr>
+<h1> | <a href="/login">Войти</a></h1><hr>
 
 <#--<form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>
@@ -22,10 +22,10 @@
                 </#if>-->
 
                         <#if user.favorites.products?seq_contains(product)>
-                            <a href="/favorites/delete/${product.id}" >Delete from favorites...</a>
+                            <a href="/favorites/delete2/${product.id}" >Delete from favorites...</a>
                             <!-- блок кода, который будет выполнен, если условие истинно -->
                         <#else>
-                            <a href="/favorites/${product.id}" >Add to favorites...</a>
+                            <a href="/favorites2/${product.id}" >Add to favorites...</a>
                         </#if>
 
 

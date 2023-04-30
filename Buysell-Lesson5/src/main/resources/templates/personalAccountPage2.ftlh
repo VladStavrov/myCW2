@@ -116,7 +116,15 @@
                                 </button>
                             </div>
                         </div>
-                        <img src="./img/svg/favorite.svg" alt="" class="favorite" onclick="favoriteChangeImage(this)">
+                        <#if user.email??>
+                            <#if user.favorites.products?seq_contains(product)>
+                                <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this, true, '${_csrf.token}')" />
+                            <#else>
+                                <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, false, '${_csrf.token}')" />
+                            </#if>
+                            ${user.name}
+                        </#if>
+
                     </div>
                 </div>
 
