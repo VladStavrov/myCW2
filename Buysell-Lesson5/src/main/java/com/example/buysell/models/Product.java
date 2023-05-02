@@ -25,7 +25,7 @@ public  class Product {
     mappedBy = "product")
     private List<ProductInfo> productInfoList=new ArrayList<>();*/
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "product")
     private List<Image> imageList=new ArrayList<>();
     private Long previewImageId;
@@ -42,12 +42,19 @@ public  class Product {
     public void setPreviewImageId(Long previewImageId) {
         this.previewImageId = previewImageId;
     }
+    private int rooms;
 
     private String address;
     private int livingArea;
 
+    public int getRooms() {
+        return rooms;
+    }
 
-    /*@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    public void setRooms(int rooms) {
+        this.rooms = rooms;
+    }
+/*@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "product")
     private FavoritesProduct favoritesProduct;*/
 

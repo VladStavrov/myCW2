@@ -2,16 +2,21 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
+   <#-- <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
     <title>Каталог</title>
 
 
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style2.css">
 
-    <script src="./JS/catalog.js"></script>
+    <script src="./JS/catalog3.js"></script>
+    <script src="/JS/catalog3.js"></script>
+
+    <script src="JS/catalog3.js"></script>
+    <script src="./JS/newFilter.js"></script>
+
 </head>
 
 <body>
@@ -33,7 +38,7 @@
                         <a href="mainPage.html" class="header_link">Главная</a>
                     </li>
                     <li class="header_item">
-                        <a href="catalog.html" class="header_link">Выбрать недвижимость</a>
+                        <a onclick="foooo()" class="header_link">Выбрать недвижимость</a>
                     </li>
                     <li class="header_item">
                         <a  class="header_link" onclick="scrollToBottom()">Контакты</a>
@@ -81,10 +86,103 @@
     <selection>
         <div class="wrapper_filter">
 
+           <#-- <div class="select">
+                <div class="select_header">
+                    <span class="select_current">Value 1</span>
+                    <div class="select_icon">&times;</div>
+                </div>
 
+                <div class="select_body">
+                    <div class="select_item">Value 1</div>
+                    <div class="select_item">Value 2</div>
+                    <div class="select_item">Value 3</div>
+                    <div class="select_item">Value 4</div>
+                    <div class="select_item">Value 5</div>
+                </div>
+            </div>-->
+            <div class="dropdown" data-id="rooms">
+                <div class="select">
+
+                            <span class="selected">
+                                Любое
+                            </span>
+                    <div class="caret">
+
+                    </div>
+                </div>
+                <ul class="menu">
+                    <li data-id="0">Любое</li>
+                    <li data-id="1" >1 комната</li>
+                    <li data-id="2">2 комнаты</li>
+                    <li data-id="3">3 комнаты</li>
+                    <li data-id="4"></li>
+                </ul>
+
+            </div>
+            <#--<div >
+                <div> <a  class="filter_link" onclick="linkPrice()">Филтр</a></div>
+
+                <div class="content-block" id="test-content">
+                    <p>Это контент, который будет появляться при нажатии на ссылку.</p>
+                </div>
+            </div>-->
+            <#--<div class="custom-dropdown">
+                <button class="custom-dropdown__button">Выберите опцию</button>
+                <ul class="custom-dropdown__menu">
+                    <li class="custom-dropdown__menu-item">
+                        <div class="text">
+                            Введем тест:
+                            <input type="text" class="form_name" name="form_phone_ctlg">
+                        </div>
+                    </li>
+                    <li class="custom-dropdown__menu-item">Опция 2</li>
+                    <li class="custom-dropdown__menu-item">Опция 3</li>
+                </ul>
+            </div>-->
+            <div class="input-panel">
+
+                <button class="input-text" onclick="togglePanel()">Нажмите, чтобы ввести число</button>
+                <div class="panel" >
+                    <input type="number" id="input-number">
+                    <button onclick="sendNumber()">Отправить</button>
+                </div>
+            </div>
+            <div class="dropdown"  id = "dropdown-price" data-id="price">
+                <div class="select">
+
+                            <span class="selected">
+                                Любое
+                            </span>
+                    <div class="caret">
+
+                    </div>
+                </div>
+                <ul class="menu">
+                    <li data-id="0"><input type="number" id="input-number">
+                        <button onclick="sendNumber()">Отправить</button></li>
+                </ul>
+            </div>
             <ul class="filter_list">
                 <li class="filter_item">
-                    <a  class="filter_link">Фильтры</a>
+
+
+
+
+                    <#--<a  class="filter_link" onclick="openTab(event,'tab1')">Фильтры</a>
+                    <div id="tab1" class="tabcontent">
+                            Пример фильтра
+                        <div class="tabcontent">
+                            1 Фильтр
+                        </div>
+                        <div class="dropdown-menu">
+                            2 Фильтр
+                        </div>
+                        <div class="dropdown-menu">
+                            3 Фильтр
+                        </div>
+                    </div>-->
+
+
                 </li>
                 <li class="filter_item" onclick="sortByPrice()">
 
@@ -131,6 +229,10 @@
                                         <div class="catalog_info_product">
                                             <div class="parametr_catalog">Жилая площадь:</div>
                                             <div class="catalog_info_text">${product.livingArea}</div>
+                                        </div>
+                                        <div class="catalog_info_product rooms">
+                                            <div class="parametr_catalog">Комнат:</div>
+                                            <div class="catalog_info_text">${product.rooms}</div>
                                         </div>
 
                                         <#--<div class="catalog_info_product">
@@ -187,7 +289,7 @@
                     </#list>
 
 
-                    <div class="block_item_catalog" name="product_id" value="2">
+                    <#--<div class="block_item_catalog" name="product_id" value="2">
                         <div class="line"></div>
                         <div class="block_flatt">
 
@@ -327,7 +429,7 @@
                             </div>
                             <img src="./img/svg/favorite.svg" alt="" class="favorite" onclick="" onclick="favoriteChangeImage(this)">
                         </div>
-                    </div>
+                    </div>-->
 
                 </div>
 
@@ -421,4 +523,34 @@
 </footer>
 
 </body>
+<script>
+
+
+
+</script>
+<#--<script>
+
+    var dropdownButton = document.querySelector('.custom-dropdown__button');
+    var dropdownMenu = document.querySelector('.custom-dropdown__menu');
+
+    function toggleDropdown() {
+        dropdownMenu.classList.toggle('show');
+    }
+
+    dropdownButton.addEventListener('click', toggleDropdown);
+
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('.custom-dropdown__button')) {
+            if (dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+            }
+        }
+    });
+
+</script>-->
+<script>
+
+
+
+</script>
 </html>

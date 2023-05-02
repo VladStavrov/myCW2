@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style2.css">
+    <script src="./JS/catalog3.js"></script>
 </head>
 <body>
 <h1> | <a href="/login">Войти</a></h1><hr>
@@ -10,6 +12,7 @@
     Поиск по названию объявления: <input type="text" name="title"><br>
     <input type="submit" value="Поиск"/>
 </form>-->
+
 <#list products as product>
     <div>
         <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a> |
@@ -48,6 +51,7 @@
     Цена: <input type="number" name="price"/><br><br>
     Город: <input type="text" name="address"/><br><br>
     Площадь: <input type="number" name="livingArea"/><br><br>
+    Комнат: <input type="number" name="rooms"/><br><br>
     Первая фотография: <input type="file" name="files"/><br><br>
     Вторая фотография: <input type="file" name="files"/><br><br>
     Третья фотография: <input type="file" name="files"/><br><br>

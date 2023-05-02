@@ -1,6 +1,4 @@
 
-
-
 window.addEventListener('scroll', function() {
     var header = document.querySelector('.header');
     var headerHeight = header.offsetHeight;
@@ -178,3 +176,72 @@ function checkForm(element){
 function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);
 }
+
+function openTab(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    /*for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].classList.remove("active");
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].classList.remove("active");
+    }*/
+    document.getElementById(tabName).classList.add("active");
+    evt.currentTarget.classList.add("active");
+}/*
+const select2 = document.querySelector('.select');
+const currentOption = select2.querySelector('.select_current');
+const options = select2.querySelectorAll('.select_item');
+
+// Обработчик клика по кнопке выбора
+currentOption.addEventListener('click', () => {
+    select2.classList.toggle('is-active');
+});
+
+// Обработчик клика по опции
+options.forEach((option) => {
+    option.addEventListener('click', () => {
+        // Изменяем текущую выбранную опцию
+        currentOption.textContent = option.textContent;
+        // Закрываем выпадающее меню
+        select2.classList.remove('is-active');
+    });
+});*/
+/*
+// Получаем все элементы select на странице
+const selects = document.querySelectorAll('.select');
+
+// Для каждого элемента select добавляем обработчик клика
+selects.forEach(select3 => {
+    console.log("Цикл 1 работает ")
+    // Получаем элементы, связанные с текущим select
+    const current = select3.querySelector('.select_current');
+    const icon = select3.querySelector('.select_icon');
+    const body = select3.querySelector('.select_body');
+    const items = select3.querySelectorAll('.select_item');
+
+    // Добавляем обработчик клика по текущему элементу
+    current.addEventListener('click', () => {
+        console.log("Цикл 2 работает ")
+        // Переключаем класс is-active для body
+        body.classList.toggle('is-active');
+        // Переключаем класс is-active для icon
+        icon.classList.toggle('is-active');
+    });
+
+    // Добавляем обработчик клика для каждого элемента
+    items.forEach(item => {
+        console.log("Цикл 3 работает ")
+        item.addEventListener('click', () => {
+            console.log("Цикл 4 работает ")
+            // Меняем текст в текущем элементе
+            current.textContent = item.textContent;
+            // Скрываем body
+            body.classList.remove('is-active');
+            // Скрываем icon
+            icon.classList.remove('is-active');
+        });
+    });
+});
+*/

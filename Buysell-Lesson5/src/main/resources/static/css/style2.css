@@ -624,7 +624,7 @@ display: flex;
 
 .characteristicsRealEstate{
     width: 1140px;
-    align-self: left;
+   /* align-self: left;*/
     margin-bottom: 50px;
 }
 .informationRealEstate{
@@ -657,7 +657,225 @@ display: flex;
 /*
    Real Estate Page styles End
  */
+/*
+   Tab styles Start
+ */
+/*
+   Tab styles End
+ */
+/*.select {
+    margin: 0 auto;
+    position: relative;
+    width: 250px;
+}*/
+.select.is-active.select_body {
+    display: block;}
 
+.select_header {
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+}
+.select_current {
+    background-color: gold;
+    font-size: 18px;
+    line-height: 24px;
+    padding: 8px;
+}
+.select_icon {
+    background-color: darkgray;
+    align-items: center;
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    height: 40px;
+    margin-left: auto;
+    text-align: center;
+    width: 40px;
+}
+
+.select_body {
+    border: 1px solid #cccccc;
+    border-top: 0;
+    display: none;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 100%;
+}
+.select_item {
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 8px;
+}
+
+.select_item:hover {
+    background-color: #f2f2f2;
+}
+.dropdown{
+    min-width:15em ;
+    position: relative;
+    margin: 2em;
+}
+.dropdown *{
+    box-sizing: border-box;
+}
+.select{
+    background: #2a2f3b;
+    color:#fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px #2a2f3b solid;
+    border-radius: 0.5em;
+    padding: 1em;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.select-clicked{
+    border: 2px #26489a solid;
+    box-shadow: 0 0 0.8em #26489a;
+}
+.select:hover{
+    background: #323741;
+}
+.caret{
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #fff;
+    transition: 0.3s;
+}
+.caret-rotate{
+    transform: rotate(180deg);
+}
+.menu{
+    list-style: none;
+    padding: 0.2em 0.5em;
+    background: #323741;
+    border: 1px #363a43 solid;
+    box-shadow: 0 0.5em 1em rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+    color:#9fa5b5;
+    position: absolute;
+    top:3em;
+    left: 50%;
+    width: 100%;
+    transform:translateX(-50%);
+    opacity:0;
+    display: none;
+    transition: 0.2s;
+    z-index: 1;
+}
+.menu li{
+padding: 0.7em 0.5em;
+margin: 0.3em 0;
+    border-radius: 0.5em ;
+    cursor: pointer;
+}
+.menu li:hover{
+    background: #2a2d35;
+}
+.active{
+    background: #23242a;
+}
+.menu-open{
+    display: block;
+    opacity: 1;
+}
+
+
+/*---------------------------------------------------------*/
+.content-block {
+    display: none;
+}
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.custom-dropdown__button {
+    background-color: #f2f2f2;
+    color: #333;
+    padding: 10px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.custom-dropdown__menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    min-width: 160px;
+    padding: 8px 0;
+    margin: 0;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.custom-dropdown__menu-item {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.custom-dropdown__menu-item:hover {
+    background-color: #f2f2f2;
+}
+
+.custom-dropdown__menu.show {
+    display: block;
+}
+
+
+/*---------------------------------------------------------*/
+
+
+
+
+.input-panel {
+    position: relative;
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.input-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.panel {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: #fff;
+}
+
+
+/*---------------------------------------------------------*/
 /*
    Personal Account  Page styles Start
  */

@@ -9,10 +9,10 @@
 
 
     <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style2.css">
 
 
-    <script src="./JS/personalAccountPage.js"></script>
+    <script src="./JS/personalAccountPage2.js"></script>
 </head>
 
 <body>

@@ -7,11 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Недвижимость</title>
     <#--<#assign contextPath = request.contextPath>
-    <link rel="stylesheet" href="${contextPath}/static/css/style.css">-->
+    <link rel="stylesheet" href="${contextPath}/static/css/style2.css">-->
 
     <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/JS/realEstatePage.js"></script>
+    <link rel="stylesheet" href="/css/style2.css">
+  <#--  <link rel="stylesheet" href="./css/style2.css">-->
+   <#-- <link rel="stylesheet" href="/static/css/style2.css">
+    <link rel="stylesheet" href="static/css/style2.css">-->
+   <script src="/JS/realPage.js"></script>
 
 </head>
 
@@ -34,7 +37,7 @@
                         <a href="mainPage.html" class="header_link">Главная</a>
                     </li>
                     <li class="header_item">
-                        <a href="catalog.html" class="header_link">Выбрать недвижимость</a>
+                        <a onclick="test()" class="header_link">Выбрать недвижимость</a>
                     </li>
                     <li class="header_item">
                         <a onclick="scrollToBottom()" class="header_link">Контакты</a>
@@ -76,15 +79,15 @@
 
 
                 <div class="realEstateFavorite">
-
                     <#if user.email??>
                         <#if user.favorites.products?seq_contains(product)>
-                            <img data-id="${product.id}" src="/img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this, true, '${_csrf.token}')" />
+                            <img data-id="${product.id}" src="/img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,'${_csrf.token}')" />
                         <#else>
-                            <img data-id="${product.id}" src="/img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, false, '${_csrf.token}')" />
+                            <img data-id="${product.id}" src="/img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, '${_csrf.token}')" />
                         </#if>
 
                     </#if>
+
 
                 </div>
 
