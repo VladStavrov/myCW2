@@ -139,14 +139,14 @@
                     <li class="custom-dropdown__menu-item">Опция 3</li>
                 </ul>
             </div>-->
-            <div class="input-panel">
+            <#--<div class="input-panel">
 
                 <button class="input-text" onclick="togglePanel()">Нажмите, чтобы ввести число</button>
                 <div class="panel" >
                     <input type="number" id="input-number">
                     <button onclick="sendNumber()">Отправить</button>
                 </div>
-            </div>
+            </div>-->
             <div class="dropdown"  id = "dropdown-price" data-id="price">
                 <div class="select">
 
@@ -159,7 +159,7 @@
                 </div>
                 <ul class="menu">
                     <li data-id="0"><input type="number" id="input-number">
-                        <button onclick="sendNumber()">Отправить</button></li>
+                        <button id="btn-input-price">Отправить</button></li>
                 </ul>
             </div>
             <ul class="filter_list">
@@ -526,6 +526,120 @@
 <script>
 
 
+    let roomsFilter='-4';
+    let price=23;
+    function foooo(){
+        console.log("qwerty + "+roomsFilter);
+    }
+
+    const catalogItems = document.querySelectorAll('.block_item_catalog');
+    let filteredItems=catalogItems;
+
+    const dropdowns=document.querySelectorAll('.dropdown')
+    dropdowns.forEach(dropdown=>{
+        const dropdownId=dropdown.dataset.id;
+        console.log(dropdownId+ " = dropdownId");
+        if(dropdownId==='rooms'){
+            const select1=dropdown.querySelector('.select');
+            const caret=dropdown.querySelector('.caret');
+            const menu=dropdown.querySelector('.menu');
+            const options=dropdown.querySelectorAll('.menu li');
+            const selected=dropdown.querySelector('.selected');
+
+            select1.addEventListener('click',()=>{
+                select1.classList.toggle('select-clicked');
+                caret.classList.toggle('caret-rotate');
+                menu.classList.toggle('menu-open');
+
+            });
+            options.forEach((option,index)=>{
+                option.addEventListener('click',event =>{
+                    if(dropdownId==='rooms'){
+                        roomsFilter = event.target.dataset.id;
+                        selected.innerText=option.innerText;
+                    }
+                    else {
+                        return;
+                    }
+                    console.log(index+" = "+roomsFilter+  " = "+ catalogItems.length);
+                    filteredAll();
+
+                    Array.from(catalogItems).forEach((item) => item.style.display = 'none');
+                    filteredItems.forEach((item) => item.style.display = 'block');
+
+                    select1.classList.remove('select-clicked')
+                    caret.classList.remove('caret-rotate');
+                    menu.classList.remove('menu-open');
+                    options.forEach(option=>{
+                        option.classList.remove('active')
+
+                    })
+                    option.classList.add('active')
+                    if(option.innerText)
+                        console.log("Херово")
+                        console.log(`Selected value: `+ option.innerText);
+                });
+            })
+        }
+        else {
+            const select1=dropdown.querySelector('.select');
+            const caret=dropdown.querySelector('.caret');
+            const menu=dropdown.querySelector('.menu');
+            const option=dropdown.querySelector('.menu li');
+            const selected=dropdown.querySelector('.selected');
+
+            const btnInputPrice=document.getElementById("btn-input-price");
+            select1.addEventListener('click',()=>{
+                select1.classList.toggle('select-clicked');
+                caret.classList.toggle('caret-rotate');
+                menu.classList.toggle('menu-open');
+
+            });
+
+            btnInputPrice.addEventListener('click',event =>{
+                var input = document.getElementById("input-number");
+                price=input.value;
+                console.log("price = "+ input.value+ " # "+price); // Выводим в консоль полученное число
+                /*console.log(" = "+roomsFilter+  " = "+ catalogItems.length);
+                filteredAll();*/
+                input.value = "";
+                Array.from(catalogItems).forEach((item) => item.style.display = 'none');
+                filteredItems.forEach((item) => item.style.display = 'block');
+
+                select1.classList.remove('select-clicked')
+                caret.classList.remove('caret-rotate');
+                menu.classList.remove('menu-open');
+
+                    option.classList.remove('active')
+
+                option.classList.add('active')
+
+            });
+
+
+
+        }
+
+
+
+    })
+
+    function filteredAll(){
+
+        filteredItems = Array.from(catalogItems).filter((item) => {
+            const rooms = item.querySelector('.catalog_info_product.rooms .catalog_info_text').textContent;
+
+            if(roomsFilter!='0') {
+
+                return rooms === roomsFilter;
+            }
+            else {
+
+                return rooms;
+            }
+        });
+
+    }
 
 </script>
 <#--<script>
