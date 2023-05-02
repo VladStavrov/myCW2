@@ -158,8 +158,14 @@
                     </div>
                 </div>
                 <ul class="menu">
-                    <li data-id="0"><input type="number" id="input-number">
-                        <button id="btn-input-price">Отправить</button></li>
+                    <li data-id="0">
+                        <a href="#" filter_link >Цена от</a>
+                        <input type="number" id="input-price-min">
+                        <a href="#" filter_link >Цена до</a>
+                        <input type="number" id="input-price-max">
+                        <button id="btn-input-price">Отправить</button>
+                    </li>
+
                 </ul>
             </div>
             <ul class="filter_list">
@@ -184,9 +190,9 @@
 
 
                 </li>
-                <li class="filter_item" onclick="sortByPrice()">
+                <li class="filter_item" id="sort-price-item" >
 
-                    <img src="./img/svg/sort-amount-asc.svg" alt="" class="img_filter" id="priceSortingImage" >
+                    <img src="./img/svg/no-sort-amount.svg" alt="" class="img_filter" id="priceSortingImage" >
                     <a  class="filter_link">По цене</a>
                 </li>
                 <li class="filter_item" onclick="sortByAlphabet()">
@@ -249,10 +255,12 @@
 
                                     </div>
 
-                                    <div class="catalog_price_product">
+                                    <div class="catalog_price_product ">
                                         <div class="label_price_catalog">Стоимость:</div>
                                         <div class="price_catalog">
-                                            ${product.price}$
+                                            <div class="priceValue">${product.price}</div>
+                                            <div class="money">$</div>
+
                                         </div>
                                     </div>
                                     <div class="catalog_button_view_product">
@@ -289,147 +297,7 @@
                     </#list>
 
 
-                    <#--<div class="block_item_catalog" name="product_id" value="2">
-                        <div class="line"></div>
-                        <div class="block_flatt">
 
-                            <img src="./img/flatt_catalog.jpg" alt="" class="image_catalog">
-                            <div class="info_block_catalog">
-                                <div class="catalog_name_product">3-х комнатная квартира с выходом в окно</div>
-                                <div class="catalog_group_info_product">
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Тип:</div>
-                                        <div class="catalog_info_text">Квартира</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Адрес:</div>
-                                        <div class="catalog_info_text">г.Минск</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Жилая площадь:</div>
-                                        <div class="catalog_info_text">353м</div>
-                                    </div>
-
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Этаж:</div>
-                                        <div class="catalog_info_text">8</div>
-                                        <div class="parametr_catalog">из:</div>
-                                        <div class="catalog_info_text">8</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="catalog_price_product">
-                                    <div class="label_price_catalog">Стоимость:</div>
-                                    <div class="price_catalog">
-                                        123456$
-                                    </div>
-                                </div>
-                                <div class="catalog_button_view_product">
-
-                                    <button  type="submit" class="button_sign catalogView ">
-                                        Посмотреть
-                                    </button>
-                                </div>
-                            </div>
-                            <img src="./img/svg/favorite.svg" alt="" class="favorite" onclick="favoriteChangeImage(this)">
-                        </div>
-                    </div>
-                    <div class="block_item_catalog" name="product_id" value="3">
-                        <div class="line"></div>
-                        <div class="block_house">
-
-                            <img src="./img/house_catalog.jpg" alt="" class="image_catalog">
-                            <div class="info_block_catalog">
-                                <div class="catalog_name_product">3-х этажный дом с выходом в лес</div>
-                                <div class="catalog_group_info_product">
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Тип:</div>
-                                        <div class="catalog_info_text">Дом</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Адрес:</div>
-                                        <div class="catalog_info_text">г.Минск</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Жилая площадь:</div>
-                                        <div class="catalog_info_text">353м</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Площадь участка:</div>
-                                        <div class="catalog_info_text">353м</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Этажей:</div>
-                                        <div class="catalog_info_text">8</div>
-
-                                    </div>
-
-                                </div>
-
-                                <div class="catalog_price_product">
-                                    <div class="label_price_catalog">Стоимость:</div>
-                                    <div class="price_catalog">
-                                        123456$
-                                    </div>
-                                </div>
-                                <div class="catalog_button_view_product">
-
-                                    <button  type="submit" class="button_sign catalogView ">
-                                        Посмотреть
-                                    </button>
-                                </div>
-                            </div>
-                            <img src="./img/svg/favorite.svg" alt="" class="favorite" onclick="favoriteChangeImage(this)">
-                        </div>
-                    </div>
-
-                    <div class="block_item_catalog" name="product_id" value="4">
-                        <div class="line"></div>
-                        <div class="block_flatt">
-
-                            <img src="./img/flatt_catalog.jpg" alt="" class="image_catalog">
-                            <div class="info_block_catalog">
-                                <div class="catalog_name_product">3-х комнатная квартира с выходом в окно</div>
-                                <div class="catalog_group_info_product">
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Тип:</div>
-                                        <div class="catalog_info_text">Квартира</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Адрес:</div>
-                                        <div class="catalog_info_text">г.Минск</div>
-                                    </div>
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Жилая площадь:</div>
-                                        <div class="catalog_info_text">353м</div>
-                                    </div>
-
-                                    <div class="catalog_info_product">
-                                        <div class="parametr_catalog">Этаж:</div>
-                                        <div class="catalog_info_text">8</div>
-                                        <div class="parametr_catalog">из:</div>
-                                        <div class="catalog_info_text">8</div>
-                                    </div>
-
-                                </div>
-
-                                <div class="catalog_price_product">
-                                    <div class="label_price_catalog">Стоимость:</div>
-                                    <div class="price_catalog">
-                                        123456$
-                                    </div>
-                                </div>
-                                <div class="catalog_button_view_product">
-
-                                    <button  type="submit" class="button_sign catalogView ">
-                                        Посмотреть
-                                    </button>
-                                </div>
-                            </div>
-                            <img src="./img/svg/favorite.svg" alt="" class="favorite" onclick="" onclick="favoriteChangeImage(this)">
-                        </div>
-                    </div>-->
 
                 </div>
 
@@ -523,11 +391,85 @@
 </footer>
 
 </body>
-<script>
 
+<#--<script>
+
+    var dropdownButton = document.querySelector('.custom-dropdown__button');
+    var dropdownMenu = document.querySelector('.custom-dropdown__menu');
+
+    function toggleDropdown() {
+        dropdownMenu.classList.toggle('show');
+    }
+
+    dropdownButton.addEventListener('click', toggleDropdown);
+
+    window.addEventListener('click', function(event) {
+        if (!event.target.matches('.custom-dropdown__button')) {
+            if (dropdownMenu.classList.contains('show')) {
+                dropdownMenu.classList.remove('show');
+            }
+        }
+    });
+
+</script>-->
+<script>
+    // Получаем ссылки на элементы
+    /*function sortByPrice(){
+
+        var image = document.getElementById("priceSortingImage");
+        if (image.src.match("./img/svg/sort-amount-asc.svg")) {
+            image.src = "./img/svg/sort-amount-desc.svg";
+        } else {
+            image.src = "./img/svg/sort-amount-asc.svg";
+        }
+
+    }*/
+
+
+    const sortButton = document.getElementById('sort-price-item');
+
+    // Привязываем обработчик событий на кнопку сортировки
+    sortButton.addEventListener('click',()=>{
+        var image = document.getElementById("priceSortingImage");
+
+        if (image.src.match("./img/svg/sort-amount-asc.svg")) {
+            lowSort=true;
+            higthSort=false;
+            nextImageSort= "./img/svg/sort-amount-desc.svg";
+        } else if(image.src.match("./img/svg/sort-amount-desc.svg")) {
+            lowSort=false;
+            higthSort=false;
+            nextImageSort = "./img/svg/no-sort-amount.svg";
+        }
+        else{
+            lowSort=false;
+            higthSort=true;
+            nextImageSort= "./img/svg/sort-amount-asc.svg";
+        }
+        filteredAll();
+    });
+
+    // Функция для сравнения элементов по цене
+    function comparePrices(a, b) {
+        const aPrice = parseInt(a.getAttribute('data-price'));
+        const bPrice = parseInt(b.getAttribute('data-price'));
+        return aPrice - bPrice;
+    }
+
+    // Функция для сортировки элементов и добавления их на страницу
+
+
+    /*---------------------------------*/
+    let nextImageSort= "./img/svg/no-sort-amount.svg";;
+    let lowSort=false;
+    let higthSort=false;
 
     let roomsFilter='-4';
     let price=23;
+    let minPrice=0;
+    let maxPrice=0;
+    let filterPrice=false;
+    let filterRooms=false;
     function foooo(){
         console.log("qwerty + "+roomsFilter);
     }
@@ -562,6 +504,7 @@
                         return;
                     }
                     console.log(index+" = "+roomsFilter+  " = "+ catalogItems.length);
+                    filterRooms=true;
                     filteredAll();
 
                     Array.from(catalogItems).forEach((item) => item.style.display = 'none');
@@ -577,7 +520,7 @@
                     option.classList.add('active')
                     if(option.innerText)
                         console.log("Херово")
-                        console.log(`Selected value: `+ option.innerText);
+                    console.log(`Selected value: `+ option.innerText);
                 });
             })
         }
@@ -597,12 +540,16 @@
             });
 
             btnInputPrice.addEventListener('click',event =>{
-                var input = document.getElementById("input-number");
-                price=input.value;
-                console.log("price = "+ input.value+ " # "+price); // Выводим в консоль полученное число
-                /*console.log(" = "+roomsFilter+  " = "+ catalogItems.length);
-                filteredAll();*/
-                input.value = "";
+                var inputMin = document.getElementById("input-price-min");
+                var inputMax = document.getElementById("input-price-max");
+                minPrice=inputMin.value;
+                maxPrice=inputMax.value;
+                console.log("price = "+ minPrice+ " # "+maxPrice); // Выводим в консоль полученное число
+
+                /* maxPrice.value = "";
+                 minPrice.value = "";*/
+                filterPrice=true;
+                filteredAll();
                 Array.from(catalogItems).forEach((item) => item.style.display = 'none');
                 filteredItems.forEach((item) => item.style.display = 'block');
 
@@ -610,7 +557,7 @@
                 caret.classList.remove('caret-rotate');
                 menu.classList.remove('menu-open');
 
-                    option.classList.remove('active')
+                option.classList.remove('active')
 
                 option.classList.add('active')
 
@@ -625,45 +572,80 @@
     })
 
     function filteredAll(){
+        filteredItems=Array.from(catalogItems);
+        if(filterRooms){
+            filteredItems = filteredItems.filter((item) => {
+                const rooms = item.querySelector('.catalog_info_product.rooms .catalog_info_text').textContent;
 
-        filteredItems = Array.from(catalogItems).filter((item) => {
-            const rooms = item.querySelector('.catalog_info_product.rooms .catalog_info_text').textContent;
-
-            if(roomsFilter!='0') {
-
-                return rooms === roomsFilter;
-            }
-            else {
-
-                return rooms;
-            }
-        });
-
-    }
-
-</script>
-<#--<script>
-
-    var dropdownButton = document.querySelector('.custom-dropdown__button');
-    var dropdownMenu = document.querySelector('.custom-dropdown__menu');
-
-    function toggleDropdown() {
-        dropdownMenu.classList.toggle('show');
-    }
-
-    dropdownButton.addEventListener('click', toggleDropdown);
-
-    window.addEventListener('click', function(event) {
-        if (!event.target.matches('.custom-dropdown__button')) {
-            if (dropdownMenu.classList.contains('show')) {
-                dropdownMenu.classList.remove('show');
-            }
+                if(roomsFilter!='0') {
+                    filterRooms=true;
+                    return rooms === roomsFilter;
+                }
+                else {
+                    filterRooms=false;
+                    return rooms;
+                }
+            });
         }
-    });
+        if(filterPrice){
 
-</script>-->
-<script>
+            filteredItems =filteredItems.filter((item) => {
 
+                const priceDiv = parseInt(item.querySelector('.catalog_price_product .price_catalog').textContent);
+                if(priceDiv<=maxPrice&&priceDiv>=minPrice){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+
+            });
+        }
+        var image = document.getElementById("priceSortingImage");
+        if(lowSort){
+
+
+
+            image.src =nextImageSort;
+
+            filteredItems=filteredItems.sort((a, b) => {
+                const priceA = parseInt( parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent));
+                const priceB = parseInt( parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent));
+                if (priceA > priceB) {
+                    return -1;
+                } else if (priceA < priceB) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        }
+        else if(higthSort){
+
+
+
+            image.src = nextImageSort;
+            filteredItems=filteredItems.sort((a, b) => {
+                const priceA = parseInt( parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent));
+                const priceB = parseInt( parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent));
+                if (priceA > priceB) {
+                    return 1;
+                } else if (priceA < priceB) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+
+        }
+        else{
+            image.src = nextImageSort;
+        }
+        const container = document.querySelector('.full_items_catalog');
+        container.innerHTML = '';
+        filteredItems.forEach(item => container.appendChild(item));
+
+    }
 
 
 </script>

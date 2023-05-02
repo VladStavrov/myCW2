@@ -126,16 +126,7 @@ function sortByAlphabet(){
     }
 
 }
-function sortByPrice(){
 
-    var image = document.getElementById("priceSortingImage");
-    if (image.src.match("./img/svg/sort-amount-asc.svg")) {
-        image.src = "./img/svg/sort-amount-desc.svg";
-    } else {
-        image.src = "./img/svg/sort-amount-asc.svg";
-    }
-
-}
 
 function checkForm(element){
 
