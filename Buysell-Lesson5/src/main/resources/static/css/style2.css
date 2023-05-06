@@ -116,6 +116,7 @@ body{
 .black-bg {
     opacity: 100%;
     background-color: #0C1723;
+    z-index: 9999999999;
 
 }
 .header{

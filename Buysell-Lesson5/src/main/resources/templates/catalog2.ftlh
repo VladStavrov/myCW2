@@ -464,6 +464,8 @@
     let lowSort=false;
     let higthSort=false;
 
+
+
     let roomsFilter='-4';
     let price=23;
     let minPrice=0;
@@ -473,6 +475,7 @@
     function foooo(){
         console.log("qwerty + "+roomsFilter);
     }
+
 
     const catalogItems = document.querySelectorAll('.block_item_catalog');
     let filteredItems=catalogItems;
