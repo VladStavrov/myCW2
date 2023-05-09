@@ -24,6 +24,9 @@ public class User implements UserDetails {
     private String name;
 
     private boolean active;
+    public boolean isAdmin(){
+        return roles.contains(Role.ROLE_ADMIN);
+    }
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "user")
     private Favorites favorites;

@@ -37,7 +37,7 @@ public class ProductController {
        /* model.addAttribute("user",userService.getUserByPrincipal(principal));*/
         return "catalog2";
     }
-    @GetMapping("/admin")
+    @GetMapping("/admin2")
     public String admin(@RequestParam(name="title",required = false) String title, Model model, Principal principal) {
         model.addAttribute("products",productService.getProductList(title));
         User user= userService.getUserByPrincipal(principal);

@@ -6,7 +6,20 @@
     <script src="./JS/catalog3.js"></script>
 </head>
 <body>
-<h1> | <a href="/login">Войти</a></h1><hr>
+<#if user.email??>
+    <h3>Почта: ${user.email}</h3>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+
+        <input type="submit" value="Выйти">
+    </form>
+    <#if user.isAdmin()>
+        <a href="/admin">Панель администратора</a>
+    </#if>
+    <#else >
+        <h1> | <a href="/login">Войти</a></h1><hr>
+</#if>
+
 
 <#--<form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>
