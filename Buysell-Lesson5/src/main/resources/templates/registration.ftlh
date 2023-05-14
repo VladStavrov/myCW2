@@ -2,18 +2,36 @@
 <html>
 <head>
     <title>BUYSELL</title>
+    <link rel="stylesheet" href="./css/login.css">
+
+    <script src="./JS/login.js"></script>
 </head>
 <body>
-<h1>BUYSELL</h1><hr>
-<h4>Регистрация</h4>
-<form action="/registration" method="post">
+
+
+<div class="login-page">
+    <div class="form">
+        <form class="register-form" action="/registration" method="post">
+            <input type="text"name="name" placeholder="Имя"/>
+             <input type="email" name="email" placeholder="Электронная почта"/>
+            <input type="password" name="password" placeholder="Пароль"/>
+
+             <input type="hidden" name="_csrf" value="${_csrf.token}">
+             <button type="submit">Создать</button>
+            <p class="message">Есть аккаунт? <a href="/login">Войти!</a></p>
+        </form>
+
+    </div>
+</div>
+
+<#--<form action="/registration" method="post">
     Имя пользователя: <input type="text" name="name"><br><br>
     Эл. почта: <input type="email" name="email"><br><br>
-    <#--Номер телефона: <input type="text" name="numberPhone"><br><br>-->
+    &lt;#&ndash;Номер телефона: <input type="text" name="numberPhone"><br><br>&ndash;&gt;
     Пароль: <input type="password" name="password"><br><br>
     <input type="hidden" name="_csrf" value="${_csrf.token}">
     <input type="submit" value="Вход"/>
-</form>
+</form>-->
 
 </body>
 </html>

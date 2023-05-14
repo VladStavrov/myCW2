@@ -50,6 +50,7 @@
                 <#if user.email??>
                     <a href="/profile" class="header_link"  >${user.email}</a>
 
+
                     <#else>
                          <a href="/login"  class="header_link">Войти</a>
                        <#-- <form action="/login">
@@ -220,13 +221,13 @@
                             <div class="line"></div>
                             <div class="block_house">
 
-                                <img src="./img/house_catalog.jpg" alt="" class="image_catalog">
+                                <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
                                 <div class="info_block_catalog">
                                     <div class="catalog_name_product">${product.title}</div>
                                     <div class="catalog_group_info_product">
                                         <div class="catalog_info_product">
                                             <div class="parametr_catalog">Тип:</div>
-                                            <div class="catalog_info_text">ХАТА</div>
+                                            <div class="catalog_info_text">${product.getType().typeName}</div>
                                         </div>
                                         <div class="catalog_info_product">
                                             <div class="parametr_catalog">Адрес:</div>
@@ -463,7 +464,7 @@
     let nextImageSort= "./img/svg/no-sort-amount.svg";;
     let lowSort=false;
     let higthSort=false;
-
+    let typeHouse="";
 
 
     let roomsFilter='-4';
@@ -476,18 +477,28 @@
         console.log("qwerty + "+roomsFilter);
     }
 
-
     const catalogItems = document.querySelectorAll('.block_item_catalog');
     let filteredItems=catalogItems;
 
     const dropdowns=document.querySelectorAll('.dropdown')
     dropdowns.forEach(dropdown=>{
+        const select1=dropdown.querySelector('.select');
+        const caret=dropdown.querySelector('.caret');
+        const menu=dropdown.querySelector('.menu');
         const dropdownId=dropdown.dataset.id;
+
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = menu.contains(event.target) || select1.contains(event.target);
+            if (!isClickInsideMenu) {
+
+                select1.classList.remove('select-clicked');
+                caret.classList.remove('caret-rotate');
+                menu.classList.remove('menu-open');
+            }
+        });
         console.log(dropdownId+ " = dropdownId");
         if(dropdownId==='rooms'){
-            const select1=dropdown.querySelector('.select');
-            const caret=dropdown.querySelector('.caret');
-            const menu=dropdown.querySelector('.menu');
+
             const options=dropdown.querySelectorAll('.menu li');
             const selected=dropdown.querySelector('.selected');
 
@@ -527,10 +538,8 @@
                 });
             })
         }
-        else {
-            const select1=dropdown.querySelector('.select');
-            const caret=dropdown.querySelector('.caret');
-            const menu=dropdown.querySelector('.menu');
+        else if (dropdownId==='price'){
+
             const option=dropdown.querySelector('.menu li');
             const selected=dropdown.querySelector('.selected');
 
@@ -545,9 +554,23 @@
             btnInputPrice.addEventListener('click',event =>{
                 var inputMin = document.getElementById("input-price-min");
                 var inputMax = document.getElementById("input-price-max");
-                minPrice=inputMin.value;
-                maxPrice=inputMax.value;
-                console.log("price = "+ minPrice+ " # "+maxPrice); // Выводим в консоль полученное число
+                if(inputMin.value===""){
+                    minPrice=0;
+
+                }
+                else{
+                    minPrice=inputMin.value;
+                }
+
+                if(inputMax.value===""){
+                    maxPrice=999999999;
+                }
+                else{
+                    maxPrice=inputMax.value;
+                }
+
+
+                console.log("min price = "+ minPrice+ "max price =  "+maxPrice); // Выводим в консоль полученное число
 
                 /* maxPrice.value = "";
                  minPrice.value = "";*/
@@ -569,10 +592,15 @@
 
 
         }
+        else{
+
+        }
 
 
 
     })
+
+
 
     function filteredAll(){
         filteredItems=Array.from(catalogItems);
@@ -594,7 +622,7 @@
 
             filteredItems =filteredItems.filter((item) => {
 
-                const priceDiv = parseInt(item.querySelector('.catalog_price_product .price_catalog').textContent);
+                const priceDiv = parseInt((item.querySelector('.catalog_price_product .price_catalog').textContent).replace(/\s+/g, ''));
                 if(priceDiv<=maxPrice&&priceDiv>=minPrice){
                     return true;
                 }
@@ -612,8 +640,8 @@
             image.src =nextImageSort;
 
             filteredItems=filteredItems.sort((a, b) => {
-                const priceA = parseInt( parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent));
-                const priceB = parseInt( parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent));
+                const priceA =  parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                const priceB =  parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
                 if (priceA > priceB) {
                     return -1;
                 } else if (priceA < priceB) {
@@ -629,8 +657,8 @@
 
             image.src = nextImageSort;
             filteredItems=filteredItems.sort((a, b) => {
-                const priceA = parseInt( parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent));
-                const priceB = parseInt( parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent));
+                const priceA =  parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                const priceB =  parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
                 if (priceA > priceB) {
                     return 1;
                 } else if (priceA < priceB) {

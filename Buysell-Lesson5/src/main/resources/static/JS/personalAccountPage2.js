@@ -54,3 +54,8 @@ function favoriteChangeImage(favorite,token){
         )
         .catch(error => console.error(error));
 }
+
+function logoutImage(img){
+    console.log("ufff")
+    img.parentElement.submit();
+}

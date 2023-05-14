@@ -31,6 +31,11 @@ public class UserController {
     public String login(){
         return "login2";
     }
+
+    @PostMapping("/logout")
+    public String logout(){
+        return "redirect:/";
+    }
     @GetMapping("/registration")
     public String registration(){
         return "registration";

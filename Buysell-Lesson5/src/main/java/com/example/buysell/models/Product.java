@@ -16,16 +16,17 @@ import java.util.List;
 public  class Product {
     private String title;
 
-    /*@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REFRESH   )
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.REFRESH   )
     @JoinColumn(name = "type_id")
-    private Type  type;*/
+    private Type  type;
 
 
     /*@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
     mappedBy = "product")
     private List<ProductInfo> productInfoList=new ArrayList<>();*/
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(
+            cascade = CascadeType.ALL,orphanRemoval = true,
             mappedBy = "product")
     private List<Image> imageList=new ArrayList<>();
     private Long previewImageId;
@@ -33,6 +34,7 @@ public  class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Lob
     private String information;
 
     public Long getPreviewImageId() {
@@ -73,6 +75,13 @@ public  class Product {
         imageList.add(image);
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
     /*public List<ProductInfo> getProductInfoList() {
         return productInfoList;
     }
@@ -120,13 +129,7 @@ public  class Product {
         this.title = title;
     }
 
-   /* public Type getType() {
-        return type;
-    }
 
-    public void setType(Type type) {
-        this.type = type;
-    }*/
 
     public void setFavorites(List<Favorites> favorites) {
         this.favorites = favorites;

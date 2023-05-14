@@ -1,6 +1,7 @@
 package com.example.buysell.controllers;
 
 import com.example.buysell.models.Product;
+import com.example.buysell.models.Type;
 import com.example.buysell.models.User;
 import com.example.buysell.repositories.UserRepository;
 import com.example.buysell.services.ProductService;
@@ -68,14 +69,18 @@ public class ProductController {
     }
 
     @PostMapping("/product/create")
-    public String createProduct(@RequestParam("files")  ArrayList<MultipartFile> files, Product product) throws IOException {
+    public String createProduct(@RequestParam("files")  ArrayList<MultipartFile> files,
+                                @RequestParam("typeName") String typeName,
+                                Product product
+
+           /* , @RequestParam("type") String type*/) throws IOException {
         System.out.println("Product: " + product);
         System.out.println("Files: " + files);
         System.out.println("size= " + files.size());
 
-            productService.saveProduct(product,files);
+            productService.saveProduct(product,files,typeName);
 
-        return "redirect:/";
+        return "redirect:/admin2";
     }
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){

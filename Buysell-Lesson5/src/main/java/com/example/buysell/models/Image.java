@@ -32,7 +32,7 @@ public class Image {
         this.product = product;
     }
 
-    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="product_id")
     private Product product;
 

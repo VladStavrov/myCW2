@@ -2,7 +2,9 @@ package com.example.buysell.services;
 
 import com.example.buysell.models.Image;
 import com.example.buysell.models.Product;
+import com.example.buysell.models.Type;
 import com.example.buysell.repositories.ProductRepository;
+import com.example.buysell.repositories.TypeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ProductService {
     private final ProductRepository productRepository;
+    private final TypeRepository typeRepository;
 
     public List<Product> getProductList(String title) {
         if (title != null) return productRepository.findByTitle(title);
@@ -24,7 +27,7 @@ public class ProductService {
     }
 
 
-    public void saveProduct(Product product, List<MultipartFile> files) throws IOException {
+    public void saveProduct(Product product, List<MultipartFile> files,String type) throws IOException {
         boolean isFirstFile = true;
 
         for (MultipartFile file : files) {
@@ -37,11 +40,25 @@ public class ProductService {
                 product.addImageToProduct(imageItem);
             }
         }
+        Type productType= typeRepository.findByTypeName(type);
+        if(productType!=null){
+            System.out.println(productType.getTypeName()+" - type name");
+            product.setType(productType);
+            productType.getProductList().add(product);
+        }
+        else{
+            log.info("Error Type! type: {}",type);
+            productType=new Type();
+            productType.setTypeName(type);
+            typeRepository.save(productType);
+            product.setType(productType);
+        }
 
         log.info("Saving new {}", product);
         Product savedProduct = productRepository.save(product);
         savedProduct.setPreviewImageId(savedProduct.getImageList().get(0).getId());
         productRepository.save(product);
+
     }
 
 

@@ -2,8 +2,10 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Недвижимость</title>
     <#--<#assign contextPath = request.contextPath>
@@ -93,11 +95,33 @@
 
             </div>
             <div class="realEstate_photo">
-                <img src="/img/svg/left-arrow.svg" alt="" class="arrow">
+                <#--<img src="/img/svg/left-arrow.svg" alt="" class="arrow">-->
                 <#if images?size == 0>
                     <img src="/img/house_catalog.jpg" class="mainPhoto"/>
                 <#else>
-                    <#list images as img>
+                    <div id="carouselExample" class="carousel slide">
+                        <div class="carousel-inner">
+                            <#list images as img>
+
+                                <div class="carousel-item <#if img?index==0>
+                                    active
+                                </#if> ">
+                                    <img src="/images/${img.id}" class="d-block w-100 image_RealEstatePage" alt="...">
+                                </div>
+                            </#list>
+
+
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <#--<#list images as img>
                         <#if img?index == 0>
                             <img src="/images/${img.id}" class="secondPhoto"/>
                         <#elseif img?index == 1>
@@ -105,9 +129,9 @@
                         <#else>
                             <img src="/images/${img.id}" class="secondPhoto"/>
                         </#if>
-                    </#list>
+                    </#list>-->
                 </#if>
-                <img src="/img/svg/right-arrow.svg" alt="" class="arrow">
+               <#-- <img src="/img/svg/right-arrow.svg" alt="" class="arrow">-->
                 <#--<img src="/img/svg/left-arrow.svg" alt="" class="arrow">
                 <img src="/img/house_catalog.jpg" alt="" class="secondPhoto">
                &lt;#&ndash; <img src="/images/${product.imageList.get(0)}">&ndash;&gt;
@@ -126,11 +150,16 @@
                 Оставить заявку
             </button>
             <div class="characteristicsRealEstate">
+
                 <div class="textCharacteristics">Характеристики</div>
                 <#--<div class="catalog_info_product">
                     <div class="parametr_catalog">Тип:</div>
                     <div class="catalog_info_text">${product.type.type}</div>
                 </div>-->
+                <div class="catalog_info_product">
+                    <div class="parametr_catalog">Тип:</div>
+                    <div class="catalog_info_text">${product.getType().typeName}</div>
+                </div>
                 <div class="catalog_info_product">
                     <div class="parametr_catalog">Адрес:</div>
                     <div class="catalog_info_text">${product.address}</div>
@@ -138,6 +167,10 @@
                 <div class="catalog_info_product">
                     <div class="parametr_catalog">Жилая площадь:</div>
                     <div class="catalog_info_text">${product.livingArea}</div>
+                </div>
+                <div class="catalog_info_product rooms">
+                    <div class="parametr_catalog">Комнат:</div>
+                    <div class="catalog_info_text">${product.rooms}</div>
                 </div>
                 <#--<#if product.class.simpleName=="House">
                     <div class="catalog_info_product">
@@ -289,6 +322,7 @@
     </div>
 
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </body>
 </html>

@@ -58,7 +58,9 @@
 <main class="main">
 
 
-
+    <div class="logout-button">
+        <p>Выход</p>
+    </div>
 
     <div class="emptiness"></div>
     <div class="welcome">
@@ -68,6 +70,14 @@
             <div class="instructionWelcomeText">Вы можете добавить понравившуюся вам недвижимость в Избранное,чтобы не потерять ее!</div>
 
         </div>
+        <#if    user.email??>
+            <form action="/logout" method="post">
+                <img src="./img/svg/logout-black.svg" alt="" class="logout-img" onclick="logoutImage(this)">
+                <input type="hidden" name="_csrf" value="${_csrf.token}">
+
+
+            </form>
+        </#if>
     </div>
 
     <div class="textFavorites">Избранное</div>
@@ -85,7 +95,7 @@
                             <div class="catalog_group_info_product">
                                 <div class="catalog_info_product">
                                     <div class="parametr_catalog">Тип:</div>
-                                    <div class="catalog_info_text">ХАТА</div>
+                                    <div class="catalog_info_text">${product.getType().typeName}</div>
                                 </div>
                                 <div class="catalog_info_product">
                                     <div class="parametr_catalog">Адрес:</div>
@@ -94,6 +104,10 @@
                                 <div class="catalog_info_product">
                                     <div class="parametr_catalog">Жилая площадь:</div>
                                     <div class="catalog_info_text">${product.livingArea}</div>
+                                </div>
+                                <div class="catalog_info_product rooms">
+                                    <div class="parametr_catalog">Комнат:</div>
+                                    <div class="catalog_info_text">${product.rooms}</div>
                                 </div>
 
                                 <#--<div class="catalog_info_product">
