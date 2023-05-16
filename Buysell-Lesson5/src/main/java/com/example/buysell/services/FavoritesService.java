@@ -1,6 +1,5 @@
 package com.example.buysell.services;
 
-import com.example.buysell.controllers.FavoritesController;
 import com.example.buysell.models.Favorites;
 import com.example.buysell.models.Product;
 import com.example.buysell.models.User;
@@ -8,9 +7,6 @@ import com.example.buysell.repositories.FavoritesRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
 
@@ -24,12 +20,12 @@ public class FavoritesService {
     public void addProductToFavorites(Product product, User user){
 
         if(user!=null){
-            System.out.println("email: " + user.getEmail());
+            System.out.println("email: " + user.getPhoneNumber());
             System.out.println("title: " + product.getTitle());
             user.getFavorites().getProducts().add(product);
             product.getFavorites().add(user.getFavorites());
 
-            log.info("new Product - User: {} - {}",user.getEmail(),product.getTitle());
+            log.info("new Product - User: {} - {}",user.getPhoneNumber(),product.getTitle());
             favoritesRepository.save(user.getFavorites());
             userService.saveUser(user);
         }
@@ -38,14 +34,14 @@ public class FavoritesService {
         product.getFavorites().remove(favorites);
         favorites.getProducts().remove(product);
 
-        log.info("remove Product - User: {} - {}",favorites.getUser().getEmail(),product.getTitle());
+        log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
         favoritesRepository.save(favorites);
         userService.saveUser(favorites.getUser());
     }
     public void removedProductFromFavorites(Long productId, Favorites favorites){
         Product product = productService.getProductById(productId);
         favorites.getProducts().remove(product);
-        log.info("remove Product - User: {} - {}",favorites.getUser().getEmail(),product.getTitle());
+        log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
         favoritesRepository.save(favorites);
     }
     public void removedProductFromFavorites(Long productId, Principal principal ){
@@ -53,7 +49,7 @@ public class FavoritesService {
         Product product = productService.getProductById(productId);
         /*product.getFavorites().remove(favorites);*/
         favorites.getProducts().remove(product);
-        log.info("remove Product - User: {} - {}",favorites.getUser().getEmail(),product.getTitle());
+        log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
         favoritesRepository.save(favorites);
 
     }

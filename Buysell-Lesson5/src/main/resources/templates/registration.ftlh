@@ -13,7 +13,7 @@
     <div class="form">
         <form class="register-form" action="/registration" method="post">
             <input type="text"name="name" placeholder="Имя"/>
-             <input type="email" name="email" placeholder="Электронная почта"/>
+             <input type="text" name="phoneNumber" placeholder="Номер телефона"/>
             <input type="password" name="password" placeholder="Пароль"/>
 
              <input type="hidden" name="_csrf" value="${_csrf.token}">

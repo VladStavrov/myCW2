@@ -19,7 +19,7 @@
     </tr>
     <#list users as user>
         <tr>
-            <th>${user.email}</th>
+            <th>${user.phoneNumber}</th>
             <th>+1111111</th>
             <th>
                 <#if user.active>

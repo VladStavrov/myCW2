@@ -43,8 +43,8 @@
 
             </nav>
             <nav class="header_sign ">
-                <#if user.email??>
-                    <a href="/profile" class="header_link"  >${user.email}</a>
+                <#if user.phoneNumber??>
+                    <a href="/profile" class="header_link"  >${user.phoneNumber}</a>
 
                 <#else>
                     <a href="/login"  class="header_link">Войти</a>
@@ -70,7 +70,7 @@
             <div class="instructionWelcomeText">Вы можете добавить понравившуюся вам недвижимость в Избранное,чтобы не потерять ее!</div>
 
         </div>
-        <#if    user.email??>
+        <#if    user.phoneNumber??>
             <form action="/logout" method="post">
                 <img src="./img/svg/logout-black.svg" alt="" class="logout-img" onclick="logoutImage(this)">
                 <input type="hidden" name="_csrf" value="${_csrf.token}">
@@ -137,7 +137,7 @@
                                 </button>
                             </div>
                         </div>
-                        <#if user.email??>
+                        <#if user.phoneNumber??>
                             <#if user.favorites.products?seq_contains(product)>
                                 <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,  '${_csrf.token}')" />
                             <#else>
@@ -224,19 +224,21 @@
             <div class="footer_text">
                 Если есть вопросы, то оставьте заявку и наш менеджер вам перезвониит!
             </div>
-            <form action="" class="footer_form" id="footer_form_id" onsubmit=" return checkForm(this)" method="post">
+
+            <form action="/order/Question" class="footer_form" id="footer_form_id"  method="post">
                 <img src="img/svg/avatar-form.svg" alt="/" class="form_img">
 
                 <div class="input_info">
                     <div class="form_field-text">
                         Как вас зовут?
                     </div>
-                    <input type="text" class="form_name" name="form_name_ctlg" id="form_name_ctlg">
+                    <input type="text" class="form_name" name="userName" id="form_name_ctlg">
                     <div class="form_field-text" >
                         Номер телефона
                     </div>
-                    <input type="text" class="form_name" name="form_phone_ctlg">
+                    <input type="text" class="form_name" name="phoneNumber">
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <button id="submit_application" type="submit" class="button_sign ">
                     Оставить заявку
                 </button>

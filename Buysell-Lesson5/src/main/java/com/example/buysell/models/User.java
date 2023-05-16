@@ -1,6 +1,7 @@
 package com.example.buysell.models;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -11,17 +12,20 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(unique = true)
-    private String email;
+    private String phoneNumber;
     @Column(length = 1000)
     private String password;
 
     private String name;
+  /*  private String phoneNumber;*/
+
 
     private boolean active;
     public boolean isAdmin(){
@@ -36,10 +40,10 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Set<Role > roles = new HashSet<>();
 
-    /*@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "user")
     private Set<OrderBuying > orderBuyings = new HashSet<>();
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    /*@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "user")
     private Set<OrderQuestion > orderQuestions = new HashSet<>();*/
 
@@ -67,12 +71,12 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public String getEmail() {
-        return email;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setPhoneNumber(String email) {
+        this.phoneNumber = email;
     }
         //sequrity
     @Override
@@ -84,9 +88,17 @@ public class User implements UserDetails {
         return password;
     }
 
+    public Set<OrderBuying> getOrderBuyings() {
+        return orderBuyings;
+    }
+
+    public void setOrderBuyings(Set<OrderBuying> orderBuyings) {
+        this.orderBuyings = orderBuyings;
+    }
+
     @Override
     public String getUsername() {
-        return email;
+        return phoneNumber;
     }
 
     @Override
@@ -129,4 +141,6 @@ public class User implements UserDetails {
     public void setFavorites(Favorites favorites) {
         this.favorites = favorites;
     }
+
+
 }

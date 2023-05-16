@@ -128,7 +128,7 @@ function sortByAlphabet(){
 }
 
 
-function checkForm(element){
+/*function checkForm(element){
 
     var name=element.form_name_ctlg.value;
     var phone=element.form_phone_ctlg.value;
@@ -155,14 +155,14 @@ function checkForm(element){
         return false;
     }
 
-   /* var name= document.getElementById("form_name_ctlg");
-   */
+   /!* var name= document.getElementById("form_name_ctlg");
+   *!/
     console.log("Все хорошо")
     alert("Все данные корректно введены!")
 
     return true;
 
-}
+}*/
 
 function scrollToBottom() {
     window.scrollTo(0, document.body.scrollHeight);

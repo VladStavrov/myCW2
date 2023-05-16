@@ -15,7 +15,8 @@
     <div class="form">
 
         <form class="login-form" action="/login" method="post">
-            <input type="email" name="username" placeholder="Электронная почта"/>
+            <#--<input type="text" name="phoneNumber" placeholder="Номер телефона"/>-->
+            <input type="text" name="phoneNumber" placeholder="Номер телефона"/>
             <input type="password" name="password" placeholder="Пароль"/>
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <button type="submit">Войти</button>

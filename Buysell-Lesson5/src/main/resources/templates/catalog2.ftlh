@@ -47,8 +47,8 @@
 
             </nav>
             <nav class="header_sign ">
-                <#if user.email??>
-                    <a href="/profile" class="header_link"  >${user.email}</a>
+                <#if user.phoneNumber??>
+                    <a href="/profile" class="header_link"  >${user.phoneNumber}</a>
 
 
                     <#else>
@@ -282,7 +282,7 @@
 
                                     </#if>
                                 </#if>-->
-                                <#if user.email??>
+                                <#if user.phoneNumber??>
                                     <#if user.favorites.products?seq_contains(product)>
                                         <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,'${_csrf.token}')" />
                                     <#else>
@@ -340,19 +340,20 @@
             <div class="footer_text">
                 Если есть вопросы, то оставьте заявку и наш менеджер вам перезвониит!
             </div>
-            <form action="" class="footer_form" id="footer_form_id" onsubmit=" return checkForm(this)" method="post">
+            <form action="/order/Question" method="post" class="footer_form" id="footer_form_id" >
                 <img src="./img/svg/avatar-form.-catalogPage.svg" alt="/" class="form_img">
 
                 <div class="input_info">
                     <div class="form_field-text">
                         Как вас зовут?
                     </div>
-                    <input type="text" class="form_name" name="form_name_ctlg" id="form_name_ctlg">
+                    <input type="text" class="form_name" name="userName" id="form_name_ctlg">
                     <div class="form_field-text" >
                         Номер телефона
                     </div>
-                    <input type="text" class="form_name" name="form_phone_ctlg">
+                    <input type="text" class="form_name" name="phoneNumber">
                 </div>
+                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
                 <button id="submit_application" type="submit" class="button_sign catalogBTN">
                     Оставить заявку
                 </button>
@@ -364,29 +365,33 @@
 
     </div>
     <div class="footer_wrapper_links">
-        <ul class="footer_links">
-            <li class="footer_item">
-                <div class="footer_category">Телефон</div>
-                <a href="/" class="footer_link">375(44)553-65-21</a>
-            </li>
-            <li class="footer_item">
-                <div class="footer_category">Почта</div>
-                <a href="/" class="footer_link">label@mail.ru</a>
-            </li>
-            <li class="footer_item">
-                <div class="footer_category">Адресс</div>
-                <a href="/" class="footer_link">г. Минск ул. Л.Беды 4</a>
-            </li>
-            <li class="footer_item">
-                <img src="./img/svg/instagram.svg" alt="/">
-            </li>
-            <li class="footer_item">
-                <img src="./img/svg/Telegram.svg" alt="/">
-            </li>
-            <li class="footer_item">
-                <img src="./img/svg/instagram.svg" alt="/">
-            </li>
-        </ul>
+
+            <ul class="footer_links">
+                <li class="footer_item">
+                    <div class="footer_category">Телефон</div>
+                    <a href="/" class="footer_link">375(44)553-65-21</a>
+                </li>
+                <li class="footer_item">
+                    <div class="footer_category">Почта</div>
+                    <a href="/" class="footer_link">label@mail.ru</a>
+                </li>
+                <li class="footer_item">
+                    <div class="footer_category">Адресс</div>
+                    <a href="/" class="footer_link">г. Минск ул. Л.Беды 4</a>
+                </li>
+                <li class="footer_item">
+                    <img src="./img/svg/instagram.svg" alt="/">
+                </li>
+                <li class="footer_item">
+                    <img src="./img/svg/Telegram.svg" alt="/">
+                </li>
+                <li class="footer_item">
+                    <img src="./img/svg/instagram.svg" alt="/">
+                </li>
+            </ul>
+
+
+
     </div>
 
 </footer>

@@ -2,7 +2,9 @@ package com.example.buysell.models;
 
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -10,7 +12,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "favorites")
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Favorites {
 
     @Id

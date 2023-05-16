@@ -66,13 +66,21 @@ public  class Product {
             inverseJoinColumns = @JoinColumn(name = "favorites_id"))
     private List<Favorites> favorites= new ArrayList<>();
 
-   /* @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "product")
-    private OrderBuying orderBuying ;*/
+    private List<OrderBuying> orderBuyings=new ArrayList<>() ;
 
     public void addImageToProduct(Image image){
         image.setProduct(this);
         imageList.add(image);
+    }
+
+    public List<OrderBuying> getOrderBuyings() {
+        return orderBuyings;
+    }
+
+    public void setOrderBuyings(List<OrderBuying> orderBuyings) {
+        this.orderBuyings = orderBuyings;
     }
 
     public Type getType() {

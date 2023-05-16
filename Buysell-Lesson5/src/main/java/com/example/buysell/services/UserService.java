@@ -1,7 +1,6 @@
 package com.example.buysell.services;
 
 import com.example.buysell.models.Favorites;
-import com.example.buysell.models.Product;
 import com.example.buysell.models.Role;
 import com.example.buysell.models.User;
 
@@ -26,8 +25,8 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public boolean createUser(User user) {
-        String userEmail = user.getEmail();
-        if (userRepository.findByEmail(userEmail) != null) return false;
+        String userPhoneNumber = user.getPhoneNumber();
+        if (userRepository.findByPhoneNumber(userPhoneNumber) != null) return false;
         user.setActive(true);
         Favorites favorites = new Favorites();
         favorites.setUser(user);
@@ -36,19 +35,19 @@ public class UserService {
         user.getRoles().add(Role.ROLE_USER);
         /*user.getRoles().add(Role.ROLE_ADMIN);*/
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        log.info("Saving new User with email: {}", userEmail);
+        log.info("Saving new User with phoneNumber: {}", userPhoneNumber);
         userRepository.save(user);
         return true;
     }
     public void saveUser(User user){
-        log.info("Saving new User with email: {}", user.getEmail());
+        log.info("Saving new User with phoneNumber: {}", user.getPhoneNumber());
         userRepository.save(user);
 
     }
 
     public User getUserByPrincipal(Principal principal) {
         if(principal==null) return null;
-        return userRepository.findByEmail(principal.getName());
+        return userRepository.findByPhoneNumber(principal.getName());
     }
     public User  getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
@@ -63,13 +62,13 @@ public class UserService {
        if(user!=null){
            if(user.isActive()){
                user.setActive(false);
-               log.info("Ban user with id = {}, email: {}",
-                       user.getId(),user.getEmail() );
+               log.info("Ban user with id = {}, phoneNumber: {}",
+                       user.getId(),user.getPhoneNumber() );
            }
            else{
                user.setActive(true);
-               log.info("Unban user with id = {}, email: {}",
-                       user.getId(),user.getEmail() );
+               log.info("Unban user with id = {}, phoneNumber: {}",
+                       user.getId(),user.getPhoneNumber() );
            }
 
 
