@@ -3,6 +3,7 @@ package com.example.buysell.configurations;
 import com.example.buysell.services.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,9 +23,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/product/**", "/images/**", "/registration","/admin","/static/**","/order/**","/order/Question")
+                .antMatchers("/", "/product/**", "/images/**","manager", "/registration","/admin","/static/**","/order/Question")
+
                 .permitAll()
+                /*.antMatchers(HttpMethod.POST, "/order/Question")
+                .permitAll()*/
                 .anyRequest().authenticated()
+                .and()
+                .csrf()
+                .ignoringAntMatchers("/order/Question")
                 .and()
                 .formLogin()
                 .usernameParameter("phoneNumber")

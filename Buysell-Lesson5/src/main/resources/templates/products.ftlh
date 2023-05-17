@@ -80,6 +80,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>products</title>
+    <link rel="stylesheet" href="./css/manager.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style2.css">
+    <script src="./JS/manager.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
           crossorigin="anonymous">
@@ -89,7 +93,7 @@
 
 <h1 style="text-align: center">Добавить товары</h1>
 <hr>
-<a class="btn btn-dark mt-3 mb-3" style="text-align: center; width: 100%"
+<a class="btn btn-dark mt-3 mb-3 " style="text-align: center; width: 100%"
    data-toggle="collapse" href="#collapseExample" role="button"
    aria-expanded="true" aria-controls="collapseExample">
     Добавить новый товар
@@ -153,6 +157,20 @@
             </div>
             <div class="form-group">
                 <div class="custom-file">
+                    <div class="imageContainer" >
+
+                    </div>
+
+                    <script>
+
+                    </script>
+
+
+
+                </div>
+            </div>
+            <#--<div class="form-group">
+                <div class="custom-file">
                     <input required type="file" name="files" id="files1">
                     <label class="custom-file-label" for="files1">Первая фотография к товару</label>
                 </div>
@@ -168,13 +186,197 @@
                     <input type="file" name="files" id="file3">
                     <label class="custom-file-label" for="files3">Третья фотография к товару</label>
                 </div>
-            </div>
+            </div>-->
             <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
             <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
         </form>
     </div>
 </div>
+<main class="main">
+    <selection class="catalog">
+        <div class="wrapper">
+            <div class="wrapper_catalog">
+                <div class="full_items_catalog">
+                    <#list products as product>
+                        <div class="block_item_catalog" name="product_id" value="1" >
+                            <div class="line"></div>
+                            <div class="block_house">
+
+                                <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
+                                <div class="info_block_catalog">
+                                    <div class="catalog_name_product">${product.title}</div>
+                                    <div class="catalog_group_info_product">
+                                        <div class="catalog_info_product">
+                                            <div class="parametr_catalog">Тип:</div>
+                                            <div class="catalog_info_text">${product.getType().typeName}</div>
+                                        </div>
+                                        <div class="catalog_info_product">
+                                            <div class="parametr_catalog">Адрес:</div>
+                                            <div class="catalog_info_text">${product.address}</div>
+                                        </div>
+                                        <div class="catalog_info_product">
+                                            <div class="parametr_catalog">Жилая площадь:</div>
+                                            <div class="catalog_info_text">${product.livingArea}</div>
+                                        </div>
+                                        <div class="catalog_info_product rooms">
+                                            <div class="parametr_catalog">Комнат:</div>
+                                            <div class="catalog_info_text">${product.rooms}</div>
+                                        </div>
+
+
+
+                                    </div>
+
+                                    <div class="catalog_price_product ">
+                                        <div class="label_price_catalog">Стоимость:</div>
+                                        <div class="price_catalog">
+                                            <div class="priceValue">${product.price}</div>
+                                            <div class="money">$</div>
+
+                                        </div>
+                                    </div>
+                                    <div class="catalog_button_view_product">
+                                        <a class="btn btn-dark mt-3 mb-3 button_sign catalogView " style="text-align: center; width: 100%; margin: 0"
+                                           data-toggle="collapse" href="#editProduct${product.id}" role="button"
+                                           aria-expanded="true" aria-controls="editProduct${product.id}">
+                                            Редактировать  товар
+                                        </a>
+
+                                        <#--<button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
+                                            Посмотреть
+                                        </button>-->
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                        <div class="container mt-4">
+
+                            <div class="collapse mb-3" id="editProduct${product.id}" style="">
+                                <form action="/product/edit/${product.id}" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label for="productName">Название товара</label>
+                                        <input type="text" value="${product.title}" required class="form-control"
+                                               id="productName" name="title">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="price">Цена товара</label>
+                                        <div class="input-group mb-3">
+                                            <input type="number" value="${product.price}" required class="form-control" id="price" name="price">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">₽</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Комнат</label>
+                                        <div class="input-group mb-3">
+                                            <input type="number"   value="${product.rooms}" required class="form-control" id="rooms" name="rooms">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">₽</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="livingArea">Площадь</label>
+                                        <div class="input-group mb-3">
+                                            <input type="number"  value="${product.livingArea}" required  class="form-control"
+                                             id="livingArea" name="livingArea" >
+                                            <div class="input-group-append">
+                                                <span class="input-group-text">₽</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="address">Адрес товара</label>
+                                        <input type="text" value="${product.address}"
+                                                required class="form-control"
+                                               id="address" name="address">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="typeName">Тип</label>
+                                        <select id="typeName" required name="typeName" class="form-control">
+                                            <option value="">Тип не выбран</option>
+                                            <#if product.type.typeName=="Квартира">
+                                                <option value="Квартира" selected>Квартира</option>
+                                                <option value="Дом">Дом</option>
+                                                <#else>
+                                                    <option value="Квартира" >Квартира</option>
+                                                    <option value="Дом" selected>Дом</option>
+                                            </#if>
+
+
+
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group" >
+                                        <label for="information">Описание товара</label>
+                                        <textarea  required class="form-control" id="information" name="information">${product.information}</textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <div class="imageContainer" >
+                                            <#list product.imageList as image>
+                                                <div class="image-block" name="">
+
+                                                    <input name="inputNumberImageName" type="number"  value="${image.id}" style="display: none">
+                                                    <input id="${image.id}" onchange=" handleImageUpload(event,this.closest('.imageContainer'),this);    " type="file"   accept="image/*"   name="oldImage" value="${image.name}">
+
+                                                    <img style="display: block;" src="/images/${image.id}">
+                                                    <button onclick="this.closest('.image-block').remove()" style="display: block;">Удалить</button>
+                                                </div>
+                                            </#list >
+                                            </div>
+
+
+
+
+
+                                        </div>
+                                    </div>
+
+                                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
+                                    <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
+                                </form>
+                            </div>
+                        </div>
+
+                    </#list>
+
+
+
+
+                </div>
+
+
+
+
+
+                <!-- <div class="line"></div>
+                 <button  type="submit" class="button_sign catalogViewMore  " style="align-self: center">
+                     Загрузить ещё
+                 </button>-->
+
+            </div>
+
+
+        </div>
+
+
+
+
+
+
+
+
+    </selection>
+</main>
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

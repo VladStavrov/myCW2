@@ -238,7 +238,7 @@
                     </div>
                     <input type="text" class="form_name" name="phoneNumber">
                 </div>
-                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
                 <button id="submit_application" type="submit" class="button_sign ">
                     Оставить заявку
                 </button>

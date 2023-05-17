@@ -3,6 +3,7 @@ package com.example.buysell.services;
 import com.example.buysell.models.Image;
 import com.example.buysell.models.Product;
 import com.example.buysell.models.Type;
+import com.example.buysell.repositories.ImageRepository;
 import com.example.buysell.repositories.ProductRepository;
 import com.example.buysell.repositories.TypeRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +21,7 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final TypeRepository typeRepository;
+    private final ImageRepository imageRepository;
 
     public List<Product> getProductList(String title) {
         if (title != null) return productRepository.findByTitle(title);
@@ -57,11 +59,117 @@ public class ProductService {
         log.info("Saving new {}", product);
         Product savedProduct = productRepository.save(product);
         savedProduct.setPreviewImageId(savedProduct.getImageList().get(0).getId());
-        productRepository.save(product);
+        productRepository.save(savedProduct);
 
     }
 
 
+
+
+    public void deleteProduct(Long id) {
+        productRepository.deleteById(id);
+    }
+
+    public Product getProductById(Long id) {
+        return productRepository.findById(id).orElse(null);
+    }
+    private enum PreviewImageIdStatus{
+        ThereIs,
+        Nope,
+        NewPreview;
+    }
+
+    public void editProduct(Long id,Product product, ArrayList<MultipartFile> files, String type,
+                            ArrayList<Long> oldImageId) throws IOException {
+        Product oldProduct=productRepository.getById(id);
+
+        PreviewImageIdStatus previewImageIdStatus= PreviewImageIdStatus.Nope;
+
+        boolean isFirstFile = true;
+        if(oldImageId!=null){
+            System.out.println("Зашло в if");
+            if(!(oldImageId.isEmpty())){
+                Long previewImageId=oldProduct.getPreviewImageId();
+                /*oldProduct.getImageList().forEach(image -> {
+                            System.out.println("image id: " + image.getId());
+                            if(!(oldImageId.contains(image.getId()))){
+
+                                oldProduct.getImageList().remove(image);
+                                deleteImage(image.getId());
+                            }
+                        }
+                );*/
+                for(Image image: oldProduct.getImageList()){
+
+                    if(oldImageId.contains(image.getId())){
+                        if(previewImageId==image.getId()){
+                            previewImageIdStatus=PreviewImageIdStatus.ThereIs;
+
+                        }
+
+                    }
+                    else{
+                        oldProduct.getImageList().remove(image);
+                        deleteImage(image.getId());
+                    }
+                }
+            }
+        }
+        else{
+            System.out.println("Зашло в else");
+            oldProduct.getImageList().forEach(image -> {
+                System.out.println("Зашло в удаление");
+                deleteImage(image.getId());
+
+
+            });
+            oldProduct.getImageList().clear();
+        }
+
+        if(previewImageIdStatus.equals(PreviewImageIdStatus.Nope)&&oldProduct.getImageList().size()!=0){
+            System.out.println("Зашло в if2");
+            oldProduct.getImageList().get(0).setPreviewImage(true);
+            oldProduct.setPreviewImageId(oldProduct.getImageList().get(0).getId());
+            previewImageIdStatus=PreviewImageIdStatus.ThereIs;
+        }
+
+
+
+
+        for (MultipartFile file : files) {
+            if (file.getSize() != 0) {
+                Image imageItem = toImageEntity(file);
+                if (previewImageIdStatus.equals(PreviewImageIdStatus.Nope)) {
+                    imageItem.setPreviewImage(true);
+                   previewImageIdStatus=PreviewImageIdStatus.NewPreview;
+                }
+                oldProduct.addImageToProduct(imageItem);
+            }
+        }
+
+        if(!oldProduct.getType().getTypeName().equals(type)){
+            oldProduct.getType().setTypeName(type);
+        }
+        oldProduct.setAddress(product.getAddress());
+        oldProduct.setInformation(product.getInformation());
+        oldProduct.setPrice(product.getPrice());
+        oldProduct.setLivingArea(product.getLivingArea());
+        oldProduct.setTitle(product.getTitle());
+        oldProduct.setRooms(product.getRooms());
+
+
+
+        log.info("Saving old {}", product);
+        if(previewImageIdStatus.equals(PreviewImageIdStatus.NewPreview)||previewImageIdStatus.equals(PreviewImageIdStatus.Nope)){
+            Product savedProduct = productRepository.save(oldProduct);
+
+            savedProduct.setPreviewImageId(savedProduct.getImageList().get(0).getId());
+        }
+
+        productRepository.save(oldProduct);
+
+
+    }
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();
         image.setName(file.getName());
@@ -71,12 +179,9 @@ public class ProductService {
         image.setBytes(file.getBytes());
         return image;
     }
+    public void deleteImage(Long id){
+        imageRepository.deleteById(id);
 
-    public void deleteProduct(Long id) {
-        productRepository.deleteById(id);
     }
 
-    public Product getProductById(Long id) {
-        return productRepository.findById(id).orElse(null);
-    }
 }
