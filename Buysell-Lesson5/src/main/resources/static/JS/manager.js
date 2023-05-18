@@ -60,7 +60,7 @@ function handleImageUpload(event,imageContainer,input) {
         const btn = event.target.parentNode.querySelector('button');
         if(!(input.name==='files')){
             inputImageId=document.getElementsByName('inputNumberImageName');
-            
+
 
             inputImageId.forEach(function(inputValue){
                 if(inputValue.value===input.id){

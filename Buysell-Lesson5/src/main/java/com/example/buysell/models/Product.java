@@ -65,8 +65,13 @@ public  class Product {
             joinColumns = @JoinColumn(name = "product_id"),
             inverseJoinColumns = @JoinColumn(name = "favorites_id"))
     private List<Favorites> favorites= new ArrayList<>();
-
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
+    @PreRemove
+    private void preRemove() {
+        for (OrderBuying orderBuying : orderBuyings) {
+            orderBuying.setProduct(null);
+        }
+    }
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.REFRESH,
             mappedBy = "product")
     private List<OrderBuying> orderBuyings=new ArrayList<>() ;
 

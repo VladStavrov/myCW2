@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Entity
@@ -15,7 +16,7 @@ public class OrderQuestion {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String status;
-    private LocalDateTime dateOfCreated;
+    private String dateOfCreated;
 
     private String phoneNumber;
     private String userName;
@@ -24,7 +25,10 @@ public class OrderQuestion {
 
     @PrePersist
     private void init(){
-        dateOfCreated=LocalDateTime.now();
+        LocalDateTime dateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.dateOfCreated = dateTime.format(formatter);
+
     }
 
     public Long getId() {
@@ -43,11 +47,11 @@ public class OrderQuestion {
         this.status = status;
     }
 
-    public LocalDateTime getDateOfCreated() {
+    public String getDateOfCreated() {
         return dateOfCreated;
     }
 
-    public void setDateOfCreated(LocalDateTime dateOfCreated) {
+    public void setDateOfCreated(String dateOfCreated) {
         this.dateOfCreated = dateOfCreated;
     }
 }

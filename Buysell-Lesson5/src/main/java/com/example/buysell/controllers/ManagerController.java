@@ -72,7 +72,7 @@ public class ManagerController {
     @PostMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable Long id){
         productService.deleteProduct(id);
-        return "catalog2";
+        return "redirect:/manager";
     }
 
 }

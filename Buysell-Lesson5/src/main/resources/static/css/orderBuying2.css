@@ -1,0 +1,247 @@
+:root {
+    --color-foreground: #111;
+    --color-gray01: #20232a;
+    --color-gray02: rgb(146, 146, 146);
+    --color-gray03: #cccccc;
+    --color-gray04: #eeeeee;
+    --color-gray05: #f8f8f8;
+    --color-background: #fff;
+    --color-primary: #1D4ED8;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    overscroll-behavior-y: none;
+}
+:root{
+    --colorForeground: #111;
+    --colorGray01: #20232a;
+    --colorGray02: rgb(146, 146, 146);
+    --colorGray03: #cccccc;
+    --colorGray04: #eeeeee;
+    --colorGray05: #f8f8f8;
+    --colorBackground: #fff;
+    --colorPrimary: #1D4ED8;
+
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-background);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    overscroll-behavior-y: none;
+}
+
+a {
+    text-decoration: none;
+    color: var(--colorForeground);
+}
+
+select {
+    font-family: inherit;
+}
+
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+.flex {
+    display: flex;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+
+.light-text {
+    color: var(--colorGray02);
+}
+
+
+.button {
+    padding: 0 20px;
+    line-height: 32px;
+    border: 1px solid var(--colorForeground);
+    border-radius: 3px;
+    background-color: var(--colorForeground);
+    font-size: 16px;
+    color: var(--colorBackground);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.button:hover {
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+}
+
+.button.secondary {
+    border: 1px solid var(--colorGray03);
+    background-color: var(--colorBackground);
+    color: var(--colorGray02);
+}
+
+.button.secondary:hover {
+    border: 1px solid var(--colorForeground);
+    background-color: var(--colorBackground);
+    color: var(--colorForeground);
+}
+
+.heading-lv1 {
+    margin-bottom: 26px;
+    font-size: 36px;
+    font-weight: bold;
+    color: var(--colorPrimary);
+}
+
+
+.dropdown-heading {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: var(--colorGray02);
+}
+
+.select::-ms-expand {
+    display: none; /* delete browser picker */
+}
+
+.select {
+    appearance: none; /* delete browser picker */
+    padding-top: 0;
+    padding-left: 10px;
+    padding-right: 40px;
+    padding-bottom: 0;
+    line-height: 2;
+    background-color: var(--colorBackground);
+    background-image: url(https://dl.dropbox.com/s/ru1dbh5omn3deeh/arrow.svg?dl=0);
+    background-repeat: no-repeat;
+    background-size: 10px 10px;
+    background-position: right 15px center;
+    border: 1px solid var(--colorGray03);
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.select:hover {
+    border: 1px solid var(--colorGray02);
+}
+
+.select:active,
+.select:focus {
+    outline: none;
+    box-shadow: 0px 0px 0px 2px var(--colorPrimary);
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 20px;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+
+.table-app {
+    min-width: 700px;
+}
+
+.table-handler {
+    margin-bottom: 16px;
+}
+
+.table-handler > * {
+    display: inline-block;
+}
+
+.table-head {
+    line-height: 48px;
+}
+
+.table-handler-dropdown-cell {
+    padding-right: 16px;
+}
+
+.table-wrapper {
+    height: 70vh;
+    overflow-y: scroll;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-head th {
+    position: sticky;
+    top: 0px;
+    background-color: var(--colorBackground);
+    color: var(--colorPrimary);
+    font-weight: bold;
+    box-shadow: 0px 2px 0px 0px var(--colorPrimary);
+}
+
+.table-row {
+    line-height: 48px;
+    color: var(--colorForeground);
+}
+
+.table-row:nth-child(even) {
+    background-color: var(--colorGray05);
+}
+
+.table-row:nth-child(odd) {
+    background-color: var(--colorGray04);
+}
+Теперь у вас есть эквивалентный CSS-код, который можно использовать для стилизации веб-страницы.
+
+
+
+
+
+
+
+.table-cell {
+    white-space: nowrap;
+    padding: 0 10px;
+    font-size: 14px;
+}
+
+.no-results {
+    padding: 40px 0;
+    text-align: center;
+}
+
+.no-results-message {
+    font-size: 22px;
+    color: var(--colorGray02);
+}

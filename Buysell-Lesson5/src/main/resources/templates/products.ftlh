@@ -74,6 +74,7 @@
 </form>
 </body>
 </html>-->
+<#import "blocks/template.ftlh" as t>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -90,7 +91,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-
+<@t.template navigationManager="Manager">
 <h1 style="text-align: center">Добавить товары</h1>
 <hr>
 <a class="btn btn-dark mt-3 mb-3 " style="text-align: center; width: 100%"
@@ -236,8 +237,9 @@
 
                                         </div>
                                     </div>
+                                    <div class="catalog_price_product ">
                                     <div class="catalog_button_view_product">
-                                        <a class="btn btn-dark mt-3 mb-3 button_sign catalogView " style="text-align: center; width: 100%; margin: 0"
+                                        <a class="btn btn-dark mt-3 mb-3 button_sign catalogView " style="text-align: center; width: 100%; margin: 0 ; padding-top: 10px"
                                            data-toggle="collapse" href="#editProduct${product.id}" role="button"
                                            aria-expanded="true" aria-controls="editProduct${product.id}">
                                             Редактировать  товар
@@ -246,6 +248,24 @@
                                         <#--<button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
                                             Посмотреть
                                         </button>-->
+                                    </div>
+                                        <form class="order_btn_product" action="/product/delete/${product.id}" method="post">
+
+                                            <button  type="submit" class="button_sign orderDelete "  >
+                                                Удалить
+                                            </button>
+
+                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                        </form>
+
+
+
+
+
+
+
+
+
                                     </div>
                                 </div>
 
@@ -342,7 +362,7 @@
 
                                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
-                                    <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
+                                    <button type="submit" style="width: 100%" class="btn btn-dark">Сохранить</button>
                                 </form>
                             </div>
                         </div>
@@ -377,7 +397,7 @@
 
     </selection>
 </main>
-
+</@t.template >
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>

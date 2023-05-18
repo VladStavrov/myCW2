@@ -32,4 +32,12 @@ public class OrderQuestionServices {
         orderQuestion.setStatus("В ожидании");
         orderQuestionRepository.save(orderQuestion);
     }
+    public void changeStatus(Long id,String status){
+        OrderQuestion orderQuestion= orderQuestionRepository.getById(id);
+        orderQuestion.setStatus(status);
+        orderQuestionRepository.save(orderQuestion);
+    }
+    public void deleteOrder(Long id){
+        orderQuestionRepository.deleteById(id);
+    }
 }

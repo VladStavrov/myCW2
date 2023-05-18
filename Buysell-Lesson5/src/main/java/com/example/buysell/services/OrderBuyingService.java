@@ -42,12 +42,21 @@ public class OrderBuyingService {
         product.getOrderBuyings().add(orderBuying);
         log.info("product add order ");
         orderBuying.setProduct(product);
+        orderBuying.setAddress(product.getAddress());
         log.info("order ser product ");
         orderBuying.setUser(user);
         log.info("order set user ");
 
         orderBuying.setStatus("В ожидании");
         orderBuyingRepository.save(orderBuying);
+    }
+    public void changeStatus(Long id,String status){
+        OrderBuying orderBuying= orderBuyingRepository.getById(id);
+        orderBuying.setStatus(status);
+        orderBuyingRepository.save(orderBuying);
+    }
+    public void deleteOrder(Long id){
+        orderBuyingRepository.deleteById(id);
     }
 
 

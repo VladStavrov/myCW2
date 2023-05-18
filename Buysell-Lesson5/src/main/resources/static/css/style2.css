@@ -1501,3 +1501,49 @@ text-align: left;
 /*
     Footer styles End
  */
+.orderBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Дополнительный код для примера */
+.orderBox .element {
+    text-align: center;
+}
+
+.button_sign.orderAgree{
+    background: green;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+    margin: 10px auto 0 auto;
+    text-align: center;
+    height: 52px;
+    width: 190px;
+
+
+
+
+
+}
+.button_sign.orderDelete{
+    background: darkred;
+    mix-blend-mode: normal;
+    border-radius: 30px;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    height: 52px;
+    width: 190px;
+
+
+
+
+
+}
+.order_btn_product{
+    align-content: center;
+    align-items: center;
+}
+.wrappew_order{
+    margin: 20px;
+}
