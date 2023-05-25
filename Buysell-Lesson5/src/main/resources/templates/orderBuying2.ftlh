@@ -1,4 +1,5 @@
-<#import "blocks/template.ftlh" as t>
+
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -16,77 +17,123 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
-    <#-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
- -->
+
 </head>
-
 <body>
-<@t.template navigationManager="orderBuying">
-<table id="example" class="display" cellspacing="0" width="100%">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Имя</th>
 
-        <th>Телефон</th>
-        <th>Адрес</th>
-        <th>Статус</th>
-        <th>Дата</th>
-        <th>Ссылка</th>
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Логотип</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link"  href="/">Главная</a>
+                <a class="nav-link active"  aria-current="page" href="/order/Buying/view">Заявки на покупку</a>
+                <a class="nav-link" href="/order/Question/view">Заявки "Вопросы"</a>
 
-    </tr>
-    </thead>
-
-    <tbody>
-    <#list orders as order>
-        <tr>
-            <td>${order.id}</td>
-            <td>${order.user.name}</td>
-            <td>${order.user.phoneNumber}</td>
-            <td>${order.address}</td>
-            <td><#--${order.status}-->
-                <form  name = "form-orderBuying" action="/order/Buying/changeStatus/${order.id}" method="post">
-                    <select id="status" required name="status" class="form-control" onchange="submitForm(this.form)">
-                        <#if order.status=="В ожидании">
-
-                            <option value="В ожидании" selected>В ожидании</option>
-                            <option value="В обработке" >В обработке</option>
-
-                        <#else>
-                            <option value="В ожидании" >В ожидании</option>
-                            <option value="В обработке" selected>В обработке</option>
-                        </#if>
+                <a class="nav-link" href="/manager">Работа с товарами</a>
+                <#if  user.isAdmin()>
+                    <a class="nav-link" href="/admin">Работа с пользователями</a>
+                </#if>
+                <form  id="logoutForm" action="/logout" method="post">
+                    <a class="nav-link " onclick="submitForm2(event)" href="#" style="color: darkred"  >Выйти</a>
 
 
-
-
-                    </select>
                     <input type="hidden" name="_csrf" value="${_csrf.token}">
                 </form>
-
                 <script>
-                    function submitForm(form) {
-
-                        form.submit();
+                    function submitForm2(event) {
+                        event.preventDefault();
+                        document.getElementById('logoutForm').submit();
                     }
-                </script></td>
-            <td>${order.dateOfCreated}</td>
-            <td>
-                <#if order.product??>
-                <a href="/product/${order.product.id}" >Посмотреть</a></td>
-                <#else >
-                Товара нет
-                </#if>
-            <td>
-        </tr>
-    </#list>
+                </script>
+
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container mt-4">
+
+        <h1 style="text-align: center">Работа с заявками "Покупка"</h1>
+        <hr>
+        <table id="example" class="display" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+
+                <th>Id</th>
+                <th>Имя</th>
+
+                <th>Телефон</th>
+                <th>Адрес</th>
+                <th>Статус</th>
+                <th>Дата</th>
+                <th>Ссылка</th>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            <#list orders as order>
+                <tr>
+                    <td>${order.id}</td>
+                    <td>${order.user.name}</td>
+                    <td>${order.user.phoneNumber}</td>
+                    <td>${order.address}</td>
+                    <td><#--${order.status}</td>
+                <td>-->
+                        <form  name = "form-orderBuying" action="/order/Buying/changeStatus/${order.id}" method="post">
+                            <select id="status" required name="status" class="form-control" onchange="submitForm(this.form)">
+                                <#if order.status=="В ожидании">
+
+                                    <option value="В ожидании" selected>В ожидании</option>
+                                    <option value="В обработке" >В обработке</option>
+
+                                <#else>
+                                    <option value="В ожидании" >В ожидании</option>
+                                    <option value="В обработке" selected>В обработке</option>
+                                </#if>
 
 
 
-    </tbody>
-</table>
 
-</@t.template>
+                            </select>
+                            <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        </form>
+
+                        <script>
+                            function submitForm(form) {
+
+                                form.submit();
+                            }
+                        </script>
+                    </td>
+                    <td>${order.dateOfCreated}</td>
+                    <td>
+                        <#if order.product??>
+                            <a href="/product/${order.product.id}" >Посмотреть</a>
+                        <#else >
+                            Товара нет
+                        </#if>
+                    </td>
+
+
+
+                </tr>
+            </#list>
+
+
+
+            </tbody>
+        </table>
+
+
+</div>
+
+
+
+
 </body>
 <style>
     .exportExcel{
@@ -166,5 +213,3 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </html>
-
-

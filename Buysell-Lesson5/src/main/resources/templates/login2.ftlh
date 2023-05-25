@@ -15,11 +15,16 @@
     <div class="form">
 
         <form class="login-form" action="/login" method="post">
+            <#if   errorMessage??>
+
+                <span class="container info fa" style=" color: #EF3B3A;">${errorMessage}</span>
+                <h1> </h1>
+            </#if>
             <#--<input type="text" name="phoneNumber" placeholder="Номер телефона"/>-->
             <input type="text" name="phoneNumber" placeholder="Номер телефона"/>
             <input type="password" name="password" placeholder="Пароль"/>
             <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <button type="submit">Войти</button>
+            <button style="background-color: #0C1723" type="submit">Войти</button>
             <p class="message">Нет аккаунта? <a href="/registration">Создать аккаунт!</a></p>
         </form>
     </div>

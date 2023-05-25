@@ -26,7 +26,7 @@ public class OrderBuyingService {
         return orderBuyingRepository.getById(id);
     }
     public void save(Principal principal, Long productId){
-        System.out.println("Мы в функцииии!!!!!!!");
+
         User user= userService.getUserByPrincipal(principal);
         if(user!=null){
             log.info("user !=null");
@@ -38,14 +38,14 @@ public class OrderBuyingService {
         }
         OrderBuying orderBuying=new OrderBuying();
         user.getOrderBuyings().add(orderBuying);
-        log.info("user add order ");
+
         product.getOrderBuyings().add(orderBuying);
-        log.info("product add order ");
+
         orderBuying.setProduct(product);
         orderBuying.setAddress(product.getAddress());
-        log.info("order ser product ");
+
         orderBuying.setUser(user);
-        log.info("order set user ");
+
 
         orderBuying.setStatus("В ожидании");
         orderBuyingRepository.save(orderBuying);

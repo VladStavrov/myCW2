@@ -29,6 +29,7 @@ public class OrderControllers {
     private final OrderBuyingService orderBuyingService;
     private final OrderQuestionServices orderQuestionServices;
     private final ProductService productService;
+    private final UserService userService;
 
 
     @PostMapping("/order/Buying/{id}")
@@ -58,9 +59,13 @@ public class OrderControllers {
     @GetMapping("/order/Buying/view")
     public String viewOrderBuying(Model model, Principal principal) throws JsonProcessingException {
         /* model.addAttribute("products",productService.getProductList(null));*/
-        model.addAttribute("orders",orderBuyingService.getOrdersBuying());
-
-
+          model.addAttribute("orders",orderBuyingService.getOrdersBuying());
+        User user= userService.getUserByPrincipal(principal);
+        if(user==null){
+            user=new User();
+        }
+        model.addAttribute("user",user);
+      /*  model.addAttribute("orders",orderQuestionServices.getOrdersQuestions());*/
 
 
         return "orderBuying2";
@@ -88,7 +93,11 @@ public class OrderControllers {
     public String viewOrderQuestion(Model model, Principal principal) {
 
         model.addAttribute("orders",orderQuestionServices.getOrdersQuestions());
-
+        User user= userService.getUserByPrincipal(principal);
+        if(user==null){
+            user=new User();
+        }
+        model.addAttribute("user",user);
 
         return "orderQuestion2";
     }

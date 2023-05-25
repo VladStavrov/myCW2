@@ -56,6 +56,6 @@ function favoriteChangeImage(favorite,token){
 }
 
 function logoutImage(img){
-    console.log("ufff")
+
     img.parentElement.submit();
 }

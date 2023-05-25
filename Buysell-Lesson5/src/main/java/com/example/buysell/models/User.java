@@ -31,9 +31,15 @@ public class User implements UserDetails {
     public boolean isAdmin(){
         return roles.contains(Role.ROLE_ADMIN);
     }
+    public boolean isManager(){
+        return roles.contains(Role.ROLE_MANAGER);
+    }
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
             mappedBy = "user")
     private Favorites favorites;
+
+
+
     @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role",
     joinColumns =@JoinColumn(name="user_id") )
@@ -75,8 +81,8 @@ public class User implements UserDetails {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String email) {
-        this.phoneNumber = email;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
         //sequrity
     @Override

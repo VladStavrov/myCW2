@@ -37,6 +37,7 @@ function createImageBlock(imageContainer) {
 
     const img = document.createElement('img');
     img.style.display='none';
+    img.classList.add('image-Manager');
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Удалить';
     deleteButton.style.display='none';

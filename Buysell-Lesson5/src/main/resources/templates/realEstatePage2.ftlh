@@ -36,10 +36,10 @@
             <nav class="header_nav">
                 <ul class="header_list">
                     <li class="header_item">
-                        <a href="mainPage.html" class="header_link">Главная</a>
+                        <a href="/mainPage" class="header_link">Главная</a>
                     </li>
                     <li class="header_item">
-                        <a onclick="test()" class="header_link">Выбрать недвижимость</a>
+                        <a onclick="/" class="header_link">Выбрать недвижимость</a>
                     </li>
                     <li class="header_item">
                         <a onclick="scrollToBottom()" class="header_link">Контакты</a>
@@ -114,11 +114,11 @@
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
+                            <span class="visually-hidden">Предыд</span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
+                            <span class="visually-hidden">След</span>
                         </button>
                     </div>
                     <#--<#list images as img>
@@ -149,9 +149,32 @@
             <#if user.phoneNumber??>
                 <form class="addOrderBuying" action='/order/Buying/${product.id}' method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                    <button  type="submit" class="button_sign realEsateBTN " >
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary button_sign realEsateBTN" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         Оставить заявку
                     </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class=" modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black">Подтверждение</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                                </div>
+                                <div class="modal-body">
+                                   Вы действительно хотите оставить заявку?
+                                </div>
+                                <div class="modal-footer">
+                                    <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                    <button type="submit" class="btn btn-primary">Оставить</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <#--<button  type="submit" class="button_sign realEsateBTN " >
+                        Оставить заявку
+                    </button>-->
                 </form>
 
                 <#else >
@@ -221,18 +244,7 @@
                 <div class="textCharacteristics">Информация</div>
                 <div class="info_text info_RealEstate">
                     <p>${product.information}</p>
-                    <p>     Наша компания является профессиональным агентством по продаже вторичной недвижимости. Мы специализируемся на оказании услуг по поиску, покупке и продаже квартир, домов, коммерческой недвижимости и других объектов на вторичном рынке.
-                        Мы гордимся нашим опытом и экспертизой в области вторичной недвижимости, что позволяет нам предоставлять нашим клиентам лучшие услуги и максимально эффективно решать их потребности.
-                        Мы готовы работать с вами и помочь вам найти идеальный дом или инвестиционный объект на вторичном рынке. Свяжитесь с нами сегодня, чтобы начать!</p>
 
-                    <p>Мы гордимся нашим опытом и экспертизой в области
-                        вторичной недвижимости, что позволяет нам предоставлять
-                        нашим клиентам лучшие услуги и максимально эффективно
-                        решать их потребности.</p>
-
-                    <p>Мы готовы работать с вами и помочь вам найти идеальный
-                        дом или инвестиционный объект на вторичном рынке.
-                        Свяжитесь с нами сегодня, чтобы начать!</p>
 
 
                 </div>
@@ -296,16 +308,37 @@
                     <div class="form_field-text">
                         Как вас зовут?
                     </div>
-                    <input type="text" class="form_name" name="userName" id="form_name_ctlg">
+                    <input style="text-align: center;" type="text" class="form_name" name="userName" id="form_name_ctlg">
                     <div class="form_field-text" >
                         Номер телефона
                     </div>
-                    <input type="text" class="form_name" name="phoneNumber">
+                    <input style="text-align: center;" type="text" class="form_name" name="phoneNumber">
                 </div>
-
-                <button id="submit_application" type="submit" class="button_sign ">
+                <button type="button" id="submit_application" class="btn btn-primary button_sign" data-bs-toggle="modal" data-bs-target="#exampleFooter">
                     Оставить заявку
                 </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleFooter" tabindex="-1" aria-labelledby="exampleFooterLabel" aria-hidden="true">
+                    <div class=" modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black">Подтверждение</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                            </div>
+                            <div class="modal-body">
+                                Вы действительно хотите оставить заявку?
+                            </div>
+                            <div class="modal-footer">
+                                <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-primary">Оставить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <#--<button id="submit_application" type="submit" class="button_sign ">
+                    Оставить заявку
+                </button>-->
             </form>
 
         </div>

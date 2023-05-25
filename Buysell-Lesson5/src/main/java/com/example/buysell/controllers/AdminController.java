@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.swing.*;
+import java.security.Principal;
 import java.util.Map;
 
 @Controller
@@ -21,9 +22,10 @@ import java.util.Map;
 public class AdminController {
     private final UserService userService;
     @GetMapping("/admin")
-    public String admin(Model model){
+    public String admin(Model model, Principal principal){
         model.addAttribute("users",userService.userList());
-        return "admin";
+        model.addAttribute("currentUser",userService.getUserByPrincipal(principal));
+        return "admin2";
     }
     @PostMapping("/admin/user/ban/{id}")
     public String userBan(@PathVariable("id" )Long id){
@@ -31,21 +33,29 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/admin/user/edit/{user}")
+    /*@GetMapping("/admin/user/edit/{user}")
     public String userEdit(@PathVariable("user") User user, Model model){
         model.addAttribute("user",user);
         model.addAttribute("roles", Role.values());
         return "user-edit";
 
 
-    }
+    }*/
 
-    @PostMapping("/admin/user/edit")
-    public String userEdit(@RequestParam("userId") User user,
-                           @RequestParam Map<String,String> form){
-        userService.changeUserRoles(user,form);
+    @PostMapping("/admin/edit/role/{id}")
+    public String userEditRole(@PathVariable Long id,
+                           @RequestParam("role") String role){
+        userService.changeUserRoles(id,role);
         return "redirect:/admin";
 
 
+
     }
+    @PostMapping("/admin/delete/{id}")
+    public String deleteUser(@PathVariable Long id){
+        userService.deleteUser(id);
+        return "redirect:/admin";
+    }
+
+
 }

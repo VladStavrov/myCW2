@@ -14,7 +14,7 @@ import java.security.Principal;
 @Slf4j
 @RequiredArgsConstructor
 public class FavoritesService {
-    private final UserService userService;
+
     private final ProductService productService;
     private final FavoritesRepository favoritesRepository;
     public void addProductToFavorites(Product product, User user){
@@ -27,7 +27,7 @@ public class FavoritesService {
 
             log.info("new Product - User: {} - {}",user.getPhoneNumber(),product.getTitle());
             favoritesRepository.save(user.getFavorites());
-            userService.saveUser(user);
+            /*userService.saveUser(user);*/
         }
     }
     public void removedProductFromFavorites(Product product, Favorites favorites){
@@ -36,9 +36,9 @@ public class FavoritesService {
 
         log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
         favoritesRepository.save(favorites);
-        userService.saveUser(favorites.getUser());
+       /* userService.saveUser(favorites.getUser());*/
     }
-    public void removedProductFromFavorites(Long productId, Favorites favorites){
+    /*public void removedProductFromFavorites(Long productId, Favorites favorites){
         Product product = productService.getProductById(productId);
         favorites.getProducts().remove(product);
         log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
@@ -47,11 +47,14 @@ public class FavoritesService {
     public void removedProductFromFavorites(Long productId, Principal principal ){
         Favorites favorites=userService.getUserByPrincipal(principal).getFavorites();
         Product product = productService.getProductById(productId);
-        /*product.getFavorites().remove(favorites);*/
+        *//*product.getFavorites().remove(favorites);*//*
         favorites.getProducts().remove(product);
         log.info("remove Product - User: {} - {}",favorites.getUser().getPhoneNumber(),product.getTitle());
         favoritesRepository.save(favorites);
 
+    }*/
+    public void saveFavorites(Favorites favorites){
+        favoritesRepository.save(favorites);
     }
 
 

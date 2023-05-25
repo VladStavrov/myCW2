@@ -16,17 +16,24 @@
 
     <script src="JS/catalog3.js"></script>
     <script src="./JS/newFilter.js"></script>
+    <style> .body{
+            max-width: 1200px;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 
 </head>
 
-<body>
+<body >
 <header class="header">
 
     <div class="wrapper" id="header_wrapper_id">
         <div class="header_wrapper">
             <div class="header_logo">
 
-                <a href="mainPage.html" class="header_logo-link">
+                <a href="/mainPage" class="header_logo-link">
                     <img src="././img/svg/logo-diamond.svg" alt="ЛОГОТИП" class="header_logo-pic">
                     ЛОГОТИП
                 </a>
@@ -35,10 +42,10 @@
             <nav class="header_nav">
                 <ul class="header_list">
                     <li class="header_item">
-                        <a href="mainPage.html" class="header_link">Главная</a>
+                        <a href="/mainPage" class="header_link">Главная</a>
                     </li>
                     <li class="header_item">
-                        <a onclick="foooo()" class="header_link">Выбрать недвижимость</a>
+                        <a  href="/" class="header_link">Выбрать недвижимость</a>
                     </li>
                     <li class="header_item">
                         <a  class="header_link" onclick="scrollToBottom()">Контакты</a>
@@ -72,9 +79,9 @@
     <section class="intro intro_catalog">
         <div class="wrapper">
             <div class="wrapper_intro" >
-                <h1 class="intro_title">
+                <h1 class="intro_title" style="color: white" >
                     Лучшие квартиры в Минске!
-                </h1>'
+                </h1>
                 <button type="submit" class="button_sign catalog_sign_Button">
                     Войти бесплатно
                 </button>
@@ -116,38 +123,11 @@
                     <li data-id="1" >1 комната</li>
                     <li data-id="2">2 комнаты</li>
                     <li data-id="3">3 комнаты</li>
-                    <li data-id="4"></li>
+                    <li data-id="4">4+ комнаты</li>
                 </ul>
 
             </div>
-            <#--<div >
-                <div> <a  class="filter_link" onclick="linkPrice()">Филтр</a></div>
 
-                <div class="content-block" id="test-content">
-                    <p>Это контент, который будет появляться при нажатии на ссылку.</p>
-                </div>
-            </div>-->
-            <#--<div class="custom-dropdown">
-                <button class="custom-dropdown__button">Выберите опцию</button>
-                <ul class="custom-dropdown__menu">
-                    <li class="custom-dropdown__menu-item">
-                        <div class="text">
-                            Введем тест:
-                            <input type="text" class="form_name" name="form_phone_ctlg">
-                        </div>
-                    </li>
-                    <li class="custom-dropdown__menu-item">Опция 2</li>
-                    <li class="custom-dropdown__menu-item">Опция 3</li>
-                </ul>
-            </div>-->
-            <#--<div class="input-panel">
-
-                <button class="input-text" onclick="togglePanel()">Нажмите, чтобы ввести число</button>
-                <div class="panel" >
-                    <input type="number" id="input-number">
-                    <button onclick="sendNumber()">Отправить</button>
-                </div>
-            </div>-->
             <div class="dropdown"  id = "dropdown-price" data-id="price">
                 <div class="select">
 
@@ -160,11 +140,13 @@
                 </div>
                 <ul class="menu">
                     <li data-id="0">
-                        <a href="#" filter_link >Цена от</a>
+                        <p class="under_intro_text">Цена от</p>
+                        <#--<a href="#" filter_link >Цена от</a>-->
                         <input type="number" id="input-price-min">
-                        <a href="#" filter_link >Цена до</a>
+                        <p class="under_intro_text">Цена до</p>
+                        <#--<a href="#" filter_link >Цена до</a>-->
                         <input type="number" id="input-price-max">
-                        <button id="btn-input-price">Отправить</button>
+                        <button  id="btn-input-price">Отправить</button>
                     </li>
 
                 </ul>
@@ -212,90 +194,104 @@
 
 
     </nav>
-    <selection class="catalog">
-        <div class="wrapper">
-            <div class="wrapper_catalog">
-                <div class="full_items_catalog">
-                    <#list products as product>
-                        <div class="block_item_catalog" name="product_id" value="1" >
-                            <div class="line"></div>
-                            <div class="block_house">
 
-                                <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
-                                <div class="info_block_catalog">
-                                    <div class="catalog_name_product">${product.title}</div>
-                                    <div class="catalog_group_info_product">
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Тип:</div>
-                                            <div class="catalog_info_text">${product.getType().typeName}</div>
-                                        </div>
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Адрес:</div>
-                                            <div class="catalog_info_text">${product.address}</div>
-                                        </div>
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Жилая площадь:</div>
-                                            <div class="catalog_info_text">${product.livingArea}</div>
-                                        </div>
-                                        <div class="catalog_info_product rooms">
-                                            <div class="parametr_catalog">Комнат:</div>
-                                            <div class="catalog_info_text">${product.rooms}</div>
-                                        </div>
+    <selection class="catalog" >
+        <#if products?size == 0>
+            <div class="centered-div">
+                Нет данных для отображения
+            </div>
+        <#else >
+            <div class="wrapper">
+                <div class="wrapper_catalog">
+                    <div class="full_items_catalog">
 
-                                        <#--<div class="catalog_info_product">
-                                            <div class="parametr_catalog">Этажей:</div>
-                                            <div class="catalog_info_text">${product.totalFloor}</div>
+                        <#list products as product>
+                            <div class="block_item_catalog" name="product_id" value="1" >
+                                <div class="line"></div>
+                                <div class="block_house">
 
-                                        </div>-->
-                                        <#--<#if product.class.simpleName=="Flatt">
+                                    <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
+                                    <div class="info_block_catalog">
+                                        <div class="catalog_name_product">${product.title}</div>
+                                        <div class="catalog_group_info_product">
                                             <div class="catalog_info_product">
+                                                <div class="parametr_catalog">Тип:</div>
+                                                <div class="catalog_info_text">${product.getType().typeName}</div>
+                                            </div>
+                                            <div class="catalog_info_product">
+                                                <div class="parametr_catalog">Адрес:</div>
+                                                <div class="catalog_info_text">${product.address}</div>
+                                            </div>
+                                            <div class="catalog_info_product">
+                                                <div class="parametr_catalog">Жилая площадь:</div>
+                                                <div class="catalog_info_text">${product.livingArea}</div>
+                                            </div>
+                                            <div class="catalog_info_product rooms">
                                                 <div class="parametr_catalog">Комнат:</div>
                                                 <div class="catalog_info_text">${product.rooms}</div>
                                             </div>
-                                        </#if>-->
 
-                                    </div>
+                                            <#--<div class="catalog_info_product">
+                                                <div class="parametr_catalog">Этажей:</div>
+                                                <div class="catalog_info_text">${product.totalFloor}</div>
 
-                                    <div class="catalog_price_product ">
-                                        <div class="label_price_catalog">Стоимость:</div>
-                                        <div class="price_catalog">
-                                            <div class="priceValue">${product.price}</div>
-                                            <div class="money">$</div>
+                                            </div>-->
+                                            <#--<#if product.class.simpleName=="Flatt">
+                                                <div class="catalog_info_product">
+                                                    <div class="parametr_catalog">Комнат:</div>
+                                                    <div class="catalog_info_text">${product.rooms}</div>
+                                                </div>
+                                            </#if>-->
 
                                         </div>
-                                    </div>
-                                    <div class="catalog_button_view_product">
 
-                                        <button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
-                                            Посмотреть
-                                        </button>
-                                    </div>
-                                </div>
-                                <#--<#if user.email??>
-                                    <#if  (user.favorites.products?seq_contains(product))>
-                                        <img data-id= ${product.id} src="./img/svg/favorite-red.svg"  class="favorite" &lt;#&ndash;onclick="favoriteChangeImage(this)"&ndash;&gt; &lt;#&ndash;onclick="window.location.href='/favorites/${product.id}'"&ndash;&gt;
+                                        <div class="catalog_price_product ">
+                                            <div class="label_price_catalog">Стоимость:</div>
+                                            <div class="price_catalog">
+                                                <div class="priceValue">${product.price}</div>
+                                                <div class="money">$</div>
 
-                                             onclick="favoriteChangeImage(this, ${(user.favorites.products?seq_contains(product))?c },'${_csrf.token}')">
-                                        <#else >
-                                            <img data-id= ${product.id} src="./img/svg/favorite.svg"  class="favorite" &lt;#&ndash;onclick="favoriteChangeImage(this)"&ndash;&gt; &lt;#&ndash;onclick="window.location.href='/favorites/${product.id}'"&ndash;&gt;
+                                            </div>
+                                        </div>
+                                        <div class="catalog_button_view_product">
+
+                                            <button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
+                                                Посмотреть
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <#--<#if user.email??>
+                                        <#if  (user.favorites.products?seq_contains(product))>
+                                            <img data-id= ${product.id} src="./img/svg/favorite-red.svg"  class="favorite" &lt;#&ndash;onclick="favoriteChangeImage(this)"&ndash;&gt; &lt;#&ndash;onclick="window.location.href='/favorites/${product.id}'"&ndash;&gt;
+
                                                  onclick="favoriteChangeImage(this, ${(user.favorites.products?seq_contains(product))?c },'${_csrf.token}')">
+                                            <#else >
+                                                <img data-id= ${product.id} src="./img/svg/favorite.svg"  class="favorite" &lt;#&ndash;onclick="favoriteChangeImage(this)"&ndash;&gt; &lt;#&ndash;onclick="window.location.href='/favorites/${product.id}'"&ndash;&gt;
+                                                     onclick="favoriteChangeImage(this, ${(user.favorites.products?seq_contains(product))?c },'${_csrf.token}')">
+
+                                        </#if>
+                                    </#if>-->
+                                    <#if user.phoneNumber??>
+                                        <#if user.favorites.products?seq_contains(product)>
+                                            <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,'${_csrf.token}')" />
+                                        <#else>
+                                            <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, '${_csrf.token}')" />
+                                        </#if>
 
                                     </#if>
-                                </#if>-->
-                                <#if user.phoneNumber??>
-                                    <#if user.favorites.products?seq_contains(product)>
-                                        <img data-id="${product.id}" src="./img/svg/favorite-red.svg" class="favorite" onclick="favoriteChangeImage(this,'${_csrf.token}')" />
-                                    <#else>
-                                        <img data-id="${product.id}" src="./img/svg/favorite.svg" class="favorite" onclick="favoriteChangeImage(this, '${_csrf.token}')" />
-                                    </#if>
 
-                                </#if>
-
+                                </div>
                             </div>
-                        </div>
 
 
-                    </#list>
+                        </#list>
+
+
+
+
+                    </div>
+
+
 
 
 
@@ -303,26 +299,8 @@
                 </div>
 
 
-
-
-
-               <!-- <div class="line"></div>
-                <button  type="submit" class="button_sign catalogViewMore  " style="align-self: center">
-                    Загрузить ещё
-                </button>-->
-
             </div>
-
-
-            </div>
-
-
-
-
-
-
-
-
+        </#if>
     </selection>
 </main>
 
@@ -347,17 +325,38 @@
                     <div class="form_field-text">
                         Как вас зовут?
                     </div>
-                    <input type="text" class="form_name" name="userName" id="form_name_ctlg">
+                    <input style="text-align: center;" type="text" class="form_name" name="userName" id="form_name_ctlg">
                     <div class="form_field-text" >
                         Номер телефона
                     </div>
-                    <input type="text" class="form_name" name="phoneNumber">
+                    <input style="text-align: center;" type="text" class="form_name" name="phoneNumber">
 
                 </div>
-
-                <button id="submit_application" type="submit" class="button_sign catalogBTN">
+                <button type="button" id="submit_application" class=" button_sign catalogBTN" data-bs-toggle="modal" data-bs-target="#exampleFooter">
                     Оставить заявку
                 </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleFooter" tabindex="-1" aria-labelledby="exampleFooterLabel" aria-hidden="true">
+                    <div class=" modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black">Подтверждение</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                            </div>
+                            <div class="modal-body">
+                                Вы действительно хотите оставить заявку?
+                            </div>
+                            <div class="modal-footer">
+                                <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                                <button type="submit" class="btn btn-primary">Оставить</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <#--<button id="submit_application" type="submit" class="button_sign catalogBTN">
+                    Оставить заявку
+                </button>-->
             </form>
 
         </div>
@@ -616,9 +615,13 @@
 
                 if(roomsFilter!='0') {
                     filterRooms=true;
+                    if(roomsFilter==='4'){
+                        return parseInt(rooms)>=parseInt(roomsFilter);
+                    }
                     return rooms === roomsFilter;
                 }
                 else {
+
                     filterRooms=false;
                     return rooms;
                 }
@@ -681,7 +684,18 @@
         const container = document.querySelector('.full_items_catalog');
         container.innerHTML = '';
         filteredItems.forEach(item => container.appendChild(item));
-
+        /*if(filteredItems.empty()){
+            var clearDiv=document.createElement('div');
+            clearDiv.classList.add('centered-div');
+            clearDiv.textContent = 'Нет данных для отображения';
+            container.appendChild(clearDiv);
+        }*/
+        if (filteredItems.length === 0) {
+            var clearDiv = document.createElement('div');
+            clearDiv.classList.add('centered-div');
+            clearDiv.textContent = 'Нет данных для отображения';
+            container.appendChild(clearDiv);
+        }
     }
 
 

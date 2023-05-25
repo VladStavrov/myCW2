@@ -119,6 +119,12 @@ body{
     z-index: 9999999999;
 
 }
+.primary-bg {
+    opacity: 100%;
+    background-color:  #96784B;;
+    z-index: 9999999999;
+
+}
 .header{
 /*background-color: red;*/
     height: 90px;
@@ -1546,4 +1552,18 @@ text-align: left;
 }
 .wrappew_order{
     margin: 20px;
+}
+.image-Manager{
+    max-height: 300px;
+}
+.centered-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 500px;
+}
+.wrapper-MaxEdit{
+    max-width: 400px;
+    margin: auto;
 }

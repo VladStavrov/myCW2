@@ -38,6 +38,17 @@ public class ProductController {
        /* model.addAttribute("user",userService.getUserByPrincipal(principal));*/
         return "catalog2";
     }
+    @GetMapping("/mainPage")
+    public String mainPage( Model model, Principal principal) {
+
+        User user= userService.getUserByPrincipal(principal);
+        if(user==null){
+            user=new User();
+        }
+        model.addAttribute("user",user);
+        /* model.addAttribute("user",userService.getUserByPrincipal(principal));*/
+        return "mainPage";
+    }
 
 
     @GetMapping("/product/{id}")

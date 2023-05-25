@@ -1,80 +1,4 @@
-<#--
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="./css/reset.css">
-    <link rel="stylesheet" href="./css/style2.css">
-    <script src="./JS/catalog3.js"></script>
-</head>
-<body>
-<#if user.email??>
-    <h3>Почта: ${user.email}</h3>
-    <form action="/logout" method="post">
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
 
-        <input type="submit" value="Выйти">
-    </form>
-    <#if user.isAdmin()>
-        <a href="/admin">Панель администратора</a>
-    </#if>
-    <#else >
-        <h1> | <a href="/login">Войти</a></h1><hr>
-</#if>
-
-
-&lt;#&ndash;<form action="/" method="get">
-    Поиск по названию объявления: <input type="text" name="title"><br>
-    <input type="submit" value="Поиск"/>
-</form>&ndash;&gt;
-
-<#list products as product>
-    <div>
-        <p><b>${product.title}</b> ${product.price} руб. | <a href="/product/${product.id}">Подробнее...</a> |
-            <#if user.email??>
-                &lt;#&ndash;<#if user.favorites.products.contains(product)>
-                    <a&lt;#&ndash; href="/favorites/delete/${product.id}" &ndash;&gt;>Delete from favorites...</a>
-                    <!-- блок кода, который будет выполнен, если условие истинно &ndash;&gt;
-                <#else>
-                    <a href="/favorites/${product.id}" >Add to favorites...</a>
-                </#if>&ndash;&gt;
-
-                        <#if user.favorites.products?seq_contains(product)>
-                            <a href="/favorites/delete2/${product.id}" >Delete from favorites...</a>
-                            <!-- блок кода, который будет выполнен, если условие истинно &ndash;&gt;
-                        <#else>
-                            <a href="/favorites2/${product.id}" >Add to favorites...</a>
-                        </#if>
-
-
-            </#if>
-
-
-
-
-
-    </div>
-    <#else>
-    <h3>Товаров нет</h3>
-</#list>
-
-<hr>
-<h3>Создать новый товар</h3>
-<form action="/product/create" method="post" enctype="multipart/form-data">
-    Название объявления: <input type="text" name="title"/><br><br>
-    Описание объявления: <input type="text" name="information"/><br><br>
-    Цена: <input type="number" name="price"/><br><br>
-    Город: <input type="text" name="address"/><br><br>
-    Площадь: <input type="number" name="livingArea"/><br><br>
-    Комнат: <input type="number" name="rooms"/><br><br>
-    Первая фотография: <input type="file" name="files"/><br><br>
-    Вторая фотография: <input type="file" name="files"/><br><br>
-    Третья фотография: <input type="file" name="files"/><br><br>
-    <input type="hidden" name="_csrf" value="${_csrf.token}">
-    <input type="submit" value="Добавить товар"/>
-</form>
-</body>
-</html>-->
-<#import "blocks/template.ftlh" as t>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -91,302 +15,191 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 </head>
 <body>
-<@t.template navigationManager="Manager">
-<h1 style="text-align: center">Добавить товары</h1>
-<hr>
-<a class="btn btn-dark mt-3 mb-3 " style="text-align: center; width: 100%"
-   data-toggle="collapse" href="#collapseExample" role="button"
-   aria-expanded="true" aria-controls="collapseExample">
-    Добавить новый товар
-</a>
+<nav class="navbar bg-dark navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Логотип</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-link "  href="/">Главная</a>
+                <a class="nav-link" href="/order/Buying/view">Заявки на покупку</a>
+                <a class="nav-link" href="/order/Question/view">Заявки "Вопросы"</a>
+
+                <a class="nav-link active"  aria-current="page" href="/manager">Работа с товарами</a>
+                <#if user.isAdmin()>
+                    <a class="nav-link" href="/admin">Работа с пользователями</a>
+                </#if>
+                <form  id="logoutForm" action="/logout" method="post">
+                    <a class="nav-link " onclick="submitForm2(event)" href="#" style="color: darkred"  >Выйти</a>
+
+
+                    <input type="hidden" name="_csrf" value="${_csrf.token}">
+                </form>
+                <script>
+                    function submitForm2(event) {
+                        event.preventDefault();
+                        document.getElementById('logoutForm').submit();
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+</nav>
 <div class="container mt-4">
 
-    <div class="collapse mb-3" id="collapseExample" style="">
-        <form action="/product/create" method="post" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="productName">Название товара</label>
-                <input type="text" required class="form-control"
-                       id="productName" name="title">
-            </div>
+        <h1 style="text-align: center">Работа с товарами</h1>
+        <hr>
+        <a class="btn btn-dark mt-3 mb-3 " style="text-align: center; width: 100%"
+           data-toggle="collapse" href="#collapseExample" role="button"
+           aria-expanded="true" aria-controls="collapseExample">
+            Добавить новый товар
+        </a>
+        <div class="container mt-4">
 
-            <div class="form-group">
-                <label for="price">Цена товара</label>
-                <div class="input-group mb-3">
-                    <input type="number" required class="form-control" id="price" name="price">
-                    <div class="input-group-append">
-                        <span class="input-group-text">₽</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="price">Комнат</label>
-                <div class="input-group mb-3">
-                    <input type="number" required class="form-control" id="rooms" name="rooms">
-                    <div class="input-group-append">
-                        <span class="input-group-text">₽</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="livingArea">Площадь</label>
-                <div class="input-group mb-3">
-                    <input type="number" required class="form-control" id="livingArea" name="livingArea">
-                    <div class="input-group-append">
-                        <span class="input-group-text">₽</span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="address">Адрес товара</label>
-                <input type="text" required class="form-control"
-                       id="address" name="address">
-            </div>
-             <div class="form-group">
-                 <label for="typeName">Тип</label>
-                 <select id="typeName" required name="typeName" class="form-control">
-                     <option value="">Тип не выбран</option>
-
-                     <option value="Квартира">Квартира</option>
-                     <option value="Дом">Дом</option>
-
-
-                 </select>
-             </div>
-            <div class="form-group">
-                <label for="information">Описание товара</label>
-                <textarea required class="form-control" id="information" name="information"></textarea>
-            </div>
-            <div class="form-group">
-                <div class="custom-file">
-                    <div class="imageContainer" >
-
+            <div class="collapse mb-3" id="collapseExample" style="">
+                <form action="/product/create" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="productName">Название товара</label>
+                        <input type="text" required class="form-control"
+                               id="productName" name="title">
                     </div>
 
-                    <script>
-
-                    </script>
-
-
-
-                </div>
-            </div>
-            <#--<div class="form-group">
-                <div class="custom-file">
-                    <input required type="file" name="files" id="files1">
-                    <label class="custom-file-label" for="files1">Первая фотография к товару</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" name="files" id="files2">
-                    <label class="custom-file-label" for="files2">Вторая фотография к товару</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="custom-file">
-                    <input type="file" name="files" id="file3">
-                    <label class="custom-file-label" for="files3">Третья фотография к товару</label>
-                </div>
-            </div>-->
-            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-            <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
-        </form>
-    </div>
-</div>
-<main class="main">
-    <selection class="catalog">
-        <div class="wrapper">
-            <div class="wrapper_catalog">
-                <div class="full_items_catalog">
-                    <#list products as product>
-                        <div class="block_item_catalog" name="product_id" value="1" >
-                            <div class="line"></div>
-                            <div class="block_house">
-
-                                <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
-                                <div class="info_block_catalog">
-                                    <div class="catalog_name_product">${product.title}</div>
-                                    <div class="catalog_group_info_product">
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Тип:</div>
-                                            <div class="catalog_info_text">${product.getType().typeName}</div>
-                                        </div>
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Адрес:</div>
-                                            <div class="catalog_info_text">${product.address}</div>
-                                        </div>
-                                        <div class="catalog_info_product">
-                                            <div class="parametr_catalog">Жилая площадь:</div>
-                                            <div class="catalog_info_text">${product.livingArea}</div>
-                                        </div>
-                                        <div class="catalog_info_product rooms">
-                                            <div class="parametr_catalog">Комнат:</div>
-                                            <div class="catalog_info_text">${product.rooms}</div>
-                                        </div>
-
-
-
-                                    </div>
-
-                                    <div class="catalog_price_product ">
-                                        <div class="label_price_catalog">Стоимость:</div>
-                                        <div class="price_catalog">
-                                            <div class="priceValue">${product.price}</div>
-                                            <div class="money">$</div>
-
-                                        </div>
-                                    </div>
-                                    <div class="catalog_price_product ">
-                                    <div class="catalog_button_view_product">
-                                        <a class="btn btn-dark mt-3 mb-3 button_sign catalogView " style="text-align: center; width: 100%; margin: 0 ; padding-top: 10px"
-                                           data-toggle="collapse" href="#editProduct${product.id}" role="button"
-                                           aria-expanded="true" aria-controls="editProduct${product.id}">
-                                            Редактировать  товар
-                                        </a>
-
-                                        <#--<button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
-                                            Посмотреть
-                                        </button>-->
-                                    </div>
-                                        <form class="order_btn_product" action="/product/delete/${product.id}" method="post">
-
-                                            <button  type="submit" class="button_sign orderDelete "  >
-                                                Удалить
-                                            </button>
-
-                                            <input type="hidden" name="_csrf" value="${_csrf.token}">
-                                        </form>
-
-
-
-
-
-
-
-
-
-                                    </div>
-                                </div>
-
-
-
+                    <div class="form-group">
+                        <label for="price">Цена товара</label>
+                        <div class="input-group mb-3">
+                            <input type="number" required class="form-control" id="price" name="price">
+                            <div class="input-group-append">
+                                <span class="input-group-text">$</span>
                             </div>
                         </div>
-                        <div class="container mt-4">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Комнат</label>
+                        <div class="input-group mb-3">
+                            <input type="number" required class="form-control" id="rooms" name="rooms">
 
-                            <div class="collapse mb-3" id="editProduct${product.id}" style="">
-                                <form action="/product/edit/${product.id}" method="post" enctype="multipart/form-data">
-                                    <div class="form-group">
-                                        <label for="productName">Название товара</label>
-                                        <input type="text" value="${product.title}" required class="form-control"
-                                               id="productName" name="title">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="price">Цена товара</label>
-                                        <div class="input-group mb-3">
-                                            <input type="number" value="${product.price}" required class="form-control" id="price" name="price">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">₽</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price">Комнат</label>
-                                        <div class="input-group mb-3">
-                                            <input type="number"   value="${product.rooms}" required class="form-control" id="rooms" name="rooms">
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">₽</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="livingArea">Площадь</label>
-                                        <div class="input-group mb-3">
-                                            <input type="number"  value="${product.livingArea}" required  class="form-control"
-                                             id="livingArea" name="livingArea" >
-                                            <div class="input-group-append">
-                                                <span class="input-group-text">₽</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="address">Адрес товара</label>
-                                        <input type="text" value="${product.address}"
-                                                required class="form-control"
-                                               id="address" name="address">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="typeName">Тип</label>
-                                        <select id="typeName" required name="typeName" class="form-control">
-                                            <option value="">Тип не выбран</option>
-                                            <#if product.type.typeName=="Квартира">
-                                                <option value="Квартира" selected>Квартира</option>
-                                                <option value="Дом">Дом</option>
-                                                <#else>
-                                                    <option value="Квартира" >Квартира</option>
-                                                    <option value="Дом" selected>Дом</option>
-                                            </#if>
-
-
-
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group" >
-                                        <label for="information">Описание товара</label>
-                                        <textarea  required class="form-control" id="information" name="information">${product.information}</textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="custom-file">
-                                            <div class="imageContainer" >
-                                            <#list product.imageList as image>
-                                                <div class="image-block" name="">
-
-                                                    <input name="inputNumberImageName" type="number"  value="${image.id}" style="display: none">
-                                                    <input id="${image.id}" onchange=" handleImageUpload(event,this.closest('.imageContainer'),this);    " type="file"   accept="image/*"   name="oldImage" value="${image.name}">
-
-                                                    <img style="display: block;" src="/images/${image.id}">
-                                                    <button onclick="this.closest('.image-block').remove()" style="display: block;">Удалить</button>
-                                                </div>
-                                            </#list >
-                                            </div>
-
-
-
-
-
-                                        </div>
-                                    </div>
-
-                                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-
-                                    <button type="submit" style="width: 100%" class="btn btn-dark">Сохранить</button>
-                                </form>
-                            </div>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="livingArea">Площадь</label>
+                        <div class="input-group mb-3">
+                            <input type="number" required class="form-control" id="livingArea" name="livingArea">
 
-                    </#list>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Адрес товара</label>
+                        <input type="text" required class="form-control"
+                               id="address" name="address">
+                    </div>
+                    <div class="form-group">
+                        <label for="typeName">Тип</label>
+                        <select id="typeName" required name="typeName" class="form-control">
+                            <option value="">Тип не выбран</option>
+
+                            <option value="Квартира">Квартира</option>
+                            <option value="Дом">Дом</option>
+
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="information">Описание товара</label>
+                        <textarea required class="form-control" id="information" name="information"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-file">
+                            <div class="imageContainer" >
+
+                            </div>
+
+                            <script>
+
+                            </script>
 
 
 
+                        </div>
+                    </div>
 
-                </div>
+                    <input type="hidden" name="_csrf" value="${_csrf.token}"/>
 
-
-
-
-
-                <!-- <div class="line"></div>
-                 <button  type="submit" class="button_sign catalogViewMore  " style="align-self: center">
-                     Загрузить ещё
-                 </button>-->
-
+                    <button type="submit" style="width: 100%" class="btn btn-dark">Добавить</button>
+                </form>
             </div>
-
-
         </div>
+        <main class="main">
+            <#if products?size == 0>
+                <div class="centered-div">
+                    Нет данных для отображения
+                </div>
+            <#else >
+                <selection class="catalog">
+                    <div class="wrapper">
+                        <div class="wrapper_catalog">
+                            <div class="full_items_catalog">
+                                <#list products as product>
+                                    <div class="block_item_catalog" name="product_id" value="1" >
+                                        <div class="line"></div>
+                                        <div class="block_house">
+
+                                            <img src="/images/${product.previewImageId}" alt="" class="image_catalog">
+                                            <div class="info_block_catalog">
+                                                <div class="catalog_name_product">${product.title}</div>
+                                                <div class="catalog_group_info_product">
+                                                    <div class="catalog_info_product">
+                                                        <div class="parametr_catalog">Тип:</div>
+                                                        <div class="catalog_info_text">${product.getType().typeName}</div>
+                                                    </div>
+                                                    <div class="catalog_info_product">
+                                                        <div class="parametr_catalog">Адрес:</div>
+                                                        <div class="catalog_info_text">${product.address}</div>
+                                                    </div>
+                                                    <div class="catalog_info_product">
+                                                        <div class="parametr_catalog">Жилая площадь:</div>
+                                                        <div class="catalog_info_text">${product.livingArea}</div>
+                                                    </div>
+                                                    <div class="catalog_info_product rooms">
+                                                        <div class="parametr_catalog">Комнат:</div>
+                                                        <div class="catalog_info_text">${product.rooms}</div>
+                                                    </div>
+
+
+
+                                                </div>
+
+                                                <div class="catalog_price_product ">
+                                                    <div class="label_price_catalog">Стоимость:</div>
+                                                    <div class="price_catalog">
+                                                        <div class="priceValue">${product.price}</div>
+                                                        <div class="money">$</div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="catalog_price_product ">
+                                                    <div class="catalog_button_view_product">
+                                                        <a class="btn btn-dark <#--mt-3 mb-3--> button_sign catalogView " style="text-align: center; width: 100%; margin: 0 ; padding-top: 10px"
+                                                           data-toggle="collapse" href="#editProduct${product.id}" role="button"
+                                                           aria-expanded="true" aria-controls="editProduct${product.id}">
+                                                            Редактировать  товар
+                                                        </a>
+
+                                                        <#--<button  type="submit" data-id="1231" class="button_sign catalogView " onclick="window.location.href='/product/${product.id}'"  >
+                                                            Посмотреть
+                                                        </button>-->
+                                                    </div>
+                                                    <form class="order_btn_product" action="/product/delete/${product.id}" method="post">
+
+                                                        <button  type="submit" class="button_sign orderDelete "  >
+                                                            Удалить
+                                                        </button>
+
+                                                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                                                    </form>
 
 
 
@@ -395,9 +208,181 @@
 
 
 
-    </selection>
-</main>
-</@t.template >
+
+                                                </div>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                    <div class="container mt-4">
+
+                                        <div class="collapse mb-3" id="editProduct${product.id}" style="">
+                                            <form action="/product/edit/${product.id}" method="post" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label for="productName">Название товара</label>
+                                                    <input type="text" value="${product.title}" required class="form-control"
+                                                           id="productName" name="title">
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="price">Цена товара</label>
+                                                    <div class="input-group mb-3">
+                                                        <#--<input type="number" value="${product.price}" onload="removeSpacesOnInit(this)"   required class="form-control" id="price-${product.id}" name="price">
+                                                       --> <input type="text" value="${product.price}" required class="form-control" id="price-${product.id}" name="price" oninput="validateNumber(this)" >
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                validateNumber(document.getElementById("price-${product.id}"));
+                                                            });
+                                                        </script>
+
+
+                                                        <div class="input-group-append">
+                                                            <span class="input-group-text">$</span>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="price">Комнат</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="number"   value="${product.rooms}" required class="form-control" id="rooms" name="rooms">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="livingArea">Площадь</label>
+                                                    <div class="input-group mb-3">
+                                                        <input type="text"  value="${product.livingArea}" id="area-${product.id}" required  class="form-control"
+                                                               name="livingArea" >
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                validateNumber(document.getElementById("area-${product.id}"));
+                                                            });
+                                                        </script>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="address">Адрес товара</label>
+                                                    <input type="text" value="${product.address}"
+                                                           required class="form-control"
+                                                           id="address" name="address">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="typeName">Тип</label>
+                                                    <select id="typeName" required name="typeName" class="form-control">
+                                                        <option value="">Тип не выбран</option>
+                                                        <#if product.type.typeName=="Квартира">
+                                                            <option value="Квартира" selected>Квартира</option>
+                                                            <option value="Дом">Дом</option>
+                                                        <#else>
+                                                            <option value="Квартира" >Квартира</option>
+                                                            <option value="Дом" selected>Дом</option>
+                                                        </#if>
+
+
+
+
+                                                    </select>
+                                                </div>
+                                                <div class="form-group" >
+                                                    <label for="information">Описание товара</label>
+                                                    <textarea  required class="form-control" id="information" name="information">${product.information}</textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="custom-file">
+                                                        <div class="imageContainer" >
+                                                            <#list product.imageList as image>
+                                                                <div class="image-block" name="">
+
+                                                                    <input name="inputNumberImageName" type="number"  value="${image.id}" style="display: none">
+                                                                    <input id="${image.id}" onchange=" handleImageUpload(event,this.closest('.imageContainer'),this);    " type="file"   accept="image/*"   name="oldImage" value="${image.name}">
+
+                                                                    <img class="image-Manager" style="display: block;" src="/images/${image.id}">
+                                                                    <button onclick="this.closest('.image-block').remove()" style="display: block;">Удалить</button>
+                                                                </div>
+                                                            </#list >
+                                                        </div>
+
+
+
+
+
+                                                    </div>
+                                                </div>
+
+                                                <input type="hidden" name="_csrf" value="${_csrf.token}"/>
+
+                                                <button type="submit" style="width: 100%" class="btn btn-dark">Сохранить</button>
+                                            </form>
+                                        </div>
+                                    </div>
+
+                                </#list>
+
+
+
+
+                            </div>
+
+
+
+
+
+                            <!-- <div class="line"></div>
+                             <button  type="submit" class="button_sign catalogViewMore  " style="align-self: center">
+                                 Загрузить ещё
+                             </button>-->
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+                </selection>
+            </#if>
+
+        </main>
+
+</div>
+<script>
+
+    function changePrice(inputId) {
+        const priceInput = document.getElementById(inputId);
+        if (priceInput) {
+            console.log(inputId + " - Зашло");
+            const priceValue = priceInput.value.replace(/\u00A0/g, '');
+            priceInput.value = priceValue;
+            return priceValue;
+        }
+        return null;
+    }
+</script>
+<script>
+
+    function removeSpacesOnInit(input) {
+        input.value = input.value.replace(/\s/g, '');
+    }
+    function validateNumber(input) {
+        var value = input.value.replace(/\s/g, ''); // Удалить все пробелы
+        if (!isNaN(value)) {
+            input.value = value;
+        } else {
+            value.slice(0, -1)
+            input.value =  input.value.slice(0, -1);
+        }
+
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
@@ -411,30 +396,3 @@
 </body>
 </html>
 
-    <#--<div class="card-columns">
-        <#list products as product>
-            <a href="/product/${product.id}" class="product-link">
-                <div class="card text-white bg-dark my-3 product">
-                    <div class="card-top">
-                        <form action="/product/delete/${product.id}" method="post">
-                            <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                            <button type="submit" class="btn btn-danger m-3">
-                                Удалить
-                            </button>
-                        </form>
-                    </div>
-                    <img src="/images/${product.previewImageId}"
-                         class="card-img-top">
-                    <div class="card-body">
-                        <h5 class="card-title">${product.title}</h5>
-                        <p class="card-text">${product.price} ₽</p>
-                    </div>
-                    <div class="card-footer">
-                        ${product.city}
-                    </div>
-                </div>
-            </a>
-        <#else>
-            <h1 style="text-align: center">Не найдено</h1>
-        </#list>
-    </div>-->

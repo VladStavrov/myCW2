@@ -26,8 +26,21 @@
                     <a class="nav-link active" aria-current="page" href="#">Главная</a>
                     <a class="nav-link" href="/order/Buying/view">Заявки на покупку</a>
                     <a class="nav-link" href="/order/Question/view">Заявки "Вопросы"</a>
-                    <a class="nav-link" href="/manager">Работа с продуктами</a>
-                    <a class="nav-link disabled">Работа с продуктами</a>
+
+                    <a class="nav-link" href="/manager">Работа с товарами</a>
+                    <form  id="logoutForm" action="/logout" method="post">
+                        <a class="nav-link " onclick="submitForm2(event)" href="#" style="color: darkred"  >Выйти</a>
+
+
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                    </form>
+                    <script>
+                        function submitForm2(event) {
+                            event.preventDefault();
+                            document.getElementById('logoutForm').submit();
+                        }
+                    </script>
+
                 </div>
             </div>
         </div>
@@ -38,5 +51,6 @@
 
 
     </body>
+
     </html>
 </#macro>

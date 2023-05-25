@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Favorites {
     @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.REFRESH)
     @JoinColumn(name = "user_id")
     private User user;
+
 
     public void addProductToFavorites(Product product){
         product.getFavorites().add(this);
