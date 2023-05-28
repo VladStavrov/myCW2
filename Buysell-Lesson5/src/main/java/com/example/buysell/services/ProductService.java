@@ -148,6 +148,9 @@ public class ProductService {
         if (!oldProduct.getType().getTypeName().equals(type)) {
             oldProduct.getType().setTypeName(type);
         }
+        /*oldProduct.setFloor(product.getFloor());
+        oldProduct.setYears(product.getYears());
+        oldProduct.setMaterial(product.getMaterial());*/
         oldProduct.setAddress(product.getAddress());
         oldProduct.setInformation(product.getInformation());
         oldProduct.setPrice(product.getPrice());

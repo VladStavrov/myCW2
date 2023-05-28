@@ -116,13 +116,13 @@ body{
 .black-bg {
     opacity: 100%;
     background-color: #0C1723;
-    z-index: 9999999999;
+    z-index: 99;
 
 }
 .primary-bg {
     opacity: 100%;
     background-color:  #96784B;;
-    z-index: 9999999999;
+    z-index: 99;
 
 }
 .header{
@@ -211,6 +211,7 @@ body{
 .header_link:hover,.header_link:focus,.header_link:active{
     opacity: 75%;
     text-decoration-line: underline;
+
 
 }
 

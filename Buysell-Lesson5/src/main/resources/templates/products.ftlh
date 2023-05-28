@@ -77,11 +77,36 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="price">Комнат</label>
+                        <label for="rooms">Комнат</label>
                         <div class="input-group mb-3">
                             <input type="number" required class="form-control" id="rooms" name="rooms">
 
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="floor">Этажей</label>
+                        <div class="input-group mb-3">
+                            <input type="number" required class="form-control" id="floor" name="floor">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="years">Год строительства</label>
+                        <div class="input-group mb-3">
+                            <input type="number" required class="form-control" id="years" name="years">
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="material">Материал</label>
+                        <select id="material" required name="material" class="form-control">
+                            <option value="">Материал не выбран</option>
+                            <option value="Панельный" >Панельный</option>
+                            <option value="Кирпичный" >Кирпичный</option>
+                            <option value="Бревенчатый" >Бревенчатый</option>
+
+
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="livingArea">Площадь</label>

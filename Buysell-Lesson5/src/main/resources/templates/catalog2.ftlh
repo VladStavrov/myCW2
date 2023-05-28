@@ -108,7 +108,7 @@
                     <div class="select_item">Value 5</div>
                 </div>
             </div>-->
-            <div class="dropdown" data-id="rooms">
+            <div class="dropdown" data-id="rooms" style="display: none">
                 <div class="select">
 
                             <span class="selected">
@@ -129,12 +129,12 @@
             </div>
 
             <button type="button" class="buttonFeedback button_sign realEsateBTN ">Фильтры</button>
-
+            <a class="<#--filter-text-->  header_link" id="textCloseFilterAll"  style="display: none; margin-left: 15px;cursor: pointer" onclick="closeFilteresAll()"> Отменить фильтры</a>
             <div class="popup-bg"></div>
             <div class="popup">
                 <div class="close" id="close"></div>
                 <h1>Фильтры</h1>
-                <form action="/mainPage" method="get">
+                <form  <#--action="/" method="get"-->>
 
                     <#--<input type="text" name="user_name" id="" placeholder="Имя" value="${user.name}" />
                     <input type="tel" name="user_phone" id="" placeholder="Телефон*"&lt;#&ndash; pattern="/^\\+375(44|33|29)\\d{7}$/"&ndash;&gt;
@@ -142,20 +142,20 @@
                     <div class="filter-text" style="">
 
                         ЦЕНА: С
-                        <input type="number" name="filter_Min-price" id="" placeholder="Минимальная" />
+                        <input type="number" name="filter_Min-price" id="filter_price-min_value"  placeholder="Минимальная" />
                         До
-                        <input type="number" name="filter_Max-price" id="" placeholder="Максимальная" />
+                        <input type="number" name="filter_Max-price" id="filter_price-max_value" placeholder="Максимальная" />
                     </div>
-                    <div class="filter-text">
+
+                    <div class="filter-text"  >
                         C ГОДА:
 
-                        <input type="number" name="filter_Min-price" id="" placeholder="Год" />
-
+                        <input type="number" name="filter_years" id="filter_years_value" placeholder="Год" />
                     </div>
                     <div class="filter-text" style="display:inline-block;">
 
-                        <div>  КОМНАТ:</div>
-                        <select id="" required name="filter_rooms" class="form-control" >
+                          КОМНАТ:
+                        <select id="filter_rooms_value"  name="filter_rooms" class="form-control" style="width: 200px; display:inline" >
 
 
                                 <option value="0" selected>Не выбрано</option>
@@ -168,13 +168,13 @@
                     </div>
                     <div class="filter-text">
 
-                        ЭТАЖ:
-                        <input type="number" name="filter_floor" id="" placeholder="Этаж" />
+                        ЭТАЖЕЙ:
+                        <input type="number" name="filter_floor" id="filter_floor_value" placeholder="Этажей" />
 
                     </div>
                     <div class="filter-text">
                         <div> МАТЕРИАЛ:
-                            <select id="" required name="filter_material" class="form-control" style="width: 200px" >
+                            <select id="filter_material_value"  name="filter_material" class="form-control" style="width: 200px; display:inline" >
 
 
                                 <option value="Не выбран" selected>Не выбран</option>
@@ -187,9 +187,13 @@
 
 
                     </div>
+                    <div class="filter-text" style=" display:inline" >
+                        <button type="button" class="button_sign realEsateBTN" onclick="filteredAll()">Применить</button>
 
-                    <button type="submit" class="button_sign realEsateBTN">Применить</button>
-                    <style>
+                        <button type="button"   id="closeBTNFilter" style="display: none;" class="button_sign orderDelete " onclick="closeFilteresAll()">Отменить все</button>
+
+                    </div>
+                   <style>
                         .filter-text{
                             color: white;
                             font-size: 1.2rem;
@@ -395,7 +399,7 @@
 
 
 
-            <div class="dropdown"  id = "dropdown-price" data-id="price">
+            <div class="dropdown"  id = "dropdown-price" data-id="price" style="display: none">
                 <div class="select">
 
                             <span class="selected">
@@ -481,23 +485,30 @@
                                     <div class="info_block_catalog">
                                         <div class="catalog_name_product">${product.title}</div>
                                         <div class="catalog_group_info_product">
-                                            <div class="catalog_info_product">
+                                            <#--<div class="catalog_info_product">
                                                 <div class="parametr_catalog">Тип:</div>
                                                 <div class="catalog_info_text">${product.getType().typeName}</div>
-                                            </div>
+                                            </div>-->
                                             <div class="catalog_info_product">
                                                 <div class="parametr_catalog">Адрес:</div>
                                                 <div class="catalog_info_text">${product.address}</div>
                                             </div>
-                                            <div class="catalog_info_product">
-                                                <div class="parametr_catalog">Жилая площадь:</div>
-                                                <div class="catalog_info_text">${product.livingArea}</div>
+                                            <div class="catalog_info_product floor">
+                                                <div class="parametr_catalog">Этажей:</div>
+                                                <div class="catalog_info_text">${product.floor}</div>
                                             </div>
                                             <div class="catalog_info_product rooms">
                                                 <div class="parametr_catalog">Комнат:</div>
                                                 <div class="catalog_info_text">${product.rooms}</div>
                                             </div>
-
+                                            <div class="catalog_info_product material">
+                                                <div class="parametr_catalog">Материал:</div>
+                                                <div class="catalog_info_text">${product.material}</div>
+                                            </div>
+                                            <div class="catalog_info_product years">
+                                                <div class="parametr_catalog">Год постройки:</div>
+                                                <div class="catalog_info_text">${product.years}</div>
+                                            </div>
                                             <#--<div class="catalog_info_product">
                                                 <div class="parametr_catalog">Этажей:</div>
                                                 <div class="catalog_info_text">${product.totalFloor}</div>
@@ -743,8 +754,14 @@
     let price=23;
     let minPrice=0;
     let maxPrice=0;
+    let years=0;
+    let floor=1000;
+
     let filterPrice=false;
     let filterRooms=false;
+    let filterYears=false;
+    let filterFloor=false;
+    let filterMaterial=false;
     function foooo(){
         console.log("qwerty + "+roomsFilter);
     }
@@ -875,12 +892,30 @@
 
 
     function filteredAll(){
+        var isFiltereHere=false;
+        const btnClose = document.getElementById('close');
+        const buttons = document.querySelectorAll('.buttonFeedback');
+        const popup = document.querySelector('.popup');
+        const popupBg = document.querySelector('.popup-bg');
+
+
+
+
+            popup.classList.remove('open');
+            popupBg.classList.remove('open');
+            document.body.style.overflow = 'unset';
+
         filteredItems=Array.from(catalogItems);
-        if(filterRooms){
+
+        roomsFilter=document.getElementById("filter_rooms_value").value;
+        if(roomsFilter!=='0'){
+            isFiltereHere=true;
             filteredItems = filteredItems.filter((item) => {
+
+
                 const rooms = item.querySelector('.catalog_info_product.rooms .catalog_info_text').textContent;
 
-                if(roomsFilter!='0') {
+                if(roomsFilter!=='0') {
                     filterRooms=true;
                     if(roomsFilter==='4'){
                         return parseInt(rooms)>=parseInt(roomsFilter);
@@ -894,7 +929,27 @@
                 }
             });
         }
-        if(filterPrice){
+
+
+        var inputMin = document.getElementById("filter_price-min_value");
+        var inputMax = document.getElementById("filter_price-max_value");
+        if(inputMin.value===""){
+            minPrice=0;
+
+
+        }
+        else{
+            isFiltereHere=true;
+            minPrice=inputMin.value;
+        }
+
+        if(inputMax.value===""){
+            maxPrice=999999999;
+        }
+        else{
+            isFiltereHere=true;
+            maxPrice=inputMax.value;
+        }
 
             filteredItems =filteredItems.filter((item) => {
 
@@ -907,7 +962,131 @@
                 }
 
             });
+        floor=document.getElementById("filter_floor_value").value;
+        if(floor!==""){
+            isFiltereHere=true;
+            console.log(floor);
+            filteredItems =filteredItems.filter((item) => {
+
+                const floorDiv = parseInt((item.querySelector('.catalog_info_product.floor .catalog_info_text').textContent).replace(/\s+/g, ''));
+                console.log(floorDiv);
+                return parseInt(floor) === floorDiv;
+
+            });
         }
+        years=document.getElementById("filter_years_value").value;
+        if(years!==""){
+            isFiltereHere=true;
+            console.log(years);
+            filteredItems =filteredItems.filter((item) => {
+
+                const yearsDiv = parseInt((item.querySelector('.catalog_info_product.years .catalog_info_text').textContent).replace(/\s+/g, ''));
+                console.log(yearsDiv);
+                return yearsDiv >= parseInt(years);
+
+            });
+        }
+        material=document.getElementById("filter_material_value").value;
+        if(material!=="Не выбран"){
+            isFiltereHere=true;
+            console.log(material);
+            filteredItems =filteredItems.filter((item) => {
+
+                const materialDiv = item.querySelector('.catalog_info_product.material .catalog_info_text').textContent;
+                console.log(materialDiv);
+                return materialDiv===material;
+
+            });
+        }
+
+
+        var image = document.getElementById("priceSortingImage");
+        if(lowSort){
+
+
+
+            image.src =nextImageSort;
+
+            filteredItems=filteredItems.sort((a, b) => {
+                const priceA =  parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                const priceB =  parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                if (priceA > priceB) {
+                    return -1;
+                } else if (priceA < priceB) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+        }
+        else if(higthSort){
+
+
+
+            image.src = nextImageSort;
+            filteredItems=filteredItems.sort((a, b) => {
+                const priceA =  parseInt(a.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                const priceB =  parseInt(b.querySelector('.catalog_price_product .price_catalog').textContent.replace(/\s+/g, ''));
+                if (priceA > priceB) {
+                    return 1;
+                } else if (priceA < priceB) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+
+        }
+        else{
+            image.src = nextImageSort;
+        }
+        const container = document.querySelector('.full_items_catalog');
+        container.innerHTML = '';
+        filteredItems.forEach(item => container.appendChild(item));
+        /*if(filteredItems.empty()){
+            var clearDiv=document.createElement('div');
+            clearDiv.classList.add('centered-div');
+            clearDiv.textContent = 'Нет данных для отображения';
+            container.appendChild(clearDiv);
+        }*/
+        if(isFiltereHere===true){
+            btnCloeFilter=document.getElementById('closeBTNFilter');
+            btnCloeFilter.style.display="block";
+            textCloseFilter=document.getElementById('textCloseFilterAll');
+            textCloseFilter.style.display="block";
+        }
+        if (filteredItems.length === 0) {
+            var clearDiv = document.createElement('div');
+            clearDiv.classList.add('centered-div');
+            clearDiv.textContent = 'Нет данных для отображения';
+            container.appendChild(clearDiv);
+        }
+    }
+    function closeFilteresAll() {
+        const btnClose = document.getElementById('close');
+        const buttons = document.querySelectorAll('.buttonFeedback');
+        const popup = document.querySelector('.popup');
+        const popupBg = document.querySelector('.popup-bg');
+        textCloseFilter=document.getElementById('textCloseFilterAll');
+        textCloseFilter.style.display="none";
+        btnCloseFilter=document.getElementById('closeBTNFilter');
+        btnCloseFilter.style.display="none";
+       document.getElementById("filter_price-min_value").value="";
+        document.getElementById("filter_price-max_value").value="";
+        document.getElementById("filter_floor_value").value="";
+        document.getElementById("filter_years_value").value="";
+        document.getElementById("filter_material_value").value="Не выбран";
+        document.getElementById("filter_rooms_value").value="0";
+
+        popup.classList.remove('open');
+        popupBg.classList.remove('open');
+        document.body.style.overflow = 'unset';
+
+        filteredItems = Array.from(catalogItems);
+
+
+
+
         var image = document.getElementById("priceSortingImage");
         if(lowSort){
 
@@ -963,8 +1142,8 @@
             clearDiv.textContent = 'Нет данных для отображения';
             container.appendChild(clearDiv);
         }
-    }
 
+    }
 
 </script>
 

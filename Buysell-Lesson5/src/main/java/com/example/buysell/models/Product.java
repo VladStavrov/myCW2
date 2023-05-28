@@ -29,6 +29,8 @@ public  class Product {
             cascade = CascadeType.ALL,orphanRemoval = true,
             mappedBy = "product")
     private List<Image> imageList=new ArrayList<>();
+
+
     private Long previewImageId;
     private int price;
     @Id
@@ -46,6 +48,10 @@ public  class Product {
     }
     private int rooms;
 
+    private int years;
+    private int floor;
+    private String material;
+
     private String address;
     private int livingArea;
 
@@ -57,6 +63,29 @@ public  class Product {
         this.rooms = rooms;
     }
 
+    public int getYears() {
+        return years;
+    }
+
+    public void setYears(int years) {
+        this.years = years;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
+    }
+
+    public String getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(String material) {
+        this.material = material;
+    }
 
     @ManyToMany
     @JoinTable(name = "favorites_product",
