@@ -38,10 +38,10 @@ public class FavoritesController {
         /*favoritesService.removedProductFromFavorites(id,  principal );*/
         /*favoritesService.removedProductFromFavorites(id,userService.getUserByPrincipal(principal).getFavorites());*/
         User user =  userService.getUserByPrincipal(principal);
-        user.setName("Пупсень");
+
         favoritesService.removedProductFromFavorites( productService.getProductById(id),
                user.getFavorites());
-         user = userService.getUserById(user.getId()); // Получаем обновленную версию пользователя из базы данных
+         user = userService.getUserById(user.getId());
 
         model.addAttribute("user", user);
         System.out.println("Конец 2 функции");
@@ -82,7 +82,7 @@ public class FavoritesController {
             isFavorite=true;
         }
 
-        user = userService.getUserById(user.getId()); // Получаем обновленную версию пользователя из базы данных
+        user = userService.getUserById(user.getId());
         model.addAttribute("user", user);
         System.out.println(isFavorite+" = isFavorite");
        return  ResponseEntity.ok(isFavorite);

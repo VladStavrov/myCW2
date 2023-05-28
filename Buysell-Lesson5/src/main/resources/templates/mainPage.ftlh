@@ -73,7 +73,7 @@
                     Лучшие квартиры в Минске!
                 </h1>
                 <button id ="button_sign_mainPage" type="submit" class="button_sign" onclick="foo()">
-                    Войти бесплатно
+                    Приобрейтайте сейчас
                 </button>
                 <p class="under_intro_text">Листайте вниз, чтобы узнать больше</p>
                 <img src="img/svg/under-intro-img.svg" alt="-|-" class="under_intro_img">

@@ -82,7 +82,7 @@
                     <td><#--${order.status}-->
                         <form  name = "form-orderBuying" action="/order/Question/changeStatus/${order.id}" method="post">
                             <select id="status" required name="status" class="form-control" onchange="submitForm(this.form)">
-                                <#if order.status=="В ожидании">
+                               <#-- <#if order.status=="В ожидании">
 
                                     <option value="В ожидании" selected>В ожидании</option>
                                     <option value="В обработке" >В обработке</option>
@@ -90,6 +90,24 @@
                                 <#else>
                                     <option value="В ожидании" >В ожидании</option>
                                     <option value="В обработке" selected>В обработке</option>
+                                </#if>-->
+                                <#if order.status=="В ожидании">
+
+                                    <option value="В ожидании" selected>В ожидании</option>
+                                    <option value="В обработке" >В обработке</option>
+                                    <option value="Выполнен" >Выполнен</option>
+
+                                <#elseif order.status=="В обработке">
+                                    <option value="В ожидании" >В ожидании</option>
+                                    <option value="В обработке" selected>В обработке</option>
+                                    <option value="Выполнен" >Выполнен</option>
+
+
+                                <#else>
+                                    <option value="В ожидании" selected>В ожидании</option>
+                                    <option value="В обработке" >В обработке</option>
+                                    <option value="Выполнен" selected>Выполнен</option>
+
                                 </#if>
 
 

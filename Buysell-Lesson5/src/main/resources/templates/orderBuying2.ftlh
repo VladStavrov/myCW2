@@ -89,10 +89,19 @@
 
                                     <option value="В ожидании" selected>В ожидании</option>
                                     <option value="В обработке" >В обработке</option>
+                                    <option value="Выполнен" >Выполнен</option>
 
-                                <#else>
+                                <#elseif order.status=="В обработке">
                                     <option value="В ожидании" >В ожидании</option>
                                     <option value="В обработке" selected>В обработке</option>
+                                    <option value="Выполнен" >Выполнен</option>
+
+
+                                <#else>
+                                    <option value="В ожидании" selected>В ожидании</option>
+                                    <option value="В обработке" >В обработке</option>
+                                    <option value="Выполнен" selected>Выполнен</option>
+
                                 </#if>
 
 

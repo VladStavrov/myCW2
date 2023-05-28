@@ -33,8 +33,8 @@ public class UserService {
         user.setFavorites(favorites);
 
         user.getRoles().add(Role.ROLE_USER);
-        user.getRoles().add(Role.ROLE_MANAGER);
-        user.getRoles().add(Role.ROLE_ADMIN);
+        /*user.getRoles().add(Role.ROLE_MANAGER);
+        user.getRoles().add(Role.ROLE_ADMIN);*/
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         log.info("Saving new User with phoneNumber: {}", userPhoneNumber);

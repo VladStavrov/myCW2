@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
     <title>Каталог</title>
 
-
+    <link rel="stylesheet" href="./css/popup.css">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style2.css">
 
@@ -83,7 +83,7 @@
                     Лучшие квартиры в Минске!
                 </h1>
                 <button type="submit" class="button_sign catalog_sign_Button">
-                    Войти бесплатно
+                    Приобрейтайте сейчас
                 </button>
                 <p class="under_intro_text">Листайте вниз, чтобы узнать больше</p>
                 <img src="./img/svg/under-intro-img.svg" alt="-|-" class="under_intro_img">
@@ -127,6 +127,273 @@
                 </ul>
 
             </div>
+
+            <button type="button" class="buttonFeedback button_sign realEsateBTN ">Фильтры</button>
+
+            <div class="popup-bg"></div>
+            <div class="popup">
+                <div class="close" id="close"></div>
+                <h1>Фильтры</h1>
+                <form action="/mainPage" method="get">
+
+                    <#--<input type="text" name="user_name" id="" placeholder="Имя" value="${user.name}" />
+                    <input type="tel" name="user_phone" id="" placeholder="Телефон*"&lt;#&ndash; pattern="/^\\+375(44|33|29)\\d{7}$/"&ndash;&gt;
+                           value="${user.phoneNumber}" &lt;#&ndash;pattern="\+375(44|33|29)\\d{7}$"&ndash;&gt; required />-->
+                    <div class="filter-text" style="">
+
+                        ЦЕНА: С
+                        <input type="number" name="filter_Min-price" id="" placeholder="Минимальная" />
+                        До
+                        <input type="number" name="filter_Max-price" id="" placeholder="Максимальная" />
+                    </div>
+                    <div class="filter-text">
+                        C ГОДА:
+
+                        <input type="number" name="filter_Min-price" id="" placeholder="Год" />
+
+                    </div>
+                    <div class="filter-text" style="display:inline-block;">
+
+                        <div>  КОМНАТ:</div>
+                        <select id="" required name="filter_rooms" class="form-control" >
+
+
+                                <option value="0" selected>Не выбрано</option>
+                                <option value="1" >1 комната</option>
+                                <option value="2" >2 комнаты</option>
+                                <option value="3" >3 комнаты</option>
+                                <option value="4" >4+ комнаты</option>
+                        </select>
+
+                    </div>
+                    <div class="filter-text">
+
+                        ЭТАЖ:
+                        <input type="number" name="filter_floor" id="" placeholder="Этаж" />
+
+                    </div>
+                    <div class="filter-text">
+                        <div> МАТЕРИАЛ:
+                            <select id="" required name="filter_material" class="form-control" style="width: 200px" >
+
+
+                                <option value="Не выбран" selected>Не выбран</option>
+                                <option value="Панельный" >Панельный</option>
+                                <option value="Кирпичный" >Кирпичный</option>
+                                <option value="Бревенчатый" >Бревенчатый</option>
+
+                            </select>
+                        </div>
+
+
+                    </div>
+
+                    <button type="submit" class="button_sign realEsateBTN">Применить</button>
+                    <style>
+                        .filter-text{
+                            color: white;
+                            font-size: 1.2rem;
+
+
+                        }
+
+                        .buttonFeedback{
+
+                        }
+                        .popup-bg {
+                            width: 100%;
+                            height: 100%;
+
+                            background-color: rgba(0, 0, 0, 0.5);
+
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            z-index: 100;
+
+                            display: none;
+                        }
+
+                        .popup-bg.open {
+                            display: block;
+                        }
+
+                        .popup {
+                            box-sizing: border-box;
+                            width: unset;
+                            padding: 60px 50px;
+                            border-radius: 11px;
+                            background-color: rgb(65 90 151);
+
+                            position: fixed;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%);
+                            z-index: 101;
+
+                            display: none;}
+
+                        #close {
+                            width: 50px;
+                            height: 50px;
+
+                            position: absolute;
+                            top: 10px;
+                            right: 15px;
+
+                            transition: 0.2s;
+                            cursor: pointer;
+                            display: block;
+                        }
+
+                        #close::before {
+                            content: '';
+                            width: 80%;
+                            height: 5px;
+                            display: block;
+
+                            border-radius: 10px;
+                            background-color: white;
+
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(-45deg);
+                        }
+
+                        #close::after {
+                            content: '';
+                            width: 80%;
+                            height: 5px;
+                            display: block;
+
+                            border-radius: 10px;
+                            background-color: white;
+
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translate(-50%, -50%) rotate(45deg);
+                        }
+
+                        #close:hover {
+                            transition: 0.2s;
+                            opacity: 0.7;
+                        }
+
+                        h1 {
+                            margin-bottom: 40px;
+                            font-size: 2rem;
+                            color: white;
+                            text-align: center;
+                        }
+                        h2 {
+
+                            font-size: 1rem;
+                            color: white;
+                            text-align: center;
+                        }
+
+                        form {
+                            display: flex;
+                            flex-direction: column;
+                        }
+
+                        input {
+                            color: white;
+                        }
+
+                        input::placeholder {
+                            color: white;
+                        }
+
+                        button {
+                            width: 100%;
+                            margin-top: 20px;
+                            border-radius: 11px;
+                            border: 1px solid white;
+                            background-color: unset;
+                            transition: 0.2s;
+                        }
+
+                        button:hover {
+                            transition: 0.2s;
+                            background-color: rgba(255, 255, 255, 0.15);
+                        }
+
+
+                        .popup.open {
+                            display: inline-block;
+                        }
+
+                        @media screen and (max-width: 480px) {
+                            .popup {
+                                width: 100%;
+                            }
+
+
+                            input {
+                                width: 100%;
+                            }
+                        }
+
+
+                        @media screen and (max-width: 380px) {
+                            .popup {
+                                width: 100%;
+                                padding: 50px 30px;
+                            }
+                        }
+                        button {
+                            width: 289px;
+                            height: 60px;
+
+                            /* font-family: 'Commissioner';*/
+                            font-size: 1.25rem;
+                            font-weight: 600;
+                            color: white;
+
+                            border: none;
+                            border-radius: 11px;
+                            background-color: #000000;
+
+                            cursor: pointer;
+                            transition: 0.2s;
+                        }
+
+                        button:hover {
+                            opacity: 0.9;
+                            transition: 0.2s;
+                        }
+
+                        input {
+                            margin-left: 10px ;
+                            margin-right: 10px;
+                            width: 200px;
+                            margin-bottom: 20px;
+                            padding: 10px 0;
+
+                            font-size: 1.2rem;
+
+                            border: none;
+                            border-bottom: 2px solid white;
+                            background-color: unset;
+                        }
+
+                        input:focus-visible {
+                            outline: none;
+                        }
+
+                    </style>
+                </form>
+            </div>
+            <script>
+
+            </script>
+
+
+
+
 
             <div class="dropdown"  id = "dropdown-price" data-id="price">
                 <div class="select">
@@ -178,10 +445,10 @@
                     <img src="./img/svg/no-sort-amount.svg" alt="" class="img_filter" id="priceSortingImage" >
                     <a  class="filter_link">По цене</a>
                 </li>
-                <li class="filter_item" onclick="sortByAlphabet()">
+                <#--<li class="filter_item" onclick="sortByAlphabet()">
                     <img src="./img/svg/sort-alpha-asc.svg" alt="" class="img_filter" id="alphabetSortingImage">
                     <a  class="filter_link">По алфавиту</a>
-                </li>
+                </li>-->
             </ul>
 
 
@@ -699,5 +966,35 @@
     }
 
 
+</script>
+
+<script>
+    const btnClose = document.getElementById('close');
+    const buttons = document.querySelectorAll('.buttonFeedback');
+    const popup = document.querySelector('.popup');
+    const popupBg = document.querySelector('.popup-bg');
+
+    console.log(1);
+
+    btnClose.addEventListener('click', () => {
+        popup.classList.remove('open');
+        popupBg.classList.remove('open');
+        document.body.style.overflow = 'unset';
+    });
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+            popup.classList.add('open');
+            popupBg.classList.add('open');
+            document.body.style.overflow = 'hidden';
+            console.log(2);
+        });
+    });
+
+    popupBg.addEventListener('click', () => {
+        popup.classList.remove('open');
+        popupBg.classList.remove('open');
+        document.body.style.overflow = 'unset';
+    });
 </script>
 </html>

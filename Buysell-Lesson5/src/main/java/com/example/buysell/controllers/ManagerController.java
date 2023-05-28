@@ -56,13 +56,7 @@ public class ManagerController {
     public String editProduct(@PathVariable Long id,@RequestParam("files") ArrayList<MultipartFile> files,
                               @RequestParam (value = "inputNumberImageName", required = false)ArrayList<Long> numbersInputIds,
                               @RequestParam("typeName") String typeName,
-                              Product product
-            /* , @RequestParam("type") String type*/) throws IOException {
-
-        System.out.println("Product: " + product);
-        System.out.println("Files: " + files);
-        System.out.println("size= " + files.size());
-
+                              Product product) throws IOException {
 
     productService.editProduct(id,product,files,typeName,numbersInputIds);
 

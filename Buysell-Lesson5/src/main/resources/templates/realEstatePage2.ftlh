@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style2.css">
+    <link rel="stylesheet" href="/css/popup.css">
   <#--  <link rel="stylesheet" href="./css/style2.css">-->
    <#-- <link rel="stylesheet" href="/static/css/style2.css">
     <link rel="stylesheet" href="static/css/style2.css">-->
@@ -39,7 +40,7 @@
                         <a href="/mainPage" class="header_link">Главная</a>
                     </li>
                     <li class="header_item">
-                        <a onclick="/" class="header_link">Выбрать недвижимость</a>
+                        <a href="/" class="header_link">Выбрать недвижимость</a>
                     </li>
                     <li class="header_item">
                         <a onclick="scrollToBottom()" class="header_link">Контакты</a>
@@ -147,10 +148,56 @@
                 <div class="cost_RealEstate">${product.price}$</div>
             </div>
             <#if user.phoneNumber??>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="buttonFeedback button_sign realEsateBTN ">O e</button>
+                    <div class="popup-bg"></div>
+                    <div class="popup">
+                        <div class="close" id="close"></div>
+                        <h1>Оставить заявку</h1>
+                        <form action="/mainPage" method="get">
+
+                            <input type="text" name="user_name" id="" placeholder="Имя" value="${user.name}" />
+                            <input type="tel" name="user_phone" id="" placeholder="Телефон*"<#-- pattern="/^\\+375(44|33|29)\\d{7}$/"-->
+                                  value="${user.phoneNumber}" <#--pattern="\+375(44|33|29)\\d{7}$"--> required />
+                            <input type="text" name="user_comment" id="" placeholder="Комментарий" />
+                            <button type="submit" class="button_sign realEsateBTN">Отправить</button>
+                        </form>
+                    </div>
+
+                    <script>
+
+                        const btnClose = document.getElementById('close');
+                        const buttons = document.querySelectorAll('.buttonFeedback');
+                        const popup = document.querySelector('.popup');
+                        const popupBg = document.querySelector('.popup-bg');
+
+                        console.log(1);
+
+                        btnClose.addEventListener('click', () => {
+                            popup.classList.remove('open');
+                            popupBg.classList.remove('open');
+                            document.body.style.overflow = 'unset';
+                        });
+
+                        buttons.forEach((button) => {
+                            button.addEventListener('click', () => {
+                                popup.classList.add('open');
+                                popupBg.classList.add('open');
+                                document.body.style.overflow = 'hidden';
+                                console.log(2);
+                            });
+                        });
+
+                        popupBg.addEventListener('click', () => {
+                            popup.classList.remove('open');
+                            popupBg.classList.remove('open');
+                            document.body.style.overflow = 'unset';
+                        });
+                    </script>
                 <form class="addOrderBuying" action='/order/Buying/${product.id}' method="post">
                     <input type="hidden" name="_csrf" value="${_csrf.token}"/>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary button_sign realEsateBTN" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary button_sign realEsateBTN buttonFeedback" <#--data-bs-toggle="modal" data-bs-target="#exampleModal"-->>
                         Оставить заявку
                     </button>
 

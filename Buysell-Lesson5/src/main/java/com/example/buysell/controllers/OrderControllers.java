@@ -34,7 +34,7 @@ public class OrderControllers {
 
     @PostMapping("/order/Buying/{id}")
     public String createOrderBuying( @PathVariable Long id, Principal principal){
-        System.out.println("Мы в Заропсе!!!!!!!");
+
        orderBuyingService.save(principal,id);
         return "redirect:/product/{id}";
     }

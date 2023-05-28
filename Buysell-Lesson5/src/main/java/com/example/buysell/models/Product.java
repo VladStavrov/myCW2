@@ -56,9 +56,7 @@ public  class Product {
     public void setRooms(int rooms) {
         this.rooms = rooms;
     }
-/*@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
-            mappedBy = "product")
-    private FavoritesProduct favoritesProduct;*/
+
 
     @ManyToMany
     @JoinTable(name = "favorites_product",
