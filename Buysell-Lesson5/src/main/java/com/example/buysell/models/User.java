@@ -1,7 +1,9 @@
 package com.example.buysell.models;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,6 +14,8 @@ import java.util.Set;
 
 @Entity
 @Table(name = "user")
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class User implements UserDetails {
@@ -24,82 +28,31 @@ public class User implements UserDetails {
     private String password;
 
     private String name;
-  /*  private String phoneNumber;*/
 
+    private Boolean active;
 
-    private boolean active;
-    public boolean isAdmin(){
+    public Boolean isAdmin() {
         return roles.contains(Role.ROLE_ADMIN);
     }
-    public boolean isManager(){
+
+    public Boolean isManager() {
         return roles.contains(Role.ROLE_MANAGER);
     }
-    @OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
-            mappedBy = "user")
+
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
     private Favorites favorites;
 
-
-
-    @ElementCollection(targetClass = Role.class,fetch = FetchType.EAGER)
-    @CollectionTable(name = "user_role",
-    joinColumns =@JoinColumn(name="user_id") )
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role > roles = new HashSet<>();
+    private Set<Role> roles = new HashSet<>();
 
-    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
-            mappedBy = "user")
-    private Set<OrderBuying > orderBuyings = new HashSet<>();
-    /*@OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL,
-            mappedBy = "user")
-    private Set<OrderQuestion > orderQuestions = new HashSet<>();*/
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "user")
+    private Set<OrderBuying> orderBuyings = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-        //sequrity
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Set<OrderBuying> getOrderBuyings() {
-        return orderBuyings;
-    }
-
-    public void setOrderBuyings(Set<OrderBuying> orderBuyings) {
-        this.orderBuyings = orderBuyings;
     }
 
     @Override
@@ -134,19 +87,4 @@ public class User implements UserDetails {
     public boolean isActive() {
         return active;
     }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-
-    public Favorites getFavorites() {
-        return favorites;
-    }
-
-    public void setFavorites(Favorites favorites) {
-        this.favorites = favorites;
-    }
-
-
 }

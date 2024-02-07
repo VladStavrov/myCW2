@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @Slf4j
@@ -29,8 +30,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-
-    public void saveProduct(Product product, List<MultipartFile> files,String type) throws IOException {
+    public void saveProduct(Product product, List<MultipartFile> files, String type) throws IOException {
         boolean isFirstFile = true;
 
         for (MultipartFile file : files) {
@@ -43,15 +43,14 @@ public class ProductService {
                 product.addImageToProduct(imageItem);
             }
         }
-        Type productType= typeRepository.findByTypeName(type);
-        if(productType!=null){
-            System.out.println(productType.getTypeName()+" - type name");
+        Type productType = typeRepository.findByTypeName(type);
+        if (productType != null) {
+            System.out.println(productType.getTypeName() + " - type name");
             product.setType(productType);
             productType.getProductList().add(product);
-        }
-        else{
-            log.info("Error Type! type: {}",type);
-            productType=new Type();
+        } else {
+            log.info("Error Type! type: {}", type);
+            productType = new Type();
             productType.setTypeName(type);
             typeRepository.save(productType);
             product.setType(productType);
@@ -65,8 +64,6 @@ public class ProductService {
     }
 
 
-
-
     public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
@@ -74,25 +71,18 @@ public class ProductService {
     public Product getProductById(Long id) {
         return productRepository.findById(id).orElse(null);
     }
-    private enum PreviewImageIdStatus{
-        ThereIs,
-        Nope,
-        NewPreview;
+
+    private enum PreviewImageIdStatus {
+        ThereIs, Nope, NewPreview
     }
 
 
-    public void editProduct(Long id, Product product, ArrayList<MultipartFile> files, String type,
-                            ArrayList<Long> oldImageId) throws IOException {
+    public void editProduct(Long id, Product product, ArrayList<MultipartFile> files, String type, ArrayList<Long> oldImageId) throws IOException {
         Product oldProduct = productRepository.getById(id);
-        if (oldProduct != null) {
-            System.out.println("Product not null");
-            System.out.println(oldProduct.getImageList().size() + " img size old Product");
-        } else {
-            System.out.println("Product is null");
-        }
+        System.out.println("Product not null");
+        System.out.println(oldProduct.getImageList().size() + " img size old Product");
         PreviewImageIdStatus previewImageIdStatus = PreviewImageIdStatus.Nope;
 
-        boolean isFirstFile = true;
         if (oldImageId != null) {
             System.out.println("Зашло в if");
             if (!(oldImageId.isEmpty())) {
@@ -108,7 +98,7 @@ public class ProductService {
 
                     if (oldImageId.contains(image.getId())) {
                         System.out.println("Зашло в if под номером 3");
-                        if (previewImageId == image.getId()) {
+                        if (Objects.equals(previewImageId, image.getId())) {
                             System.out.println("Зашло в if под номером 4");
                             previewImageIdStatus = PreviewImageIdStatus.ThereIs;
                         }
@@ -127,7 +117,7 @@ public class ProductService {
             oldProduct.getImageList().clear();
         }
 
-        if (previewImageIdStatus.equals(PreviewImageIdStatus.Nope) && oldProduct.getImageList().size() != 0) {
+        if (previewImageIdStatus.equals(PreviewImageIdStatus.Nope) && !oldProduct.getImageList().isEmpty()) {
             System.out.println("Зашло в if2");
             oldProduct.getImageList().get(0).setPreviewImage(true);
             oldProduct.setPreviewImageId(oldProduct.getImageList().get(0).getId());
@@ -148,9 +138,6 @@ public class ProductService {
         if (!oldProduct.getType().getTypeName().equals(type)) {
             oldProduct.getType().setTypeName(type);
         }
-        /*oldProduct.setFloor(product.getFloor());
-        oldProduct.setYears(product.getYears());
-        oldProduct.setMaterial(product.getMaterial());*/
         oldProduct.setAddress(product.getAddress());
         oldProduct.setInformation(product.getInformation());
         oldProduct.setPrice(product.getPrice());
@@ -176,9 +163,8 @@ public class ProductService {
         image.setBytes(file.getBytes());
         return image;
     }
-    public void deleteImage(Long id){
+
+    public void deleteImage(Long id) {
         imageRepository.deleteById(id);
-
     }
-
 }

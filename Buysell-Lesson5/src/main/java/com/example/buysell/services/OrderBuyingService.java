@@ -18,27 +18,27 @@ public class OrderBuyingService {
     private final OrderBuyingRepository orderBuyingRepository;
     private final UserService userService;
     private final ProductService productService;
-    public List<OrderBuying> getOrdersBuying() {
 
+    public List<OrderBuying> getOrdersBuying() {
         return orderBuyingRepository.findAll();
     }
-    public OrderBuying getOrderBuyingById(Long id){
-        return orderBuyingRepository.getById(id);
-    }
-    public void save(Principal principal, Long productId){
 
-        User user= userService.getUserByPrincipal(principal);
-        if(user!=null){
+    public void save(Principal principal, Long productId) {
+
+        User user = userService.getUserByPrincipal(principal);
+        if (user != null) {
             log.info("user !=null");
         }
 
-        Product product=productService.getProductById(productId);
-        if(product!=null){
+        Product product = productService.getProductById(productId);
+        if (product != null) {
             log.info("product !=null");
         }
-        OrderBuying orderBuying=new OrderBuying();
+        OrderBuying orderBuying = new OrderBuying();
+        assert user != null;
         user.getOrderBuyings().add(orderBuying);
 
+        assert product != null;
         product.getOrderBuyings().add(orderBuying);
 
         orderBuying.setProduct(product);
@@ -50,14 +50,14 @@ public class OrderBuyingService {
         orderBuying.setStatus("В ожидании");
         orderBuyingRepository.save(orderBuying);
     }
-    public void changeStatus(Long id,String status){
-        OrderBuying orderBuying= orderBuyingRepository.getById(id);
+
+    public void changeStatus(Long id, String status) {
+        OrderBuying orderBuying = orderBuyingRepository.getById(id);
         orderBuying.setStatus(status);
         orderBuyingRepository.save(orderBuying);
     }
-    public void deleteOrder(Long id){
+
+    public void deleteOrder(Long id) {
         orderBuyingRepository.deleteById(id);
     }
-
-
 }
